@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-
 export const AuthLogin = React.createContext({
   isLoggedIn: false,
-  Token: '',
+  Token: "",
   login: (token) => {},
 });
 
 const AuthLoginProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
- // const [token, setToken] = useState("");
+  const [message, setmessage] = useState(null);
+  // const [token, setToken] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
- 
   const loginHandler = async (event) => {
     event.preventDefault();
 
@@ -20,12 +19,12 @@ const AuthLoginProvider = (props) => {
       username,
       password,
     };
-    
+
     try {
       const response = await fetch("http://localhost:5000/dashboard/login", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json", 
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(loginData),
       });
@@ -37,9 +36,15 @@ const AuthLoginProvider = (props) => {
       console.log(data.token);
       localStorage.setItem("token", data.token);
       setIsLoggedIn(true);
-      //setToken(data.token); 
+      setmessage("Login successful");
+      //setToken(data.token);
+      //<AutohideSnackbar message="Login successful"></AutohideSnackbar>;
+
       console.log("Login successful");
     } catch (error) {
+      setmessage("Login Failed");
+      //<AutohideSnackbar message=" Login Failed"></AutohideSnackbar>;
+
       console.error("Login failed");
     }
   };
@@ -56,7 +61,8 @@ const AuthLoginProvider = (props) => {
 
   const contextLoginValue = {
     isLoggedIn: isLoggedIn,
-    loginHandler: loginHandler, 
+    loginHandler: loginHandler,
+    message: message,
     passwordChangeHandler: passwordChangeHandler,
     usernameChangeHandler: usernameChangeHandler,
     isFormValid:

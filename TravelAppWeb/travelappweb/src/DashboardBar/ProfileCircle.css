@@ -1,0 +1,9 @@
+.dashboard-bar-btns .profile-btn {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 100px;
+    height: 45px;
+    width: 45px;
+    color: black;
+    background-color: white;
+}

@@ -1,0 +1,30 @@
+.sidebar-item {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition-duration: 400ms;
+}
+
+.sidebar-item:nth-child(1) {
+    color: white;
+    font-size: 16px;
+}
+
+.sidebar-item h4 {
+    color: white;
+    font-size: 16px;
+}
+
+.sidebar-item.active{
+    background-color: rgb(60, 115, 118);
+}
+
+.sidebar-item:hover{
+    margin-left: 6px;
+    background-color: rgb(60, 115, 118);
+}

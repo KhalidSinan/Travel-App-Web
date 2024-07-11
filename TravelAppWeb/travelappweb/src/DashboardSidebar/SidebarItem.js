@@ -1,11 +1,11 @@
-import "./SidebarItem.css";
+import styles from "./SidebarItem.module.css";
 
 const SidebarItem = (props) => {
-    let sidebarItemClass = "sidebar-item";
-    sidebarItemClass += props.isActive ? " active" : "";
   return (
     <li>
-      <button className={sidebarItemClass} onClick={props.onPageChange}>
+      <button 
+      className={`${styles['sidebar-item']} ${props.isActive ? styles.active : ''}`} 
+      onClick={props.onPageChange}>
         {props.page.icon}
         <h4>{props.page.name}</h4>
       </button>

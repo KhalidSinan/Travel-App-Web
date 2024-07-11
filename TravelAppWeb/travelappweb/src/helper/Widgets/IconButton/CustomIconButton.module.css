@@ -1,0 +1,31 @@
+
+.icon-btn {
+    border: none;
+    background-color: transparent;
+    padding: 0.7rem 1rem;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer; 
+}
+
+.icon-btn.bordered{
+    border: 3px solid #205E61;
+}
+
+.icon-btn.colored{
+    background-color: rgb(155, 155, 155);
+}
+
+.icon-btn.accept{
+    background-color: green;
+    color: white;
+    border-radius: 0px;
+}
+
+.icon-btn.deny {
+    background-color: red;
+    color: white;
+    border-radius: 0px;
+}

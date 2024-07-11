@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BsBrightnessHighFill, BsMoonFill } from "react-icons/bs";
-import "./DashboardBar.css";
+import styles from "./ThemeButton.module.css";
 const ThemeButton = (props) => {
     const [isDarkTheme, setDarkTheme] = useState(false);
 
@@ -11,10 +11,12 @@ const ThemeButton = (props) => {
     const getThemeIcon = () => {
       return isDarkTheme ? 
         <BsMoonFill fontSize={18} />: 
-        <BsBrightnessHighFill fontSize={18} color="yellow" />
+        <BsBrightnessHighFill 
+        fontSize={24} 
+        color="yellow" />
     }
   return (
-    <button className="theme-btn" 
+    <button className={styles['theme-btn']} 
     onClick={onThemeChangeHandler}>
       {getThemeIcon()}
     </button>

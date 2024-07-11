@@ -1,0 +1,22 @@
+
+
+
+.primary-btn{
+    padding: 0.7rem;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: #205E61;
+    transition-duration: 400ms;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    scale: 1.125;
+    background-color: #ffb156;
+}
+
+.primary-btn:active {
+    background-color: grey;
+}

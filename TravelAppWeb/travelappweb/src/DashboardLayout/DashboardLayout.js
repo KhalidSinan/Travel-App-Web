@@ -1,7 +1,6 @@
 import React from "react";
-import DashboardBar from "../DashboardBar/DashboardBar"
-import DashboardSidebar from "../DashboardSidebar/DashboardSidebar"
-
+import DashboardBar from "../DashboardBar/DashboardBar.js"
+import DashboardSidebar from "../DashboardSidebar/DashboardSidebar.js"
 
 
 

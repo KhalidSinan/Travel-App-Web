@@ -1,7 +1,7 @@
 import React from "react";
 import LoginForm from "./LoginForm";
 import { Grid,Paper } from "@mui/material";
-import AuthLoginProvider from "../Context/login_context";
+import AuthLoginProvider from "../../Context/login_context";
 const Login = () => {
   return (
     <Grid

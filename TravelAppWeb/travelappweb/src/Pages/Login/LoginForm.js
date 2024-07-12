@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import StyledForm, { SubmitButton } from "./styledForm";
 import { TextField } from "@mui/material";
-import { AuthLogin } from "../Context/login_context";
-import AutohideSnackbar from "../helper/snackbar";
+import { AuthLogin } from "../../Context/login_context";
+import AutohideSnackbar from "../../helper/snackbar";
 const LoginForm = () => {
   const {
     isFormValid,

@@ -1,12 +1,6 @@
-
-
 .main-sidebar{
-    position: fixed;
-    top: 90px;
-    width: 200px;
+    grid-area: side;
     background-color: rgb(32,94,97);
-    padding: 1rem 0rem;
-    height: 100dvh;
     color: white;
 }
 
@@ -22,6 +16,7 @@
 .sidebar-list li {
     width: 100%;
 }
+
 
 
 

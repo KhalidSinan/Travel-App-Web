@@ -8,6 +8,7 @@
     justify-content: center;
     gap: 10px;
     transition-duration: 400ms;
+    text-decoration: none;
 }
 
 .sidebar-item:nth-child(1) {
@@ -27,4 +28,15 @@
 .sidebar-item:hover{
     margin-left: 6px;
     background-color: rgb(60, 115, 118);
+}
+
+
+@media (max-width: 925px){ 
+    .sidebar-item h4 {
+        display: none;
+    }
+    .sidebar-item:nth-child(1) {
+        font-size: 24px;
+        padding: 10px 0px;
+    }
 }

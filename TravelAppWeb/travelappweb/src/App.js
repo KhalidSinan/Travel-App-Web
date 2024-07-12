@@ -1,14 +1,18 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import Login from "./Login/Login";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DashboardLayout from "./DashboardLayout/DashboardLayout.js";
+import Admins from './Pages/Admins/Admins.js';
+import Login from './Pages/Login/Login.js';
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<DashboardLayout />} />
+          <Route path="/" element={<DashboardLayout />}>
+            <Route path="admins" element={<Admins />} />
+            {/* Organizers Here */}
+          </Route>
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,0 +1,25 @@
+
+.dashboard-statistics{
+    margin: 0.7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.dashboard-statistics div {
+    flex: 1;
+    height: 300px;
+    background-color: lightgrey;
+}
+
+@media (max-width: 925px) {
+    .dashboard-statistics{
+        flex-direction: column;
+        height: 100dvh;
+    }
+    .dashboard-statistics div{
+        width: 100%;
+    }
+}

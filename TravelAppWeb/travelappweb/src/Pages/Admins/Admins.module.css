@@ -1,0 +1,39 @@
+.admins-section {
+    display: grid;
+    grid-template-rows: 60px 10px 1fr;
+    grid-template-areas: 
+    "admins-header"
+    "line"
+    "admins-list";
+    padding: 0.5rem 1rem;
+}
+
+.admins-section hr {
+    grid-area: line;
+    width: 100%;
+    border-bottom: 1px solid #205E61;
+}
+.admins-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: admins-header;
+    /* background-color: lightgrey; */
+}
+.admins-header h1{
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffb156;
+}
+
+.admins-header-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+.admins-list {
+    grid-area: admins-list;
+    padding: 0.5rem 0rem;
+}

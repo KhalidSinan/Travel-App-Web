@@ -1,0 +1,10 @@
+
+.admins-list {
+    grid-area: admins-list;
+    padding: 0.5rem 0rem;
+}
+
+.remove-admin-btn {
+    border-color: red;
+    color:red;
+}

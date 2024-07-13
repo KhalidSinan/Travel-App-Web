@@ -8,7 +8,10 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
-
+import CustomButton from "../../helper/Components/CustomButton/CustomButton.js";
+import styles from './AdminsList.module.css';
+import CustomIconButton from "../../helper/Components/IconButton/CustomIconButton.js";
+import { BsCrosshair, BsTrash2, BsTrash3Fill, BsTrashFill, BsX } from "react-icons/bs";
 function createData(id, name, role) {
   return {
     id,
@@ -24,25 +27,25 @@ const rows = [
   createData(5, "Tawfeq", "Super Admin"),
   createData(6, "Osama", "Oraganizers Admin"),
   createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
-  createData(7, "Waled", "Super Admin"),
+  createData(8, "Waled", "Super Admin"),
+  createData(9, "Waled", "Super Admin"),
+  createData(10, "Waled", "Super Admin"),
+  createData(11, "Waled", "Super Admin"),
+  createData(12, "Waled", "Super Admin"),
+  createData(13, "Waled", "Super Admin"),
+  createData(14, "Waled", "Super Admin"),
+  createData(15, "Waled", "Super Admin"),
+  createData(16, "Waled", "Super Admin"),
+  createData(17, "Waled", "Super Admin"),
+  createData(18, "Waled", "Super Admin"),
+  createData(19, "Waled", "Super Admin"),
+  createData(20, "Waled", "Super Admin"),
+  createData(21, "Waled", "Super Admin"),
+  createData(22, "Waled", "Super Admin"),
+  createData(23, "Waled", "Super Admin"),
+  createData(24, "Waled", "Super Admin"),
+  createData(25, "Waled", "Super Admin"),
+  createData(26, "Waled", "Super Admin"),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -116,6 +119,13 @@ const AdminsListHead = (props) => {
             </TableSortLabel>
           </TableCell>
         ))}
+        <TableCell 
+        key="actions" 
+        align="right" 
+        padding="normal" >
+
+          Actions
+          </TableCell> 
       </TableRow>
     </TableHead>
   );
@@ -165,7 +175,6 @@ const AdminsList = () => {
     <React.Fragment>
       <TableContainer>
         <Table
-          stickyHeader
           aria-label="sticky table"
           sx={{ minWidth: 500 }}
           size="medium"
@@ -181,16 +190,21 @@ const AdminsList = () => {
             {visibleRows.map((row, index) => {
               return (
                 <TableRow
-                  hover
                   tabIndex={-1}
                   key={row.id}
-                  sx={{ cursor: "pointer" }}
                 >
                   <TableCell width={40} align="right">
                     {row.id}
                   </TableCell>
                   <TableCell align="left">{row.name}</TableCell>
                   <TableCell align="left">{row.role}</TableCell>
+                  <TableCell align="right">
+                    <CustomButton 
+                    name="Cancel Admin"
+                    primary={false}
+                    classes={styles['remove-admin-btn']}
+                    />
+                  </TableCell>
                 </TableRow>
               );
             })}

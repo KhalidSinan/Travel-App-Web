@@ -1,0 +1,31 @@
+.add-admin-section {
+    display: grid;
+    grid-template-rows: 60px 10px 1fr;
+    grid-template-areas: 
+    "add-admin-header"
+    "line"
+    "add-admin-fields";
+    padding: 0.5rem 1rem;
+}
+
+.add-admin-section hr {
+    grid-area: line;
+    width: 100%;
+    border-bottom: 1px solid #205E61;
+}
+.add-admin-header{
+    display: flex;
+    align-items: center;
+    grid-area: add-admin-header;
+    /* background-color: lightgrey; */
+}
+.add-admin-header h1{
+    font-size: 32px;
+    font-weight: bold;
+    color: grey;
+}
+
+.add-admin-body{ 
+    grid-area: add-admin-fields;
+    margin-top: 16px;
+}

@@ -1,3 +1,9 @@
+.box{
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+}
+
 .admins-section {
     display: grid;
     grid-template-rows: 60px 10px 1fr;
@@ -11,26 +17,24 @@
 .admins-section hr {
     grid-area: line;
     width: 100%;
-    border-bottom: 1px solid #205E61;
 }
 .admins-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
     grid-area: admins-header;
-    /* background-color: lightgrey; */
 }
 .admins-header h1{
     font-size: 32px;
     font-weight: bold;
-    color: #ffb156;
+    color: var(--text-color);
 }
 
 .admins-header-actions {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 24px;
+    gap: 12px;
 }
 
 
@@ -38,3 +42,6 @@
     grid-area: admins-list;
     padding: 0.5rem 0rem;
 }
+
+
+

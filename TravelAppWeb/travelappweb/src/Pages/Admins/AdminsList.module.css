@@ -5,6 +5,11 @@
 }
 
 .remove-admin-btn {
-    border-color: red;
-    color:red;
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.remove-admin-btn:hover {
+    border-color: #FF204E;
+    color:#FF204E;
 }

@@ -2,16 +2,16 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
+import TablePagination, { tablePaginationClasses } from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import TableSortLabel from "@mui/material/TableSortLabel";
+import TableSortLabel, { tableSortLabelClasses } from "@mui/material/TableSortLabel";
 import CustomButton from "../../helper/Components/CustomButton/CustomButton.js";
 import styles from './AdminsList.module.css';
-import CustomIconButton from "../../helper/Components/IconButton/CustomIconButton.js";
-import { BsCrosshair, BsTrash2, BsTrash3Fill, BsTrashFill, BsX } from "react-icons/bs";
+import { styled } from '@mui/material/styles';
+
 function createData(id, name, role) {
   return {
     id,
@@ -19,6 +19,29 @@ function createData(id, name, role) {
     role,
   };
 }
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    color: "var(--text-color)",
+  },
+  [`&.${tableCellClasses.body}`]: {
+    color: "var(--text-color)",
+  },
+}));
+
+const StyledTableSortLabel = styled(TableSortLabel)(() => ({
+  [`&.${tableSortLabelClasses.active}`]: {
+    color: "var(--text-color)",
+  },
+  [`&.${tableSortLabelClasses.root}`]: {
+    color: "var(--text-color)",
+  },
+}));
+
+const StyledTablePagination = styled(TablePagination)(() => ({
+  [`&.${tablePaginationClasses.root}`]:{
+    color: "var(--text-color)",
+  }
+}))
 const rows = [
   createData(1, "Khalid", "Announcement Admin"),
   createData(2, "Omar", "Reports Admin"),
@@ -104,28 +127,28 @@ const AdminsListHead = (props) => {
     <TableHead>
       <TableRow>
         {headCells.map((headCell) => (
-          <TableCell
+          <StyledTableCell
             key={headCell.id}
             align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
           >
-            <TableSortLabel
+            <StyledTableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
-            </TableSortLabel>
-          </TableCell>
+            </StyledTableSortLabel>
+          </StyledTableCell>
         ))}
-        <TableCell 
+        <StyledTableCell 
         key="actions" 
         align="right" 
-        padding="normal" >
-
+        padding="normal"
+        >
           Actions
-          </TableCell> 
+          </StyledTableCell> 
       </TableRow>
     </TableHead>
   );
@@ -193,18 +216,18 @@ const AdminsList = () => {
                   tabIndex={-1}
                   key={row.id}
                 >
-                  <TableCell width={40} align="right">
+                  <StyledTableCell width={40} align="right">
                     {row.id}
-                  </TableCell>
-                  <TableCell align="left">{row.name}</TableCell>
-                  <TableCell align="left">{row.role}</TableCell>
-                  <TableCell align="right">
+                  </StyledTableCell>
+                  <StyledTableCell align="left">{row.name}</StyledTableCell>
+                  <StyledTableCell align="left">{row.role}</StyledTableCell>
+                  <StyledTableCell align="right">
                     <CustomButton 
                     name="Cancel Admin"
                     primary={false}
                     classes={styles['remove-admin-btn']}
                     />
-                  </TableCell>
+                  </StyledTableCell>
                 </TableRow>
               );
             })}
@@ -214,13 +237,13 @@ const AdminsList = () => {
                   height: 53 * emptyRows,
                 }}
               >
-                <TableCell colSpan={6} />
+                <StyledTableCell colSpan={6} />
               </TableRow>
             )}
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
+      <StyledTablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
         count={rows.length}

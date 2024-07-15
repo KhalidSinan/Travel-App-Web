@@ -7,12 +7,18 @@ import {
   BsPersonFill,
 } from "react-icons/bs";
 import SidebarItem from "./SidebarItem.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const DashboardSidebar = (props) => {
     const [currentPage, setCurrentPage] = useState(0);
     const onPageChange = (index) => {
         setCurrentPage(index);
+        localStorage.setItem('current-page', index);
     }
+    useEffect(() => {
+      const page = localStorage.getItem('current-page');
+      if(!page) setCurrentPage(0);
+      else setCurrentPage(+page);
+    } ,[]);
     const pages = [
         {
             "index": 0,

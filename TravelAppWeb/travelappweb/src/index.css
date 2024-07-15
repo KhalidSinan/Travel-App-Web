@@ -1,3 +1,26 @@
+:root {
+  --primary-color: #205E61;
+  --secondary-color: #ffb156;
+  --text-color: black;
+  --background: white;
+  --danger: rgb(213, 1, 1);
+  --sidebar-active-color: rgb(56, 125, 129);
+}
+
+[theme-mode="dark"] {
+  --primary-color: rgb(12, 67, 70);
+  --text-color: white;
+  --background: rgb(23, 23, 23);
+  --danger: rgb(121,13,22);
+  --sidebar-active-color: rgb(28, 104, 108);
+}
+
+*{
+  transition: all 0.3s ease-in-out;
+}
+
+
+
 body {
   margin: 0;
   padding: 0;

@@ -6,6 +6,9 @@ import Dashboard from "./Pages/Dashboard/Dashboard.js";
 import AddAdmin from "./Pages/Admins/AddAdmin/AddAdmin.js";
 import DashboardLayout from "./helper/Components/DashboardLayout/DashboardLayout.js";
 function App() {
+  window.addEventListener('beforeunload', (event) => {
+    localStorage.removeItem('current-page');
+  });
   return (
     <div className="App">
       <BrowserRouter>

@@ -8,61 +8,116 @@ import {
   TextField,
 } from "@mui/material";
 import styles from "./AddAdminForm.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { SubmitButton } from "../../Login/styledForm";
 
-
 const roles = [
-    {
-      value: 'super',
-      label: 'Super',
+  {
+    value: "super",
+    label: "Super",
+  },
+  {
+    value: "announcement",
+    label: "Announcements",
+  },
+  {
+    value: "reports",
+    label: "Reports",
+  },
+  {
+    value: "organizers",
+    label: "Organizers",
+  },
+  {
+    value: "dashboard",
+    label: "Dashboard",
+  },
+  {
+    value: "admins",
+    label: "Admins",
+  },
+];
+
+const textFieldStyle = {
+  "&:hover": {
+    "& .MuiInputLabel-outlined": {
+      color: "grey",
     },
-    {
-      value: 'announcement',
-      label: 'Announcements',
+  },
+  "& .MuiOutlinedInput-root": {
+    // the whole input
+    marginBottom: '12px', 
+    transitionDuration: "400ms",
+    color: "var(--text-color)",
+
+    "& .MuiOutlinedInput-notchedOutline": {
+      // the input border
+      borderColor: "var(--primary-color)",
+      borderWidth: "3px",
+      borderRadius: "10px",
     },
-    {
-      value: 'reports',
-      label: 'Reports',
+
+    "& .MuiSelect-icon": {
+      color: "var(--secondary-color)", // Set your desired color here
     },
-    {
-      value: 'organizers',
-      label: 'Organizers',
+
+    "&:hover:not(.Mui-focused)": {
+      "& .MuiOutlinedInput-notchedOutline": {
+        borderColor: "gray",
+        borderRadius: "15px",
+      },
     },
-    {
-      value: 'dashboard',
-      label: 'Dashboard',
+    "&.Mui-focused": {
+      "& .MuiOutlinedInput-notchedOutline": {
+        borderColor: "var(--primary-color)",
+        borderRadius: "10px",
+        borderWidth: "3px",
+      },
     },
-    {
-      value: 'admins',
-      label: 'Admins',
+  },
+  "&.MuiSelect-icon": {
+    color: "white",
+  },
+  "& .MuiInputLabel-outlined": {
+    // the label
+    color: "var(--secondary-color)",
+    fontWeight: "bold",
+    "&.Mui-focused": {
+      color: "var(--secondary-color)",
     },
-  ];
+  },
+};
+
+const buttonStyle = {
+  "&.MuiIconButton-root": {
+    color: "var(--secondary-color)",
+  },
+};
 
 const AddAdminForm = (props) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [adminName, setAdminName] = useState(null);
-  const [password,setPassword] = useState(null);
-  const [passwordConfirm, setPasswordConfrim] = useState(null); 
+  const [password, setPassword] = useState(null);
+  const [passwordConfirm, setPasswordConfrim] = useState(null);
   const [role, setRole] = useState(null);
 
   const adminNameChange = (event) => {
     setAdminName(event.target.value);
-  }
+  };
 
   const passwordChange = (event) => {
     setPassword(event.target.value);
-  }
+  };
 
   const passwordConfirmChange = (event) => {
     setPasswordConfrim(event.target.value);
-  }
+  };
 
   const roleChange = (event) => {
     setRole(event.target.value);
-  }
+  };
   const toggleShowPassword = () => setShowPassword((show) => !show);
   const toggleShowPasswordConfirm = () =>
     setShowPasswordConfirm((show) => !show);
@@ -80,9 +135,17 @@ const AddAdminForm = (props) => {
         name="username"
         autoComplete="username"
         value={adminName}
+        sx={textFieldStyle}
         onChange={adminNameChange}
       />
-      <FormControl variant="outlined" fullWidth margin="normal" required>
+
+      <FormControl
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        required
+        sx={textFieldStyle}
+      >
         <InputLabel htmlFor="password">Password</InputLabel>
         <OutlinedInput
           id="password"
@@ -90,6 +153,7 @@ const AddAdminForm = (props) => {
           endAdornment={
             <InputAdornment>
               <IconButton
+                sx={buttonStyle}
                 aria-label="toggle password visibility"
                 onClick={toggleShowPassword}
                 edge="end"
@@ -103,9 +167,16 @@ const AddAdminForm = (props) => {
           onChange={passwordChange}
         />
       </FormControl>
-      <FormControl variant="outlined" fullWidth margin="normal" required>
+
+      <FormControl
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        required
+        sx={textFieldStyle}
+      >
         <InputLabel htmlFor="confirm-password">
-          Password
+          Password Confirmation
         </InputLabel>
         <OutlinedInput
           id="confirm-password"
@@ -113,6 +184,7 @@ const AddAdminForm = (props) => {
           endAdornment={
             <InputAdornment>
               <IconButton
+                sx={buttonStyle}
                 aria-label="toggle password confirmation visibility"
                 onClick={toggleShowPasswordConfirm}
                 edge="end"
@@ -126,28 +198,25 @@ const AddAdminForm = (props) => {
           onChange={passwordConfirmChange}
         />
       </FormControl>
+
       <TextField
-          id="admin-roles"
-          select
-          label="Select Admin Role"
-          fullWidth
-          required
-          margin="normal"
-          value={role}
-          onChange={roleChange}
-        >
-          {roles.map((role) => (
-            <MenuItem key={role.value} value={role.value}>
-              {role.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <SubmitButton
-        type="submit"
+        id="admin-roles"
+        select
+        label="Select Admin Role"
         fullWidth
-        variant="contained"
-        color="primary"
+        required
+        margin="normal"
+        value={role}
+        onChange={roleChange}
+        sx={textFieldStyle}
       >
+        {roles.map((role) => (
+          <MenuItem key={role.value} value={role.value}>
+            {role.label}
+          </MenuItem>
+        ))}
+      </TextField>
+      <SubmitButton type="submit" fullWidth variant="contained" color="primary">
         Submit
       </SubmitButton>
     </div>

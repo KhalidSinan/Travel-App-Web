@@ -1,14 +1,12 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Admins from "./Pages/Admins/Admins.js";
 import Login from "./Pages/Login/Login.js";
 import Dashboard from "./Pages/Dashboard/Dashboard.js";
 import AddAdmin from "./Pages/Admins/AddAdmin/AddAdmin.js";
 import DashboardLayout from "./helper/Components/DashboardLayout/DashboardLayout.js";
+
 function App() {
-  window.addEventListener('beforeunload', (event) => {
-    localStorage.removeItem('current-page');
-  });
   return (
     <div className="App">
       <BrowserRouter>

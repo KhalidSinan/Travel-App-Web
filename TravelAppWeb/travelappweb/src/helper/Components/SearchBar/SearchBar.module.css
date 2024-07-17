@@ -13,7 +13,7 @@
     outline: none;
     border: none;
     color: var(--secondary-color);
-    transition-duration: 800ms;
+    transition-duration: 600ms;
     background-color: transparent;
 }
 

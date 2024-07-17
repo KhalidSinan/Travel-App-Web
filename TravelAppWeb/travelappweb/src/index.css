@@ -10,8 +10,9 @@
 [theme-mode="dark"] {
   --primary-color: rgb(12, 67, 70);
   --text-color: white;
-  --background: rgb(23, 23, 23);
-  --danger: rgb(121,13,22);
+  /* --background: rgb(23, 23, 23); */
+  --background: #1a1d22 ;
+  --danger: #DC143C;
   --sidebar-active-color: rgb(28, 104, 108);
 }
 

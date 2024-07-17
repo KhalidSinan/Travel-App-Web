@@ -11,6 +11,7 @@ import styles from "./AddAdminForm.module.css";
 import { useState } from "react";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { SubmitButton } from "../../Login/styledForm";
+import CustomTextField from "../../../helper/Components/CustomTextField/CustomTextField";
 
 const roles = [
   {
@@ -39,6 +40,7 @@ const roles = [
   },
 ];
 
+
 const textFieldStyle = {
   "&:hover": {
     "& .MuiInputLabel-outlined": {
@@ -47,7 +49,7 @@ const textFieldStyle = {
   },
   "& .MuiOutlinedInput-root": {
     // the whole input
-    marginBottom: '12px', 
+    marginBottom: "12px",
     transitionDuration: "400ms",
     color: "var(--text-color)",
 
@@ -89,6 +91,7 @@ const textFieldStyle = {
   },
 };
 
+
 const buttonStyle = {
   "&.MuiIconButton-root": {
     color: "var(--secondary-color)",
@@ -124,21 +127,13 @@ const AddAdminForm = (props) => {
 
   return (
     <div className={styles["add-admin-fields"]}>
-      <TextField
-        required
-        autoFocus
-        fullWidth
-        variant="outlined"
-        margin="normal"
-        id="username"
-        label="Username"
-        name="username"
-        autoComplete="username"
-        value={adminName}
-        sx={textFieldStyle}
-        onChange={adminNameChange}
-      />
+      <CustomTextField 
+      id="username"
+      label="Username" 
+      onChange={adminNameChange}
+       value={adminName} >
 
+       </CustomTextField>
       <FormControl
         variant="outlined"
         fullWidth
@@ -199,23 +194,19 @@ const AddAdminForm = (props) => {
         />
       </FormControl>
 
-      <TextField
-        id="admin-roles"
-        select
-        label="Select Admin Role"
-        fullWidth
-        required
-        margin="normal"
-        value={role}
-        onChange={roleChange}
-        sx={textFieldStyle}
+      <CustomTextField 
+      id="admin-roles" 
+      label="Select Admin Role"
+      onChange={roleChange}
+      value={role}
+      isSelect
       >
         {roles.map((role) => (
           <MenuItem key={role.value} value={role.value}>
             {role.label}
           </MenuItem>
         ))}
-      </TextField>
+      </CustomTextField>
       <SubmitButton type="submit" fullWidth variant="contained" color="primary">
         Submit
       </SubmitButton>

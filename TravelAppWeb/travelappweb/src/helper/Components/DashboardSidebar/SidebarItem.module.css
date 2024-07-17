@@ -22,12 +22,12 @@
 }
 
 .sidebar-item.active{
-    background-color: rgb(60, 115, 118);
+    background-color: var(--sidebar-active-color);
 }
 
 .sidebar-item:hover{
     margin-left: 6px;
-    background-color: rgb(60, 115, 118);
+    background-color: var(--sidebar-active-color);
 }
 
 

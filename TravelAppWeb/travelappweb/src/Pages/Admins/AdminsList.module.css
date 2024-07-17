@@ -1,0 +1,15 @@
+
+.admins-list {
+    grid-area: admins-list;
+    padding: 0.5rem 0rem;
+}
+
+.remove-admin-btn {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.remove-admin-btn:hover {
+    border-color: #FF204E;
+    color:#FF204E;
+}

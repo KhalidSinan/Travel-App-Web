@@ -10,6 +10,7 @@
 
 .dashboard-content {
     grid-area: main;
+    background-color: var(--background);
 }
 
 @media (max-width: 925px) {

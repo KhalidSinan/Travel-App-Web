@@ -1,9 +1,8 @@
 import React from "react";
-import DashboardBar from "../DashboardBar/DashboardBar.js"
-import DashboardSidebar from "../DashboardSidebar/DashboardSidebar.js"
 import { Outlet } from "react-router-dom";
 import styles from './DashboardLayout.module.css';
-
+import DashboardBar from "../DashboardBar/DashboardBar";
+import DashboardSidebar from "../DashboardSidebar/DashboardSidebar";
 
 const DashboardLayout = (props) => {
     return (

@@ -6,6 +6,8 @@ const CustomIconButton = ({
   colored = false,
   isAccept = false,
   isDeny = false,
+  onClick,
+  classes,
 }) => {
   return (
     <button
@@ -15,7 +17,8 @@ const CustomIconButton = ({
         ${colored ? styles["colored"] : ""}
         ${isAccept ? styles["accept"] : ""}
         ${isDeny ? styles["deny"] : ""}
-        `}
+        ${classes}`}
+        onClick={onClick}
     >
       {icon}
     </button>

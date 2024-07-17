@@ -1,7 +1,9 @@
 .main-sidebar{
     grid-area: side;
-    background-color: rgb(32,94,97);
+    /* background-color: rgb(32,94,97); */
+    background-color: var(--primary-color);
     color: white;
+    z-index: 100;
 }
 
 .sidebar-list {

@@ -11,7 +11,7 @@
 .add-admin-section hr {
     grid-area: line;
     width: 100%;
-    border-bottom: 1px solid #205E61;
+    border-bottom: 1px solid var(--primary-color);
 }
 .add-admin-header{
     display: flex;
@@ -22,7 +22,7 @@
 .add-admin-header h1{
     font-size: 32px;
     font-weight: bold;
-    color: grey;
+    color: var(--text-color);
 }
 
 .add-admin-body{ 

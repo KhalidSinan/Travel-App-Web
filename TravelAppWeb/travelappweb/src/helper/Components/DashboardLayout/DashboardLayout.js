@@ -4,7 +4,6 @@ import styles from './DashboardLayout.module.css';
 import DashboardBar from "../DashboardBar/DashboardBar";
 import DashboardSidebar from "../DashboardSidebar/DashboardSidebar";
 
-
 const DashboardLayout = (props) => {
     return (
         <main className={styles['dashboard-layout']}>

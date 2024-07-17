@@ -8,6 +8,40 @@ import {
 } from "react-icons/bs";
 import SidebarItem from "./SidebarItem.js";
 import { useEffect, useState } from "react";
+
+const pages = [
+  {
+      "index": 0,
+      "name" : "Dashboard",
+      "icon" : <BiSolidDashboard />,
+      "page" : "/"
+    },
+    {
+      "index": 1,
+      "name" : "Admins",
+      "icon" : <BsPersonFill />,
+      "page" : "admins"
+    },
+    {
+      "index": 2,
+      "name" : "Organizers",
+      "icon" : <BsFillPeopleFill />,
+      "page" : "organizers"
+    },
+    {
+      "index": 3,
+      "name" : "Announcments",
+      "icon" : <BsFillSendFill />,
+      "page" : "announcments"
+    },
+    {
+      "index": 4,
+      "name" : "Reports",
+      "icon" : <BsExclamationOctagonFill />,
+      "page" :  "reports"
+  },
+]
+
 const DashboardSidebar = (props) => {
     const [currentPage, setCurrentPage] = useState(0);
     const onPageChange = (index) => {
@@ -19,38 +53,6 @@ const DashboardSidebar = (props) => {
       if(!page) setCurrentPage(0);
       else setCurrentPage(+page);
     } ,[]);
-    const pages = [
-        {
-            "index": 0,
-            "name" : "Dashboard",
-            "icon" : <BiSolidDashboard />,
-            "page" : "/"
-          },
-          {
-            "index": 1,
-            "name" : "Admins",
-            "icon" : <BsPersonFill />,
-            "page" : "admins"
-          },
-          {
-            "index": 2,
-            "name" : "Organizers",
-            "icon" : <BsFillPeopleFill />,
-            "page" : "organizers"
-          },
-          {
-            "index": 3,
-            "name" : "Announcments",
-            "icon" : <BsFillSendFill />,
-            "page" : "announcments"
-          },
-          {
-            "index": 4,
-            "name" : "Reports",
-            "icon" : <BsExclamationOctagonFill />,
-            "page" :  "reports"
-        },
-    ]
   return (
     <div className={styles['main-sidebar']}>
       <ul className={styles['sidebar-list']}>

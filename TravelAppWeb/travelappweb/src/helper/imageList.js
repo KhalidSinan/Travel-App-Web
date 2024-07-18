@@ -26,7 +26,7 @@ const ImageList = ({ proofs }) => {
           <Box
             sx={{
               padding: "10px",
-              backgroundColor: "rgb(32,94,97)",
+              backgroundColor: "var(--primary-color)",
               color: "white",
             }}
           >

@@ -32,7 +32,7 @@ export default function AutohideSnackbar({ message }) {
           message={message}
           ContentProps={{
             sx: {
-              background: "rgb(32,94,97)"
+              background: "var(--primary-color)"
             }
           }}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}

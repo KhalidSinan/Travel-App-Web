@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Box, Tab } from "@mui/material";
 import { styled } from "@mui/system";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-const indicatorColor = "rgb(32,94,97)";
+const indicatorColor = "var(--primary-color)";
 const inactiveColor = "grey";
 
 const StyledTab = styled(Tab)(({ theme }) => ({
@@ -23,7 +23,7 @@ const Tabs = ({ tab1, tab2, component1, component2 }) => {
   };
 
   return (
-    <Box sx={{ bgcolor: "background.paper", borderRadius: 2 }}>
+    <Box sx={{ bgcolor: "var(--background)", borderRadius: 2 }}>
       <TabContext value={value}>
         <Box
           sx={{

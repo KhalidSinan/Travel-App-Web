@@ -16,12 +16,12 @@ const Organizers = (props) => {
             marginTop: "20px",
             marginLeft: "30px",
             position: "relative",
-            backgroundColor: "white",
+            backgroundColor: "var(--background)",
             padding: "20px",
             zIndex: "1000",
           }}
         >
-          <Box sx={{ bgcolor: "background.paper", borderRadius: 2 }}>
+          <Box sx={{ borderRadius: 2,backgroundColor: "var(--background)" }}>
             <Tabs
               tab1="Organizers"
               tab2="Organizers Request"

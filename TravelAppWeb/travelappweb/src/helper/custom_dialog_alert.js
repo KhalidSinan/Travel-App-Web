@@ -39,7 +39,7 @@ const CustomDialogAlert = ({
           style={textFieldStyle}
           InputLabelProps={{
             style: {
-              color: "rgb(32, 94, 97)", // Label color
+              color: "var(--primary-color)", // Label color
             },
           }}
           InputProps={{
@@ -48,7 +48,7 @@ const CustomDialogAlert = ({
             },
             classes: {
               focused: {
-                borderColor: "rgb(32, 94, 97)", // Border color when focused
+                borderColor: "var(--primary-color)", // Border color when focused
               },
             },
           }}
@@ -66,7 +66,7 @@ const CustomDialogAlert = ({
           style={textFieldStyle}
           InputLabelProps={{
             style: {
-              color: "rgb(32, 94, 97)", // Label color
+              color: "var(--primary-color)", // Label color
             },
           }}
           InputProps={{
@@ -75,7 +75,7 @@ const CustomDialogAlert = ({
             },
             classes: {
               focused: {
-                borderColor: "rgb(32, 94, 97)", // Border color when focused
+                borderColor: "var(--primary-color)", // Border color when focused
               },
             },
           }}

@@ -21,6 +21,10 @@
     background-color: grey;
 }
 
+.primary-btn:disabled {
+    background-color: rgb(88, 88, 88);
+    cursor: unset;
+}
 
 
 .secondary-btn {
@@ -43,4 +47,10 @@
 .secondary-btn:active {
     border-color: grey;
     color: grey;
+}
+
+.secondary-btn:disabled {
+    border-color: rgb(88, 88, 88);
+    color: rgb(88, 88, 88);
+    cursor: unset;
 }

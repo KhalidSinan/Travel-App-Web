@@ -24,7 +24,7 @@ const CustomCardCV = ({ card }) => {
       <CardContent
         sx={{
           background:
-            'linear-gradient(to top, rgb(32,94,97), rgb(32,94,97), rgb(255,255,255) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)',
+            'linear-gradient(to top, var(--primary-color), var(--primary-color), rgb(255,255,255) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)',
         }}
       >
         <Typography variant="h5" style={{ color: '#fff' }}>

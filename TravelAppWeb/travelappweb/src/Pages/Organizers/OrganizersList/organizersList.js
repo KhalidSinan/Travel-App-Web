@@ -44,7 +44,7 @@ const OrganizersList = () => {
   };
 
   return (
-    <Box sx={{ padding: 3 }}>
+    <Box sx={{ padding: 3, backgroundColor: "var(--background)" }}>
       <form onSubmit={handleSearchSubmit}>
         <TextField
           value={searchQuery}

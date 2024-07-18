@@ -1,56 +1,18 @@
 import { TextField } from "@mui/material";
+import TextFieldStyle from "../../Styles/TextFieldStyle";
+import TextFieldInvalidStyle from "../../Styles/TextFieldInvalidStyle";
 
-const textFieldStyle = {
-  "&:hover": {
-    "& .MuiInputLabel-outlined": {
-      color: "grey",
-    },
-  },
-  "& .MuiOutlinedInput-root": {
-    // the whole input
-    marginBottom: "12px",
-    transitionDuration: "400ms",
-    color: "var(--text-color)",
-
-    "& .MuiOutlinedInput-notchedOutline": {
-      // the input border
-      borderColor: "var(--primary-color)",
-      borderWidth: "3px",
-      borderRadius: "10px",
-    },
-
-    "& .MuiSelect-icon": {
-      color: "var(--secondary-color)", // Set your desired color here
-    },
-
-    "&:hover:not(.Mui-focused)": {
-      "& .MuiOutlinedInput-notchedOutline": {
-        borderColor: "gray",
-        borderRadius: "15px",
-      },
-    },
-    "&.Mui-focused": {
-      "& .MuiOutlinedInput-notchedOutline": {
-        borderColor: "var(--primary-color)",
-        borderRadius: "10px",
-        borderWidth: "3px",
-      },
-    },
-  },
-  "&.MuiSelect-icon": {
-    color: "white",
-  },
-  "& .MuiInputLabel-outlined": {
-    // the label
-    color: "var(--secondary-color)",
-    fontWeight: "bold",
-    "&.Mui-focused": {
-      color: "var(--secondary-color)",
-    },
-  },
-};
-
-const CustomTextField = ({ id,label, value, onChange, children, isSelect=false }) => {
+const CustomTextField = ({
+  id,
+  label,
+  value,
+  onChange,
+  onBlur,
+  children,
+  isSelect = false,
+  error = false,
+  errText,
+}) => {
   return (
     <TextField
       required
@@ -64,8 +26,11 @@ const CustomTextField = ({ id,label, value, onChange, children, isSelect=false }
       name={label}
       autoComplete={label}
       value={value}
-      sx={textFieldStyle}
+      sx={TextFieldStyle}
       onChange={onChange}
+      onBlur={onBlur}
+      error={error}
+      helperText={error ? errText : null}
     >
       {children}
     </TextField>

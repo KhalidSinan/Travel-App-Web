@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 //   backgroundColor: "rgb(32,94,97)",
-  color: "rgb(32,94,97)",
+  color: "var(--primary-color)",
   fontWeight: 'bold',
   fontSize: '1.1rem',
 }));

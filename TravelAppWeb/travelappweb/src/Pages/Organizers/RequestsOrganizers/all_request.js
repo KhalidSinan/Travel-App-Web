@@ -58,7 +58,7 @@ const AllRequest = () => {
   };
 
   return (
-    <Box sx={{ padding: 3 }}>
+    <Box sx={{ padding: 3, backgroundColor: "var(--background)" }}>
       <Grid container spacing={4} marginTop="20px">
         {card.map((card) => (
           <Grid item key={card.id} xs={12} sm={6} md={4} lg={4}>

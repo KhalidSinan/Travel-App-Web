@@ -10,7 +10,7 @@ const Header = ({ text }) => {
         display: "flex",
         marginBottom: "20px",
         fontWeight: "bold",
-        color: "rgb(32,94,97)",
+        color: "var(--primary-color)",
         alignItems: "flex-start",
       }}
     >

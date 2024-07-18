@@ -1,0 +1,34 @@
+
+.dialog-title { 
+    color: var(--danger);
+    /* font-weight: bold; */
+}
+
+.dialog-content {
+    color: var(--text-color);
+}
+
+.dialog-title span,
+.dialog-content span {
+    font-weight: bold;
+}
+
+.dialog-back-btn {
+    border: none;
+    color: grey;
+}
+
+.dialog-back-btn:hover {
+    scale: 1;
+    color: grey;
+}
+
+
+.dialog-cancel-btn {
+    background-color: var(--danger);
+}
+
+.dialog-cancel-btn:hover {
+    scale: 1;
+    background-color: #FF204E;
+}

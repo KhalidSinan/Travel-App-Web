@@ -10,15 +10,15 @@ const CustomPagination = ({ count, page, onChange }) => {
         onChange={onChange}
         sx={{
           "& .MuiPaginationItem-root": {
-            color: "rgb(32, 94, 97)", // Default color for pagination items
+            color: "var(--primary-color)", // Default color for pagination items
           },
           "& .Mui-selected": {
-            backgroundColor: "rgb(32, 94, 97)", // Background color for selected item
+            backgroundColor: "var(--primary-color)", // Background color for selected item
             color: "white", // Text color for selected item
           },
           "& .MuiPaginationItem-page:hover": {
-            backgroundColor: "rgba(32, 94, 97, 0.1)", // Hover effect background color
-            color: "rgb(32, 94, 97)", // Text color for hover effect
+            backgroundColor: "var(--primary-color)", // Hover effect background color
+            color: "white", // Text color for hover effect
           },
         }}
       />

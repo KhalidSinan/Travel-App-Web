@@ -1,5 +1,7 @@
 import {
+  CircularProgress,
   FormControl,
+  FormHelperText,
   IconButton,
   InputAdornment,
   InputLabel,
@@ -10,13 +12,17 @@ import {
 import styles from "./AddAdminForm.module.css";
 import { useState } from "react";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
-import { SubmitButton } from "../../Login/styledForm";
 import CustomTextField from "../../../helper/Components/CustomTextField/CustomTextField";
+import CustomButton from "../../../helper/Components/CustomButton/CustomButton";
+import TextFieldStyle from "../../../helper/Styles/TextFieldStyle";
+import TextFieldInvalidStyle from "../../../helper/Styles/TextFieldInvalidStyle";
+import { useNavigate } from "react-router-dom";
+import AutohideSnackbar from "../../../helper/snackbar";
 
 const roles = [
   {
-    value: "super",
-    label: "Super",
+    value: "Admin",
+    label: "Admin",
   },
   {
     value: "announcement",
@@ -40,57 +46,7 @@ const roles = [
   },
 ];
 
-
-const textFieldStyle = {
-  "&:hover": {
-    "& .MuiInputLabel-outlined": {
-      color: "grey",
-    },
-  },
-  "& .MuiOutlinedInput-root": {
-    // the whole input
-    marginBottom: "12px",
-    transitionDuration: "400ms",
-    color: "var(--text-color)",
-
-    "& .MuiOutlinedInput-notchedOutline": {
-      // the input border
-      borderColor: "var(--primary-color)",
-      borderWidth: "3px",
-      borderRadius: "10px",
-    },
-
-    "& .MuiSelect-icon": {
-      color: "var(--secondary-color)", // Set your desired color here
-    },
-
-    "&:hover:not(.Mui-focused)": {
-      "& .MuiOutlinedInput-notchedOutline": {
-        borderColor: "gray",
-        borderRadius: "15px",
-      },
-    },
-    "&.Mui-focused": {
-      "& .MuiOutlinedInput-notchedOutline": {
-        borderColor: "var(--primary-color)",
-        borderRadius: "10px",
-        borderWidth: "3px",
-      },
-    },
-  },
-  "&.MuiSelect-icon": {
-    color: "white",
-  },
-  "& .MuiInputLabel-outlined": {
-    // the label
-    color: "var(--secondary-color)",
-    fontWeight: "bold",
-    "&.Mui-focused": {
-      color: "var(--secondary-color)",
-    },
-  },
-};
-
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjEyODk3NjZ9.Q35aHtM5xwtvC4vUBxPxcC62jzjL0OHhmmcwsgaFvBs";
 
 const buttonStyle = {
   "&.MuiIconButton-root": {
@@ -98,48 +54,105 @@ const buttonStyle = {
   },
 };
 
+
 const AddAdminForm = (props) => {
+  const navigator = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-  const [adminName, setAdminName] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [passwordConfirm, setPasswordConfrim] = useState(null);
+  const [adminName, setAdminName] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfrim] = useState('');
   const [role, setRole] = useState(null);
-
+  const [adminNameTouched, setAdminNameTouched] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
+  const [passwordConfirmTouched, setPasswordConfrimTouched] = useState(false);
+  const [roleTouched, setRoleTouched] = useState(false);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); 
+  
+  const adminNameNotValid = adminNameTouched && adminName.length < 3;
+  const passwordNotValid = password.length < 8 && passwordTouched;
+  const passwordConfirmNotValid = passwordConfirmTouched && (passwordConfirm.length < 8 || passwordConfirm !== password);
+  const roleNotValid = roleTouched && role === null;
+  const formNotValid = adminNameNotValid || passwordConfirmNotValid || passwordNotValid || roleNotValid;
+  
   const adminNameChange = (event) => {
+    touchAdminName()
     setAdminName(event.target.value);
   };
 
   const passwordChange = (event) => {
+    touchPassword()
     setPassword(event.target.value);
   };
 
   const passwordConfirmChange = (event) => {
+    touchPasswordConfirm()
     setPasswordConfrim(event.target.value);
   };
 
   const roleChange = (event) => {
+    touchRole()
     setRole(event.target.value);
   };
   const toggleShowPassword = () => setShowPassword((show) => !show);
-  const toggleShowPasswordConfirm = () =>
-    setShowPasswordConfirm((show) => !show);
+  const toggleShowPasswordConfirm = () => setShowPasswordConfirm((show) => !show);
+
+  const touchAdminName = () => setAdminNameTouched(true);
+  const touchPassword = () => setPasswordTouched(true);
+  const touchPasswordConfirm = () => setPasswordConfrimTouched(true);
+  const touchRole = () => setRoleTouched(true);
+
+  const addAdmin = async () => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      const response = await fetch('http://localhost:5000/dashboard/admin', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            "username" : adminName,
+            "password" : password,
+            "password_confirmation": passwordConfirm,
+            "role" : role,
+          }),
+      });
+      if(!response.ok){
+        if(response.status === 400){
+          const data = await response.json();
+          const field = Object.keys(data.message)[0];
+          throw new Error(data.message[field][0]);
+        }
+        throw new Error('An Error occured when adding the admin');
+      }
+      const data = await response.json();
+      navigator('/admins');
+    } catch (error) {
+      setError(error.message);
+    }
+    setIsLoading(false);
+  }
 
   return (
     <div className={styles["add-admin-fields"]}>
-      <CustomTextField 
-      id="username"
-      label="Username" 
-      onChange={adminNameChange}
-       value={adminName} >
-
-       </CustomTextField>
+      <CustomTextField
+        id="username"
+        label="Username"
+        onChange={adminNameChange}
+        value={adminName}
+        error={adminNameNotValid}
+        errText="Admin name must be at least 3 characters"
+      />
       <FormControl
         variant="outlined"
         fullWidth
         margin="normal"
         required
-        sx={textFieldStyle}
+        sx={TextFieldStyle}
+        error={passwordNotValid}
       >
         <InputLabel htmlFor="password">Password</InputLabel>
         <OutlinedInput
@@ -161,6 +174,9 @@ const AddAdminForm = (props) => {
           value={password}
           onChange={passwordChange}
         />
+        {passwordNotValid ? <FormHelperText>
+          Password must be at least 8 characters
+        </FormHelperText> : null}
       </FormControl>
 
       <FormControl
@@ -168,7 +184,8 @@ const AddAdminForm = (props) => {
         fullWidth
         margin="normal"
         required
-        sx={textFieldStyle}
+        sx={TextFieldStyle}
+        error={passwordConfirmNotValid}
       >
         <InputLabel htmlFor="confirm-password">
           Password Confirmation
@@ -192,14 +209,22 @@ const AddAdminForm = (props) => {
           value={passwordConfirm}
           onChange={passwordConfirmChange}
         />
+        {passwordConfirmTouched && passwordConfirm.length < 8 ? <FormHelperText>
+          Password Confirmation must be at least 8 characters
+        </FormHelperText> : null}
+        {passwordConfirmTouched && passwordConfirm.length >= 8 && passwordConfirm !== password ? <FormHelperText>
+          Password Confirmation must match password
+        </FormHelperText> : null}
       </FormControl>
 
-      <CustomTextField 
-      id="admin-roles" 
-      label="Select Admin Role"
-      onChange={roleChange}
-      value={role}
-      isSelect
+      <CustomTextField
+        id="admin-roles"
+        label="Select Admin Role"
+        onChange={roleChange}
+        value={role}
+        isSelect
+        error={roleNotValid}
+        errText="Admin Role must not be empty"
       >
         {roles.map((role) => (
           <MenuItem key={role.value} value={role.value}>
@@ -207,9 +232,14 @@ const AddAdminForm = (props) => {
           </MenuItem>
         ))}
       </CustomTextField>
-      <SubmitButton type="submit" fullWidth variant="contained" color="primary">
-        Submit
-      </SubmitButton>
+      {isLoading ? <CircularProgress /> 
+      :<CustomButton
+        name="Add Admin"
+        classes={`${styles["add-admin-btn"]}`}
+        onClick={addAdmin}
+        error={roleNotValid}
+      />}
+      {error ? <AutohideSnackbar message={error} /> : null}
     </div>
   );
 };

@@ -24,7 +24,7 @@ const CustomCard = ({ card, handleDetailsClick, handleClickRefuse }) => {
       </CardContent>
       <CardActions>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-          <Button size="small" onClick={() => handleDetailsClick(card)} sx={{ color: 'rgb(32,94,97)' }}>
+          <Button size="small" onClick={() => handleDetailsClick(card)} sx={{ color: 'var(--primary-color)' }}>
             Details
           </Button>
           {handleClickRefuse && (

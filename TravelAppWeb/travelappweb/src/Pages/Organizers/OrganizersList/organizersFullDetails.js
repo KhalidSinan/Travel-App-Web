@@ -9,10 +9,22 @@ import {
   TableHead,
   TableRow,
   Paper,
+  styled,
+  tableCellClasses,
 } from "@mui/material";
 import Header from "../../../helper/typography";
 import { useLocation } from "react-router-dom";
 import OrganizersContext from "../../../Context/organizers_context";
+
+
+const StyledTableCell = styled(TableCell)(() => ({
+  [`&.${tableCellClasses.head}`]: {
+    color: "var(--text-color)",
+  },
+  [`&.${tableCellClasses.body}`]: {
+    color: "var(--text-color)",
+  },
+}));
 
 const OrganizersFullDetails = () => {
   const { fetchTripDetails } = useContext(OrganizersContext);
@@ -45,32 +57,32 @@ const OrganizersFullDetails = () => {
           display: "flex",
           marginBottom: "20px",
           fontWeight: "bold",
-          color: "rgb(32,94,97)",
+          color: "var(--primary-color)",
           alignItems: "flex-start",
         }}
       >
         General Info
       </Typography>
-      <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
+      <TableContainer component={Paper} sx={{ marginBottom: "20px",backgroundColor: "var(--card-color)"}}>
         <Table>
-          <TableHead sx={{ backgroundColor: "rgb(255,176,86)" }}>
+          <TableHead sx={{ backgroundColor: "var(--secondary-color)" }}>
             <TableRow>
-              <TableCell>Start Date</TableCell>
-              <TableCell>End Date</TableCell>
-              <TableCell>Price</TableCell>
-              <TableCell>Commission</TableCell>
-              <TableCell>Number of People</TableCell>
-              <TableCell>Number of Destinations</TableCell>
+              <StyledTableCell>Start Date</StyledTableCell>
+              <StyledTableCell>End Date</StyledTableCell>
+              <StyledTableCell>Price</StyledTableCell>
+              <StyledTableCell>Commission</StyledTableCell>
+              <StyledTableCell>Number of People</StyledTableCell>
+              <StyledTableCell>Number of Destinations</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell>{data.start_date}</TableCell>
-              <TableCell>{data.end_date}</TableCell>
-              <TableCell>{data.price}</TableCell>
-              <TableCell>{data.commission}</TableCell>
-              <TableCell>{data.num_of_people}</TableCell>
-              <TableCell>{data.num_of_destinations}</TableCell>
+              <StyledTableCell>{data.start_date}</StyledTableCell>
+              <StyledTableCell>{data.end_date}</StyledTableCell>
+              <StyledTableCell>{data.price}</StyledTableCell>
+              <StyledTableCell>{data.commission}</StyledTableCell>
+              <StyledTableCell>{data.num_of_people}</StyledTableCell>
+              <StyledTableCell>{data.num_of_destinations}</StyledTableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -83,35 +95,35 @@ const OrganizersFullDetails = () => {
           display: "flex",
           marginBottom: "20px",
           fontWeight: "bold",
-          color: "rgb(32,94,97)",
+          color: "var(--primary-color)",
           alignItems: "flex-start",
         }}
       >
         Hotels Info
       </Typography>
-      <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
+      <TableContainer component={Paper} sx={{ marginBottom: "20px", backgroundColor: "var(--card-color)" }}>
         <Table>
-          <TableHead sx={{ backgroundColor: "rgb(255,176,86)" }}>
+          <TableHead sx={{ backgroundColor: "var(--secondary-color)" }}>
             <TableRow>
-              <TableCell>Hotel Name</TableCell>
-              <TableCell>Location</TableCell>
-              <TableCell>Stars</TableCell>
-              <TableCell>Start Date</TableCell>
-              <TableCell>End Date</TableCell>
-              <TableCell>Overall Price</TableCell>
-              <TableCell>Number of Rooms</TableCell>
+              <StyledTableCell>Hotel Name</StyledTableCell>
+              <StyledTableCell>Location</StyledTableCell>
+              <StyledTableCell>Stars</StyledTableCell>
+              <StyledTableCell>Start Date</StyledTableCell>
+              <StyledTableCell>End Date</StyledTableCell>
+              <StyledTableCell>Overall Price</StyledTableCell>
+              <StyledTableCell>Number of Rooms</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.hotels.map((hotel, index) => (
               <TableRow key={index} >
-                <TableCell>{hotel.hotel_name}</TableCell>
-                <TableCell>{hotel.hotel_location}</TableCell>
-                <TableCell>{hotel.hotel_stars}</TableCell>
-                <TableCell>{hotel.start_date}</TableCell>
-                <TableCell>{hotel.end_date}</TableCell>
-                <TableCell>{hotel.overall_price}</TableCell>
-                <TableCell>{hotel.num_of_rooms}</TableCell>
+                <StyledTableCell>{hotel.hotel_name}</StyledTableCell>
+                <StyledTableCell>{hotel.hotel_location}</StyledTableCell>
+                <StyledTableCell>{hotel.hotel_stars}</StyledTableCell>
+                <StyledTableCell>{hotel.start_date}</StyledTableCell>
+                <StyledTableCell>{hotel.end_date}</StyledTableCell>
+                <StyledTableCell>{hotel.overall_price}</StyledTableCell>
+                <StyledTableCell>{hotel.num_of_rooms}</StyledTableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -125,29 +137,29 @@ const OrganizersFullDetails = () => {
           display: "flex",
           marginBottom: "20px",
           fontWeight: "bold",
-          color: "rgb(32,94,97)",
+          color: "var(--primary-color)",
           alignItems: "flex-start",
         }}
       >
         Places Info
       </Typography>
-      <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
+      <TableContainer component={Paper} sx={{ marginBottom: "20px",backgroundColor: "var(--card-color)" }}>
         <Table>
-          <TableHead sx={{ backgroundColor: "rgb(255,176,86)" }}>
+          <TableHead sx={{ backgroundColor: "var(--secondary-color)" }}>
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell>Location</TableCell>
-              <TableCell>Category</TableCell>
-              <TableCell>Phone Number</TableCell>
+              <StyledTableCell>Name</StyledTableCell>
+              <StyledTableCell>Location</StyledTableCell>
+              <StyledTableCell>Category</StyledTableCell>
+              <StyledTableCell>Phone Number</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.places.map((place, index) => (
               <TableRow key={index} >
-                <TableCell>{place.name}</TableCell>
-                <TableCell>{place.location}</TableCell>
-                <TableCell>{place.category}</TableCell>
-                <TableCell>{place.phone_number}</TableCell>
+                <StyledTableCell>{place.name}</StyledTableCell>
+                <StyledTableCell>{place.location}</StyledTableCell>
+                <StyledTableCell>{place.category}</StyledTableCell>
+                <StyledTableCell>{place.phone_number}</StyledTableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -161,39 +173,39 @@ const OrganizersFullDetails = () => {
           display: "flex",
           marginBottom: "20px",
           fontWeight: "bold",
-          color: "rgb(32,94,97)",
+          color: "var(--primary-color)",
           alignItems: "flex-start",
         }}
       >
         Flight Info
       </Typography>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{backgroundColor: "var(--card-color)"}}>
         <Table>
-          <TableHead sx={{ backgroundColor: "rgb(255,176,86)" }}>
+          <TableHead sx={{ backgroundColor: "var(--secondary-color)" }}>
             <TableRow>
-              <TableCell>Airline</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell>Duration</TableCell>
-              <TableCell>Source</TableCell>
-              <TableCell>Source Airport</TableCell>
-              <TableCell>Destination</TableCell>
-              <TableCell>Destination Airport</TableCell>
-              <TableCell>Class</TableCell>
-              <TableCell>Price</TableCell>
+              <StyledTableCell>Airline</StyledTableCell>
+              <StyledTableCell>Date</StyledTableCell>
+              <StyledTableCell>Duration</StyledTableCell>
+              <StyledTableCell>Source</StyledTableCell>
+              <StyledTableCell>Source Airport</StyledTableCell>
+              <StyledTableCell>Destination</StyledTableCell>
+              <StyledTableCell>Destination Airport</StyledTableCell>
+              <StyledTableCell>Class</StyledTableCell>
+              <StyledTableCell>Price</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.flights.map((flight, index) => (
               <TableRow key={index} >
-                <TableCell>{flight.airline}</TableCell>
-                <TableCell>{flight.date}</TableCell>
-                <TableCell>{flight.duration}</TableCell>
-                <TableCell>{flight.source}</TableCell>
-                <TableCell>{flight.source_airport}</TableCell>
-                <TableCell>{flight.destination}</TableCell>
-                <TableCell>{flight.destination_airport}</TableCell>
-                <TableCell>{flight.class}</TableCell>
-                <TableCell>{flight.price}</TableCell>
+                <StyledTableCell>{flight.airline}</StyledTableCell>
+                <StyledTableCell>{flight.date}</StyledTableCell>
+                <StyledTableCell>{flight.duration}</StyledTableCell>
+                <StyledTableCell>{flight.source}</StyledTableCell>
+                <StyledTableCell>{flight.source_airport}</StyledTableCell>
+                <StyledTableCell>{flight.destination}</StyledTableCell>
+                <StyledTableCell>{flight.destination_airport}</StyledTableCell>
+                <StyledTableCell>{flight.class}</StyledTableCell>
+                <StyledTableCell>{flight.price}</StyledTableCell>
               </TableRow>
             ))}
           </TableBody>

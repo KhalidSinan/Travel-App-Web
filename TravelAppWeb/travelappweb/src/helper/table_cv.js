@@ -2,34 +2,44 @@ import React from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-//   backgroundColor: "rgb(32,94,97)",
-  color: "var(--primary-color)",
+const StyledTableHeadCell = styled(TableCell)(({ theme }) => ({
+  color: "var(--secondary-color)",
   fontWeight: 'bold',
   fontSize: '1.1rem',
 }));
 
+
+const StyledTableCell = styled(TableCell)(() => ({
+  [`&.${tableCellClasses.head}`]: {
+    color: "var(--text-color)",
+  },
+  [`&.${tableCellClasses.body}`]: {
+    color: "var(--text-color)",
+  },
+}));
+
+
 const CustomTableCV = ({ tableData }) => {
   return (
-    <TableContainer component={Paper} sx={{ flex: 1 }}>
+    <TableContainer component={Paper} sx={{ flex: 1, backgroundColor: "var(--card-color)" }}>
       <Table aria-label="organizer details">
         <TableHead>
           <TableRow>
-            <StyledTableCell>General</StyledTableCell>
-            <StyledTableCell>Info</StyledTableCell>
+            <StyledTableHeadCell>General</StyledTableHeadCell>
+            <StyledTableHeadCell>Info</StyledTableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {tableData.map((row, rowIndex) => (
             <TableRow key={rowIndex}>
-              <TableCell>{row.label}</TableCell>
-              <TableCell>{row.value}</TableCell>
+              <StyledTableCell>{row.label}</StyledTableCell>
+              <StyledTableCell>{row.value}</StyledTableCell>
             </TableRow>
           ))}
         </TableBody>

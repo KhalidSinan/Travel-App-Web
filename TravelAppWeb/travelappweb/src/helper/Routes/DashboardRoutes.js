@@ -12,7 +12,7 @@ const DashboardRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      {false ? (
+      {true ? (
         <Route path="/" element={<DashboardLayout />}>
           {dashboardPages.map((page) => (
             <Route path={page.path} element={page.element} />

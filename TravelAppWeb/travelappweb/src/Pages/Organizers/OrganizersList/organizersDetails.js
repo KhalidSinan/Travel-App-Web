@@ -11,6 +11,8 @@ import {
   Paper,
   Rating,
   Button,
+  styled,
+  tableCellClasses,
 } from "@mui/material";
 import CustomDialog from "../../../helper/dialog";
 import PersonRemove from "@mui/icons-material/PersonRemove";
@@ -28,6 +30,15 @@ import { OrganizersProvider } from "../../../Context/organizers_context";
 import CustomDialogAlert from "../../../helper/custom_dialog_alert";
 
 const ITEMS_PER_PAGE=2;
+
+const StyledTableCell = styled(TableCell)(() => ({
+  [`&.${tableCellClasses.head}`]: {
+    color: "var(--text-color)",
+  },
+  [`&.${tableCellClasses.body}`]: {
+    color: "var(--text-color)",
+  },
+}));
 
 const OrganizersDetails = () => {
   const { deleteOrganizer, deactiveOrganizer ,alertOrganizer,fetchOrganizerDetails} =
@@ -203,7 +214,7 @@ const OrganizersDetails = () => {
                 variant="contained"
                 startIcon={<DisabledByDefault />}
                 onClick={handleClickOpenDeactivate}
-                sx={{ backgroundColor: "rgb(32,94,97)", color: "white" }}
+                sx={{ backgroundColor: "var(--primary-color)", color: "white" }}
               >
                 Deactivate Organizer
               </Button>
@@ -250,7 +261,7 @@ const OrganizersDetails = () => {
             display: "flex",
             marginBottom: "20px",
             fontWeight: "bold",
-            color: "rgb(32,94,97)",
+            color: "var(--primary-color)",
             alignItems: "flex-start",
           }}
         >
@@ -264,7 +275,7 @@ const OrganizersDetails = () => {
             marginBottom: "20px",
             marginTop: "10px",
             fontWeight: "bold",
-            color: "rgb(32,94,97)",
+            color: "var(--primary-color)",
             alignItems: "flex-start",
           }}
         >
@@ -274,7 +285,7 @@ const OrganizersDetails = () => {
           {tableTrip.map((trip, tripIndex) => (
             <Paper
               key={tripIndex}
-              sx={{ marginBottom: "20px", padding: "20px" }}
+              sx={{ marginBottom: "20px", padding: "20px",backgroundColor: "var(--card-color)", color:"var(--text-color)" }}
             >
               <Typography variant="h6" sx={{ marginBottom: "10px" }}>
                 Trip {tripIndex + 1}
@@ -286,7 +297,7 @@ const OrganizersDetails = () => {
                       {Object.keys(trip)
                         .filter((key) => key !== "id")
                         .map((key) => (
-                          <TableCell key={key}>{key}</TableCell>
+                          <StyledTableCell key={key}>{key}</StyledTableCell>
                         ))}
                     </TableRow>
                   </TableHead>
@@ -295,7 +306,7 @@ const OrganizersDetails = () => {
                       {Object.keys(trip)
                         .filter((key) => key !== "id")
                         .map((key, cellIndex) => (
-                          <TableCell key={cellIndex}>{trip[key]}</TableCell>
+                          <StyledTableCell key={cellIndex}>{trip[key]}</StyledTableCell>
                         ))}
                     </TableRow>
                   </TableBody>
@@ -310,6 +321,7 @@ const OrganizersDetails = () => {
               >
                 <Button
                   size="small"
+                  style={{color: "var(--secondary-color)"}}
                   onClick={() => handleDetailsClick(trip.id)}
                 >
                   Details

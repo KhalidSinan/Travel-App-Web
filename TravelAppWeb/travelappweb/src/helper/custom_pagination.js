@@ -14,11 +14,11 @@ const CustomPagination = ({ count, page, onChange }) => {
           },
           "& .Mui-selected": {
             backgroundColor: "var(--primary-color)", // Background color for selected item
-            color: "white", // Text color for selected item
+            color: "var(--secondary-color)", // Text color for selected item
           },
           "& .MuiPaginationItem-page:hover": {
             backgroundColor: "var(--primary-color)", // Hover effect background color
-            color: "white", // Text color for hover effect
+            color: "var(--secondary-color)", // Text color for hover effect
           },
         }}
       />

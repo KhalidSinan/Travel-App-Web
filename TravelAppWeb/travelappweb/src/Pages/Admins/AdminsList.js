@@ -190,7 +190,7 @@ const AdminsList = ({ admins }) => {
         open={cancelAdmin.openDialog}
         admin={cancelAdmin.admin}
         onClose={closeCancelAdminDialog}
-        onCancelSucces={() => onCancelSuccess(cancelAdmin.admin)}
+        onCancelSuccess={() => onCancelSuccess(cancelAdmin.admin)}
       />
       {cancelAdmin.success ? <AutohideSnackbar message={`${cancelAdmin.admin.username} canceled successfully`} /> : null}
       <TableContainer>
@@ -211,7 +211,7 @@ const AdminsList = ({ admins }) => {
               return (
                 <TableRow tabIndex={-1} key={admin.id}>
                   <StyledTableCell width={40} align="right">
-                    {admin.id.substring(0, 9)}
+                    {admin['id'].substring(0, 9)}
                   </StyledTableCell>
                   <StyledTableCell align="left">
                     {admin.username}

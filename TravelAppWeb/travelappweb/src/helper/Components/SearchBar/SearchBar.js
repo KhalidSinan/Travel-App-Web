@@ -14,3 +14,7 @@ const SearchBar = ({ size = 32, onSearchDone,onUpdateValue, value, classes }) =>
 }
 
 export default SearchBar;
+
+
+
+

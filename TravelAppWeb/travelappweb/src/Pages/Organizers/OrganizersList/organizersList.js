@@ -1,34 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Grid,
   Box,
-  TextField,
-  IconButton,
-  InputAdornment,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import CustomCard from "../../../helper/custom_card";
 import CustomPagination from "../../../helper/custom_pagination";
-import SearchIcon from "@mui/icons-material/Search";
 import OrganizersContext from "../../../Context/organizers_context";
+import SearchBar from "../../../helper/Components/SearchBar/SearchBar";
 
 const ITEMS_PER_PAGE = 6;
 
-
 const OrganizersList = () => {
   const navigate = useNavigate();
-  const { cards, page, handleChangePage,count, fetchOrganizerDetails } =
+  const { cards, page, handleChangePage, count, fetchOrganizerDetails, fetchSearchedOrganizers } =
     useContext(OrganizersContext);
-    
+
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    fetchSearchedOrganizers(page, searchQuery);
+  }, [page, searchQuery]);
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
+ 
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    // Handle search logic
+    fetchSearchedOrganizers(1, searchQuery);
   };
 
   const handleDetailsClick = async (card) => {
@@ -46,21 +47,10 @@ const OrganizersList = () => {
   return (
     <Box sx={{ padding: 3, backgroundColor: "var(--background)" }}>
       <form onSubmit={handleSearchSubmit}>
-        <TextField
+        <SearchBar
           value={searchQuery}
-          onChange={handleSearchChange}
-          variant="outlined"
-          placeholder="Search..."
-          fullWidth
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton type="submit">
-                  <SearchIcon />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
+          onUpdateValue={handleSearchChange}
+          onSearchDone={handleSearchSubmit}
         />
       </form>
 
@@ -72,7 +62,10 @@ const OrganizersList = () => {
               handleDetailsClick={() => handleDetailsClick(card)}
             />
           </Grid>
-        ))}
+          
+        ))
+        
+        }
       </Grid>
 
       <CustomPagination

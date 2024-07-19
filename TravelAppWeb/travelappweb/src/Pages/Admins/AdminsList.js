@@ -5,13 +5,9 @@ import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TablePagination, {
-  tablePaginationClasses,
-} from "@mui/material/TablePagination";
+import TablePagination, { tablePaginationClasses } from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import TableSortLabel, {
-  tableSortLabelClasses,
-} from "@mui/material/TableSortLabel";
+import TableSortLabel, { tableSortLabelClasses } from "@mui/material/TableSortLabel";
 import CustomButton from "../../helper/Components/CustomButton/CustomButton.js";
 import styles from "./AdminsList.module.css";
 import { styled } from "@mui/material/styles";
@@ -118,9 +114,6 @@ const AdminsListHead = (props) => {
             </StyledTableSortLabel>
           </StyledTableCell>
         ))}
-        {/* <StyledTableCell key="actions" align="left" padding="normal">
-          Created At
-        </StyledTableCell> */}
         <StyledTableCell key="actions" align="right" padding="normal">
           Actions
         </StyledTableCell>
@@ -134,6 +127,7 @@ AdminsListHead.propTypes = {
   order: PropTypes.oneOf(["asc", "desc"]).isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
+  
 };
 
 const AdminsList = ({ admins }) => {
@@ -147,11 +141,9 @@ const AdminsList = ({ admins }) => {
     success: false,
   });
 
-  const openCancelAdminDialog = (admin) =>
-    setCancelAdmin({ openDialog: true, admin, success: false });
+  const openCancelAdminDialog = (admin) => setCancelAdmin({ openDialog: true, admin, success: false });
 
-  const closeCancelAdminDialog = () =>
-    setCancelAdmin({ openDialog: false, admin: null, success: false });
+  const closeCancelAdminDialog = () => setCancelAdmin({ openDialog: false, admin: null, success: false });
 
   const onCancelSuccess = (admin) => {
     setCancelAdmin({ openDialog: false, admin, success: true });
@@ -172,8 +164,7 @@ const AdminsList = ({ admins }) => {
     setPage(0);
   };
 
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - admins.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - admins.length) : 0;
 
   const visibleRows = React.useMemo(
     () =>
@@ -181,7 +172,7 @@ const AdminsList = ({ admins }) => {
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage
       ),
-    [order, orderBy, page, rowsPerPage]
+    [order, orderBy, page, rowsPerPage, admins]
   );
 
   return (
@@ -207,30 +198,28 @@ const AdminsList = ({ admins }) => {
             rowCount={admins.length}
           />
           <TableBody>
-            {visibleRows.map((admin, index) => {
-              return (
-                <TableRow tabIndex={-1} key={admin.id}>
-                  <StyledTableCell width={40} align="right">
-                    {admin['id'].substring(0, 9)}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">
-                    {admin.username}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">{admin.role}</StyledTableCell>
-                  <StyledTableCell align="left">
-                    {new Date(admin.created_at).toLocaleString("en-US")}
-                  </StyledTableCell>
-                  <StyledTableCell align="right">
-                    <CustomButton
-                      onClick={() => openCancelAdminDialog(admin)}
-                      name="Cancel Admin"
-                      primary={false}
-                      classes={styles["remove-admin-btn"]}
-                    />
-                  </StyledTableCell>
-                </TableRow>
-              );
-            })}
+            {visibleRows.map((admin) => (
+              <TableRow tabIndex={-1} key={admin.id}>
+                <StyledTableCell width={40} align="right">
+                  {admin['id'].substring(0, 9)}
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  {admin.username}
+                </StyledTableCell>
+                <StyledTableCell align="left">{admin.role}</StyledTableCell>
+                <StyledTableCell align="left">
+                  {new Date(admin.created_at).toLocaleString("en-US")}
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  <CustomButton
+                    onClick={() => openCancelAdminDialog(admin)}
+                    name="Cancel Admin"
+                    primary={false}
+                    classes={styles["remove-admin-btn"]}
+                  />
+                </StyledTableCell>
+              </TableRow>
+            ))}
             {emptyRows > 0 && (
               <TableRow
                 style={{
@@ -254,6 +243,10 @@ const AdminsList = ({ admins }) => {
       />
     </React.Fragment>
   );
+};
+
+AdminsList.propTypes = {
+  admins: PropTypes.array.isRequired,
 };
 
 export default AdminsList;

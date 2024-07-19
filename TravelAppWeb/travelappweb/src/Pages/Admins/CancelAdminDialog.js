@@ -27,13 +27,16 @@ const buttonStyle = {
   },
 };
 
-const CancelAdminDialog = ({ open, admin, onClose, onCancelSucces }) => {
+const CancelAdminDialog = ({ open, admin, onClose, onCancelSuccess }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [password, setPassword] = useState(null);
+  const [password, setPassword] = useState('');
+  const [passwordTouched, setPasswordTouched] = useState(false);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const passwordIsNotValid = passwordTouched && password.length < 8;
 
   const passwordChange = (event) => {
+    setPasswordTouched(true);
     setPassword(event.target.value);
   };
 
@@ -41,7 +44,8 @@ const CancelAdminDialog = ({ open, admin, onClose, onCancelSucces }) => {
 
   const restart = () => {
     setShowPassword(false);
-    setPassword(null);
+    setPassword('');
+    setPasswordTouched(false);
     setError(null);
     setIsLoading(false);
   };
@@ -64,12 +68,15 @@ const CancelAdminDialog = ({ open, admin, onClose, onCancelSucces }) => {
         }
       );
       if (!response.ok) {
+        if(response.status === 400){
         const data = await response.json();
-        const field = Object.keys(data.message)[0];
-        throw new Error(data.message[field][0]);
+        throw new Error(data.message);
+        }else {
+          throw new Error('An error occured while canceling admin');
+        }
       }
       restart();
-      onCancelSucces();
+      onCancelSuccess();
     } catch (error) {
       setError(error.message);
     }
@@ -106,7 +113,7 @@ const CancelAdminDialog = ({ open, admin, onClose, onCancelSucces }) => {
             margin="normal"
             required
             sx={TextFieldStyle}
-            error={error}
+            error={passwordIsNotValid}
           >
             <InputLabel htmlFor="admin-password">Your Password</InputLabel>
             <OutlinedInput
@@ -128,8 +135,9 @@ const CancelAdminDialog = ({ open, admin, onClose, onCancelSucces }) => {
                 </InputAdornment>
               }
             />
-            {error ? <FormHelperText>{error}</FormHelperText> : null}
+            {passwordIsNotValid ? <FormHelperText>Password must be at least 8 characters</FormHelperText> : null}
           </FormControl>
+          {error ? <p className={styles.error}>Error: {error}</p> : null}
         </DialogContent>
         <DialogActions>
           <CustomButton

@@ -4,6 +4,7 @@
   --text-color: black;
   --background: white;
   --danger: rgb(213, 1, 1);
+  --card-color: white;
   --sidebar-active-color: rgb(56, 125, 129);
 }
 
@@ -13,7 +14,13 @@
   /* --background: rgb(23, 23, 23); */
   --background: #1a1d22 ;
   --danger: #DC143C;
+  --card-color: #4a4c52;
   --sidebar-active-color: rgb(28, 104, 108);
+}
+
+::selection {
+  background-color: var(--secondary-color);
+  color: white;
 }
 
 *{

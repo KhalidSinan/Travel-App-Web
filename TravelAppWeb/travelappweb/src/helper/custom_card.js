@@ -19,7 +19,7 @@ const CustomCard = ({ card, handleDetailsClick, handleClickRefuse }) => {
           {card.company_name}
         </Typography>
         {card.rating && (
-          <Rating name="read-only" value={card.rating} readOnly precision={0.5} />
+          <Rating name="read-only" value={card.rating} readOnly precision={0.5}  />
         )}
       </CardContent>
       <CardActions>

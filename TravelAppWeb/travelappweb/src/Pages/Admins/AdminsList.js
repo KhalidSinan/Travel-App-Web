@@ -207,7 +207,7 @@ const AdminsList = ({ admins }) => {
             rowCount={admins.length}
           />
           <TableBody>
-            {visibleRows.map((admin, index) => {
+            {visibleRows.map((admin) => {
               return (
                 <TableRow tabIndex={-1} key={admin.id}>
                   <StyledTableCell width={40} align="right">

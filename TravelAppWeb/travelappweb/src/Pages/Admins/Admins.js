@@ -34,7 +34,8 @@ const Admins = (_) => {
       setIsLoading(false);
   },[]);
 
-  const searchAdmins = async () => {
+  const searchAdmins = async (event) => {
+    event.preventDefault();
     setIsLoading(true);
     try {
       const response = await fetch(`http://localhost:5000/dashboard/admins/search?limit=10&page=1&username=${adminSearch}`,
@@ -54,7 +55,7 @@ const Admins = (_) => {
         setError(error.message);
       }
       setIsLoading(false);
-  };
+    };
 
   let content = <h3>No Admins Found</h3>;
 
@@ -73,7 +74,6 @@ const Admins = (_) => {
   useEffect(()=> {
     setTimeout(getAllAdmins, 1000);
   },[getAllAdmins]);
-
 
   return (
     <section className={styles["admins-section"]}>

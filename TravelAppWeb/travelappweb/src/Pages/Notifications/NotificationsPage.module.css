@@ -1,0 +1,31 @@
+.notifications-section {
+    display: grid;
+    grid-template-rows: 60px 10px 1fr;
+    grid-template-areas: 
+    "notifications-header"
+    "line"
+    "notifications-content";
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+}
+
+.notifications-header {
+    grid-area: notifications-header;
+    display: flex;
+    align-items: center;
+}
+
+.notifications-header h1{
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.notifications-section hr {
+    grid-area: line;
+    width: 100%;
+}
+
+.notifications-content {
+    grid-area: notifications-content;
+    padding-block: 1rem;
+}

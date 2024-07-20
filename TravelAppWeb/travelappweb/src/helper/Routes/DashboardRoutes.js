@@ -15,13 +15,13 @@ const DashboardRoutes = () => {
       {true ? (
         <Route path="/" element={<DashboardLayout />}>
           {dashboardPages.map((page) => (
-            <Route path={page.path} element={page.element} />
+            <Route key={page.path} path={page.path} element={page.element} />
           ))}
         </Route>
       ) : (
         <Route path="/" element={<NotAuthorized />}>
           {dashboardPages.map((page) => (
-            <Route path={page.path} />
+            <Route key={page.path} path={page.path} />
           ))}
         </Route>
       )}

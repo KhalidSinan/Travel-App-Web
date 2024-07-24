@@ -8,6 +8,8 @@ import OrganizersFullDetails from "../../Pages/Organizers/OrganizersList/organiz
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import NotificationsPage from "../../Pages/Notifications/NotificationsPage";
 import PushNotification from "../../Pages/Notifications/PushNotification/PushNotification";
+import Announcements from "../../Pages/Announcments/Announcements";
+import MakeAnnouncement from "../../Pages/Announcments/MakeAnnouncement/MakeAnnouncement";
 
 
 
@@ -23,6 +25,8 @@ const dashboardPages = [
     {path: "OrganizerDetailsRequest",element: <OrganizerDetailsRequest />},
     {path: "Notifications",element: <NotificationsPage />},
     {path: "pushNotification",element: <PushNotification />},
+    {path: "Announcements",element: <Announcements />},
+    {path: "makeAnnouncement",element: <MakeAnnouncement />},
 ];
 
 export default dashboardPages;

@@ -1,0 +1,75 @@
+.announcement-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr 60px;
+    grid-template-areas: "card-header card-content card-options";
+    align-items: center;
+    margin-bottom: 24px;
+    padding-block: 0.7rem;
+    transition: gap 150ms ease-in;
+}
+
+.announcement-header {
+    grid-area: card-header;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    background-color: var(--secondary-color);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 0.7rem;
+    height: 100%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-right: 16px;
+}
+
+.announcement-header h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    color: white;
+}
+
+.announcement-header h3{
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.642);
+    font-weight: normal;
+    margin: 0;
+}
+
+.organizer-name {
+    font-size: 16px;
+    color: white;
+}
+
+
+.announcement-content {
+    grid-area: card-content;
+    text-align: start;
+    background-color: var(--card-color);
+    padding: 0.7rem;
+    height: 100%;
+    font-size: 20px;
+    ;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.announcement-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.announcement-card:hover .announcement-header{
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-right: 0px;
+}
+
+.announcement-card:hover .announcement-content{
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}

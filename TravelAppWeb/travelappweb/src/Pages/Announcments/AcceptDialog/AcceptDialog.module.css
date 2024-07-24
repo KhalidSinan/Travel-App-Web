@@ -1,0 +1,27 @@
+.dialog-content {
+    color: var(--text-color);
+}
+
+.dialog-content span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.dialog-back-btn {
+    border: none;
+    color: gray;
+}
+
+.dialog-back-btn:hover {
+    scale: 1;
+    color: gray;
+}
+
+.dialog-accept-btn {
+    background-color: rgb(0, 110, 0);
+}
+
+.dialog-accept-btn:hover {
+    background-color: green;
+    scale: 1;
+}

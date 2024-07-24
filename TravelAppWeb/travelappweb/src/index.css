@@ -5,6 +5,7 @@
   --background: white;
   --danger: rgb(213, 1, 1);
   --card-color: white;
+  --notification-date-color: rgba(110, 110, 110, 0.721);
   --sidebar-active-color: rgb(56, 125, 129);
 }
 
@@ -15,6 +16,7 @@
   --background: #1a1d22 ;
   --danger: #DC143C;
   --card-color: #4a4c52;
+  --notification-date-color: rgba(230, 229, 229, 0.361);
   --sidebar-active-color: rgb(28, 104, 108);
 }
 

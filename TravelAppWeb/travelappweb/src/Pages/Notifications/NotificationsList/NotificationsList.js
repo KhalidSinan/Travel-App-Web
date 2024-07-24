@@ -7,10 +7,10 @@ const NotificationsList = () => {
     return (
         <ul className={styles['notifications-list']}>
             <li>
-                <NotificationCard seen />
+                <NotificationCard />
             </li>
             <li>
-                <NotificationCard seen />
+                <NotificationCard />
             </li>
             <li>
                 <NotificationCard />

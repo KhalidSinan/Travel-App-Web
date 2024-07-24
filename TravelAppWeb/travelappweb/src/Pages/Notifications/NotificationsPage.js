@@ -1,3 +1,4 @@
+import CustomPagination from "../../helper/custom_pagination";
 import NotificationsList from "./NotificationsList/NotificationsList";
 import styles from "./NotificationsPage.module.css";
 
@@ -10,6 +11,11 @@ const NotificationsPage = () => {
       <hr></hr>
       <section className={styles["notifications-content"]}>
         <NotificationsList />
+        <CustomPagination 
+        count={2}
+        page={1}
+        onChange={()=>{}}
+        />
       </section>
     </section>
   );

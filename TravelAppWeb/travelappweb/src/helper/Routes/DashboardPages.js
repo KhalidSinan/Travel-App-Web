@@ -5,6 +5,7 @@ import OrganizersDetails from "../../Pages/Organizers/OrganizersList/organizersD
 import AllRequest from "../../Pages/Organizers/RequestsOrganizers/all_request";
 import OrganizerDetailsRequest from "../../Pages/Organizers/RequestsOrganizers/organizer_details_request";
 import OrganizersFullDetails from "../../Pages/Organizers/OrganizersList/organizersFullDetails";
+import ReportList from "../../Pages/Reports/reports";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import NotificationsPage from "../../Pages/Notifications/NotificationsPage";
 import PushNotification from "../../Pages/Notifications/PushNotification/PushNotification";
@@ -23,6 +24,7 @@ const dashboardPages = [
     {path: "OrganizersFullDetails",element: <OrganizersFullDetails />},
     {path: "AllRequest",element: <AllRequest />},
     {path: "OrganizerDetailsRequest",element: <OrganizerDetailsRequest />},
+    {path : "Reports",element: <ReportList/>},
     {path: "Notifications",element: <NotificationsPage />},
     {path: "pushNotification",element: <PushNotification />},
     {path: "Announcements",element: <Announcements />},

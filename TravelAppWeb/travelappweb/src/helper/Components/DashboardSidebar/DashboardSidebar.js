@@ -9,7 +9,7 @@ import {
 import SidebarItem from "./SidebarItem.js";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { LocationOnOutlined } from "@mui/icons-material";
+// import { LocationOnOutlined } from "@mui/icons-material";
 
 const pages = [
   {
@@ -60,7 +60,7 @@ const DashboardSidebar = (props) => {
     } ,[]);
 
     useEffect(() => {
-      if(location.pathname == '/Notifications'){
+      if(location.pathname === '/Notifications'){
         setCurrentPage(null);
         localStorage.setItem('current-page', null);
       }

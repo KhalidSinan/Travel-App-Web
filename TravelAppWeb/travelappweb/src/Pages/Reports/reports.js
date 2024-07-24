@@ -4,7 +4,7 @@ import AppReport from "./AppReport/app_report";
 import OrganizerReport from "./OrganizersReport/organizer_report";
 import { Box } from "@mui/material";
 import Tabs from "../../helper/tabs";
-const ITEMS_PER_PAGE = 6;
+// const ITEMS_PER_PAGE = 6;
 
 const ReportList = () => {
   return (

@@ -1,0 +1,50 @@
+
+.notification-card {
+    display: grid;
+    grid-template-rows: 30px 1fr;
+    grid-template-areas: 
+    "title" 
+    "content";
+    background-color: var(--card-color);
+    box-shadow: -4px 2px 1px;
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    transition-duration: 100ms;
+    margin-bottom: 1rem;
+}
+
+.notification-card:hover {
+    margin-left: 8px;
+}
+
+.notification-card-title {
+    grid-area: "title";
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notification-card-title h2 {
+    text-align: start;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+.notification-card-title h3 {
+    font-size: 14px;
+    color: var(--notification-date-color);
+}
+
+.notification-card-content {
+    grid-area: "content";
+    margin-top: 6px;
+    text-align: start;
+    font-size: 16px;
+    color: var(--secondary-color);
+}
+
+@media (max-width: 900px) {
+    .notification-card:hover {
+        margin-left: 4px;
+    }
+}

@@ -1,0 +1,17 @@
+
+
+
+.push-notification-fields {
+    max-width: 700px;
+    margin: auto;
+}
+
+.push-notification-btn {
+    width: 100%;
+    margin-top: 16px;
+    font-size: 16px;
+}
+
+.push-notification-btn:hover {
+    scale: 1;
+}

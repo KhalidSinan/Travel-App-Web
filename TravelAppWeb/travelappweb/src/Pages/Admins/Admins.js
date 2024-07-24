@@ -3,10 +3,12 @@ import CustomButton from "../../helper/Components/CustomButton/CustomButton.js";
 import AdminsList from "./AdminsList";
 import { Link } from "react-router-dom";
 import SearchBar from "../../helper/Components/SearchBar/SearchBar.js";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
+import { AuthLogin } from "../../Context/login_context.js";
 
 const Admins = (_) => {
+  const loginContext = useContext(AuthLogin);
   const [adminsList, setAdminsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,7 +22,7 @@ const Admins = (_) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTM4YzMxNzIyOWM3ZTA5NGFlODU4NyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjEzOTgwOTN9.EOnqzxXh0ik2Y2YHzET6ktamBnN7iLX2bfoR1iHCCgI`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         });
         if(!response.ok){
@@ -34,9 +36,8 @@ const Admins = (_) => {
       setIsLoading(false);
   },[]);
 
-  const searchAdmins = async () => {
-
-
+  const searchAdmins = async (event) => {
+    event.preventDefault();
     setIsLoading(true);
     try {
       const response = await fetch(`http://localhost:5000/dashboard/admins/search?limit=10&page=1&username=${adminSearch}`,
@@ -44,7 +45,7 @@ const Admins = (_) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTM4YzMxNzIyOWM3ZTA5NGFlODU4NyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjEzOTgwOTN9.EOnqzxXh0ik2Y2YHzET6ktamBnN7iLX2bfoR1iHCCgI`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         });
         if(!response.ok){
@@ -58,7 +59,7 @@ const Admins = (_) => {
         setError(error.message);
       }
       setIsLoading(false);
-  };
+    };
 
   let content = <h3>No Admins Found</h3>;
 
@@ -77,7 +78,6 @@ const Admins = (_) => {
   useEffect(()=> {
     setTimeout(getAllAdmins, 1000);
   },[getAllAdmins]);
-
 
   return (
     <section className={styles["admins-section"]}>

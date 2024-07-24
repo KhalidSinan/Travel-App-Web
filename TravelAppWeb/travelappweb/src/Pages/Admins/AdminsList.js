@@ -198,28 +198,30 @@ const AdminsList = ({ admins }) => {
             rowCount={admins.length}
           />
           <TableBody>
-            {visibleRows.map((admin) => (
-              <TableRow tabIndex={-1} key={admin.id}>
-                <StyledTableCell width={40} align="right">
-                  {admin['id'].substring(0, 9)}
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  {admin.username}
-                </StyledTableCell>
-                <StyledTableCell align="left">{admin.role}</StyledTableCell>
-                <StyledTableCell align="left">
-                  {new Date(admin.created_at).toLocaleString("en-US")}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  <CustomButton
-                    onClick={() => openCancelAdminDialog(admin)}
-                    name="Cancel Admin"
-                    primary={false}
-                    classes={styles["remove-admin-btn"]}
-                  />
-                </StyledTableCell>
-              </TableRow>
-            ))}
+            {visibleRows.map((admin) => {
+              return (
+                <TableRow tabIndex={-1} key={admin.id}>
+                  <StyledTableCell width={40} align="right">
+                    {admin['id'].substring(0,9)}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    {admin.username}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">{admin.role}</StyledTableCell>
+                  <StyledTableCell align="left">
+                    {new Date(admin.created_at).toLocaleString("en-US")}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    <CustomButton
+                      onClick={() => openCancelAdminDialog(admin)}
+                      name="Cancel Admin"
+                      primary={false}
+                      classes={styles["remove-admin-btn"]}
+                    />
+                  </StyledTableCell>
+                </TableRow>
+              );
+            })}
             {emptyRows > 0 && (
               <TableRow
                 style={{
@@ -247,6 +249,6 @@ const AdminsList = ({ admins }) => {
 
 AdminsList.propTypes = {
   admins: PropTypes.array.isRequired,
-};
+}
 
 export default AdminsList;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 export const AuthLogin = React.createContext({
   isLoggedIn: false,
-  Token: "",
+  Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjE3OTg4ODV9.NHuxGVrgzpZoru0kmqogHUNjz2gMn89lQwyZmq5beFQ",
   login: (token) => {},
 });
 

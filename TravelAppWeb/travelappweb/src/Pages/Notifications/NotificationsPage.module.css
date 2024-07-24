@@ -13,6 +13,7 @@
     grid-area: notifications-header;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .notifications-header h1{
@@ -28,4 +29,8 @@
 .notifications-content {
     grid-area: notifications-content;
     padding-block: 1rem;
+}
+
+.loading {
+    margin-top: 100px;
 }

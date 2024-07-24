@@ -15,12 +15,11 @@ import {
 import styles from "./CancelAdminDialog.module.css";
 import CustomButton from "../../helper/Components/CustomButton/CustomButton";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TextFieldStyle from "../../helper/Styles/TextFieldStyle";
 import AutohideSnackbar from "../../helper/snackbar";
+import { AuthLogin } from "../../Context/login_context";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjEyODk3NjZ9.Q35aHtM5xwtvC4vUBxPxcC62jzjL0OHhmmcwsgaFvBs";
 const buttonStyle = {
   "&.MuiIconButton-root": {
     color: "var(--secondary-color)",
@@ -28,6 +27,7 @@ const buttonStyle = {
 };
 
 const CancelAdminDialog = ({ open, admin, onClose, onCancelSuccess }) => {
+  const loginContext = useContext(AuthLogin);
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordTouched, setPasswordTouched] = useState(false);
@@ -60,7 +60,7 @@ const CancelAdminDialog = ({ open, admin, onClose, onCancelSuccess }) => {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
           body: JSON.stringify({
             password: password,

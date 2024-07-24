@@ -10,7 +10,7 @@ import {
   TextField,
 } from "@mui/material";
 import styles from "./AddAdminForm.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import CustomTextField from "../../../helper/Components/CustomTextField/CustomTextField";
 import CustomButton from "../../../helper/Components/CustomButton/CustomButton";
@@ -18,6 +18,7 @@ import TextFieldStyle from "../../../helper/Styles/TextFieldStyle";
 import TextFieldInvalidStyle from "../../../helper/Styles/TextFieldInvalidStyle";
 import { useNavigate } from "react-router-dom";
 import AutohideSnackbar from "../../../helper/snackbar";
+import { AuthLogin } from "../../../Context/login_context";
 
 const roles = [
   {
@@ -46,7 +47,7 @@ const roles = [
   },
 ];
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjEyODk3NjZ9.Q35aHtM5xwtvC4vUBxPxcC62jzjL0OHhmmcwsgaFvBs";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjE3OTg4ODV9.NHuxGVrgzpZoru0kmqogHUNjz2gMn89lQwyZmq5beFQ";
 
 const buttonStyle = {
   "&.MuiIconButton-root": {
@@ -57,6 +58,7 @@ const buttonStyle = {
 
 const AddAdminForm = (props) => {
   const navigator = useNavigate();
+  const loginContext = useContext(AuthLogin);
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [adminName, setAdminName] = useState('');
@@ -111,7 +113,7 @@ const AddAdminForm = (props) => {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
           body: JSON.stringify({
             "username" : adminName,

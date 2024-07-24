@@ -7,6 +7,7 @@ import OrganizerDetailsRequest from "../../Pages/Organizers/RequestsOrganizers/o
 import OrganizersFullDetails from "../../Pages/Organizers/OrganizersList/organizersFullDetails";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import NotificationsPage from "../../Pages/Notifications/NotificationsPage";
+import PushNotification from "../../Pages/Notifications/PushNotification/PushNotification";
 
 
 
@@ -21,6 +22,7 @@ const dashboardPages = [
     {path: "AllRequest",element: <AllRequest />},
     {path: "OrganizerDetailsRequest",element: <OrganizerDetailsRequest />},
     {path: "Notifications",element: <NotificationsPage />},
+    {path: "pushNotification",element: <PushNotification />},
 ];
 
 export default dashboardPages;

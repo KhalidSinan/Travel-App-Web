@@ -1,0 +1,31 @@
+.push-notification-section {
+    display: grid;
+    grid-template-rows: 60px 10px 1fr;
+    grid-template-areas: 
+    "push-notification-header"
+    "line"
+    "push-notification-fields";
+    padding: 0.5rem 1rem;
+    color: var(--text-color);
+}
+
+.push-notification-section hr {
+    grid-area: line;
+    width: 100%;
+    border-bottom: 1px solid var(--primary-color);
+}
+.push-notification-header{
+    display: flex;
+    align-items: center;
+    grid-area: push-notification-header;
+    /* background-color: lightgrey; */
+}
+.push-notification-header h1{
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.push-notification-body{ 
+    grid-area: push-notification-fields;
+    margin-top: 16px;
+}

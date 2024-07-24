@@ -1,10 +1,10 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
+import { AuthLogin } from "./login_context";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTM4YzMxNzIyOWM3ZTA5NGFlODU4NyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjEzOTgwOTN9.EOnqzxXh0ik2Y2YHzET6ktamBnN7iLX2bfoR1iHCCgI";
 const OrganizersContext = createContext();
 
 export const OrganizersProvider = ({ children }) => {
+  const loginContext = useContext(AuthLogin);
   const [page, setPage] = useState(1);
   const [cards, setCards] = useState([]);
   const [cardsRequest, setAllCardsRequests] = useState([]);
@@ -25,7 +25,7 @@ export const OrganizersProvider = ({ children }) => {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${loginContext.Token}`,
             },
           }
         );
@@ -53,7 +53,7 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         }
       );
@@ -78,7 +78,7 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         }
       );
@@ -104,7 +104,7 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         }
       );
@@ -128,7 +128,7 @@ export const OrganizersProvider = ({ children }) => {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         }
       );
@@ -153,7 +153,7 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         }
       );
@@ -178,7 +178,7 @@ export const OrganizersProvider = ({ children }) => {
           body: JSON.stringify({ title, body }),
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         }
       );
@@ -203,7 +203,7 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         }
       );
@@ -228,7 +228,7 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         }
       );
@@ -254,7 +254,7 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         }
       );
@@ -281,7 +281,7 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           }
         }
       );

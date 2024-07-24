@@ -8,6 +8,8 @@ import {
 } from "react-icons/bs";
 import SidebarItem from "./SidebarItem.js";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { LocationOnOutlined } from "@mui/icons-material";
 
 const pages = [
   {
@@ -43,16 +45,27 @@ const pages = [
 ]
 
 const DashboardSidebar = (props) => {
+    const location = useLocation();
     const [currentPage, setCurrentPage] = useState(0);
+
     const onPageChange = (index) => {
         setCurrentPage(index);
         localStorage.setItem('current-page', index);
     }
+    
     useEffect(() => {
       const page = localStorage.getItem('current-page');
       if(!page) setCurrentPage(0);
       else setCurrentPage(+page);
     } ,[]);
+
+    useEffect(() => {
+      if(location.pathname == '/Notifications'){
+        setCurrentPage(null);
+        localStorage.setItem('current-page', null);
+      }
+    },[location]);
+    
   return (
     <div className={styles['main-sidebar']}>
       <ul className={styles['sidebar-list']}>

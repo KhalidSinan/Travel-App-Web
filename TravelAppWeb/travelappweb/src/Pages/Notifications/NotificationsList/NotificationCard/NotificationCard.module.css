@@ -6,15 +6,14 @@
     "title" 
     "content";
     background-color: var(--card-color);
+    box-shadow: -4px 2px 1px;
     border-radius: 10px;
     padding: 0.7rem 1rem;
     transition-duration: 100ms;
     margin-bottom: 1rem;
-    border-inline: 6px solid rgb(0, 130, 0);
 }
 
 .notification-card:hover {
-    border-inline-width: 10px;
     margin-left: 8px;
 }
 
@@ -29,11 +28,11 @@
     text-align: start;
     font-size: 20px;
     font-weight: bold;
-    color: lightgray;
+    color: var(--text-color);
 }
 .notification-card-title h3 {
     font-size: 14px;
-    color: rgba(230, 229, 229, 0.361);
+    color: var(--notification-date-color);
 }
 
 .notification-card-content {
@@ -41,19 +40,11 @@
     margin-top: 6px;
     text-align: start;
     font-size: 16px;
-    color: bisque;
+    color: var(--secondary-color);
 }
-
-.notification-card.seen {
-    border-inline-color: var(--danger);
-}
-.notification-card.seen:hover {
-    border-inline-width: 10px;
-}
-
 
 @media (max-width: 900px) {
     .notification-card:hover {
-        margin-left: 0;
+        margin-left: 4px;
     }
 }

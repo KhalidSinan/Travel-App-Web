@@ -256,4 +256,8 @@ const AdminsList = ({ admins }) => {
   );
 };
 
+AdminsList.propTypes = {
+  admins: PropTypes.array.isRequired,
+}
+
 export default AdminsList;

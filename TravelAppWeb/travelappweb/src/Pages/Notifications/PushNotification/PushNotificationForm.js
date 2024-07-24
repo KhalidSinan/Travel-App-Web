@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import CustomButton from "../../../helper/Components/CustomButton/CustomButton";
 import CustomTextField from "../../../helper/Components/CustomTextField/CustomTextField";
 import styles from "./PushNotificationForm.module.css";
-import AutohideSnackbar from "../../../helper/snackbar";
+// import AutohideSnackbar from "../../../helper/snackbar";
 import { useNavigate } from "react-router-dom";
 import { AuthLogin } from "../../../Context/login_context";
 
@@ -17,8 +17,8 @@ const PushNotificationForm = () => {
   const [contentTouched, setContentTouched] = useState(false);
   const navigate = useNavigate();
 
-  const titleNotValid = title == "" && titleTouched;
-  const contentNotValid = content == "" && contentTouched;
+  const titleNotValid = title === "" && titleTouched;
+  const contentNotValid = content === "" && contentTouched;
 
   const changeTitle = (event) => {
     setTitleTouched(true);

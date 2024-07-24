@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-import React, { createContext, useState, useEffect, useCallback } from "react";
-
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTM4YzMxNzIyOWM3ZTA5NGFlODU4NyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjE3Njc3NTB9.ezZS6AGnJMJlTzYyAMz1EXHnMAd4Yzmjdnq7iugBmKc";
-=======
-import React, { createContext, useState, useEffect, useContext } from "react";
+import React, { createContext, useState, useEffect, useContext ,useCallback} from "react";
 import { AuthLogin } from "./login_context";
 
->>>>>>> 6a875f44b36ac6c23520f9736d2a5c5fc8a84f9c
 const OrganizersContext = createContext();
 
 export const OrganizersProvider = ({ children }) => {
@@ -20,7 +13,6 @@ export const OrganizersProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [count, setCount] = useState(0);
 
-<<<<<<< HEAD
   const fetchCards = useCallback(async () => {
     try {
       const response = await fetch(
@@ -29,23 +21,7 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-=======
- 
-
-
-  useEffect(() => {
-    const fetchCards = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:5000/dashboard/organizers?page=${page}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${loginContext.Token}`,
-            },
->>>>>>> 6a875f44b36ac6c23520f9736d2a5c5fc8a84f9c
+            Authorization: `Bearer ${loginContext.Token}`,
           }
         }
       );
@@ -74,13 +50,8 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-<<<<<<< HEAD
-            Authorization: `Bearer ${token}`,
-          }
-=======
             Authorization: `Bearer ${loginContext.Token}`,
           },
->>>>>>> 6a875f44b36ac6c23520f9736d2a5c5fc8a84f9c
         }
       );
       if (!response.ok) {
@@ -104,13 +75,8 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-<<<<<<< HEAD
-            Authorization: `Bearer ${token}`,
-          }
-=======
             Authorization: `Bearer ${loginContext.Token}`,
           },
->>>>>>> 6a875f44b36ac6c23520f9736d2a5c5fc8a84f9c
         }
       );
       if (!response.ok) {
@@ -134,13 +100,8 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-<<<<<<< HEAD
-            Authorization: `Bearer ${token}`,
-          }
-=======
             Authorization: `Bearer ${loginContext.Token}`,
           },
->>>>>>> 6a875f44b36ac6c23520f9736d2a5c5fc8a84f9c
         }
       );
       if (!response.ok) {
@@ -163,13 +124,8 @@ export const OrganizersProvider = ({ children }) => {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-<<<<<<< HEAD
-            Authorization: `Bearer ${token}`,
-          }
-=======
             Authorization: `Bearer ${loginContext.Token}`,
           },
->>>>>>> 6a875f44b36ac6c23520f9736d2a5c5fc8a84f9c
         }
       );
 
@@ -193,13 +149,8 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-<<<<<<< HEAD
-            Authorization: `Bearer ${token}`,
-          }
-=======
             Authorization: `Bearer ${loginContext.Token}`,
           },
->>>>>>> 6a875f44b36ac6c23520f9736d2a5c5fc8a84f9c
         }
       );
 
@@ -224,13 +175,8 @@ export const OrganizersProvider = ({ children }) => {
           body: JSON.stringify({ title, body }),
           headers: {
             "Content-Type": "application/json",
-<<<<<<< HEAD
-            Authorization: `Bearer ${token}`,
-          }
-=======
             Authorization: `Bearer ${loginContext.Token}`,
           },
->>>>>>> 6a875f44b36ac6c23520f9736d2a5c5fc8a84f9c
         }
       );
 
@@ -254,13 +200,8 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-<<<<<<< HEAD
-            Authorization: `Bearer ${token}`,
-          }
-=======
             Authorization: `Bearer ${loginContext.Token}`,
           },
->>>>>>> 6a875f44b36ac6c23520f9736d2a5c5fc8a84f9c
         }
       );
 
@@ -284,13 +225,8 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-<<<<<<< HEAD
-            Authorization: `Bearer ${token}`,
-          }
-=======
             Authorization: `Bearer ${loginContext.Token}`,
           },
->>>>>>> 6a875f44b36ac6c23520f9736d2a5c5fc8a84f9c
         }
       );
 
@@ -315,13 +251,8 @@ export const OrganizersProvider = ({ children }) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-<<<<<<< HEAD
-            Authorization: `Bearer ${token}`,
-          }
-=======
             Authorization: `Bearer ${loginContext.Token}`,
           },
->>>>>>> 6a875f44b36ac6c23520f9736d2a5c5fc8a84f9c
         }
       );
       if (!response.ok) {

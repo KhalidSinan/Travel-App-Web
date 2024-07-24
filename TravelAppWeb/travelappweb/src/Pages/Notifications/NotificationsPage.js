@@ -32,10 +32,10 @@ const NotificationsPage = () => {
       const notifications = [];
       for (let index in data.data) {
         const {
-          _id: id,
+          id,
           notification_title: title,
           notification_body: content,
-          createdAt,
+          created_at:createdAt,
         } = data.data[index];
         notifications.push({
           id,

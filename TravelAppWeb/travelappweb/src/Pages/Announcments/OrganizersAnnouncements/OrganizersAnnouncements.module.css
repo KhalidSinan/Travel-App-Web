@@ -1,0 +1,24 @@
+
+.announcements-list { 
+    list-style: none;
+    padding: 0;
+    margin-top: 16px;
+    max-width: 900px;
+}
+
+.details-announcement-btn {
+    background-color: var(--card-color);
+    border-radius: 0px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left: 10px solid var(--card-color);
+}
+
+.details-announcement-btn:hover {
+    background-color: grey;
+}
+
+
+.loading{
+    margin-top: 100px;
+}

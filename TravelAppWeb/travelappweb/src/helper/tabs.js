@@ -13,7 +13,7 @@ const StyledTab = styled(Tab)(({ theme }) => ({
   color: inactiveColor,
 }));
 
-const Tabs = ({ tab1, tab2, component1, component2 }) => {
+const Tabs = ({ tab1, tab2,tab3, component1, component2,component3 }) => {
   const [value, setValue] = useState("1");
 
 
@@ -37,10 +37,12 @@ const Tabs = ({ tab1, tab2, component1, component2 }) => {
           <TabList onChange={handleChange} aria-label="Organizers tabs">
             <StyledTab label={tab1} value="1" />
             <StyledTab label={tab2} value="2" />
+            {tab3 ? <StyledTab label={tab3} value="3" /> : null }
           </TabList>
         </Box>
-        <TabPanel value="1">{component1}</TabPanel>
-        <TabPanel value="2">{component2}</TabPanel>
+        <TabPanel value="1" sx={{padding: 0}}>{component1}</TabPanel>
+        <TabPanel value="2" sx={{padding: 0}}>{component2}</TabPanel>
+        {tab3 ?<TabPanel value="3" sx={{padding: 0}}>{component3}</TabPanel> : null }
       </TabContext>
     </Box>
   );

@@ -1,0 +1,17 @@
+
+
+
+.make-announcement-fields {
+    max-width: 700px;
+    margin: auto;
+}
+
+.make-announcement-btn {
+    width: 100%;
+    margin-top: 16px;
+    font-size: 16px;
+}
+
+.make-announcement-btn:hover {
+    scale: 1;
+}

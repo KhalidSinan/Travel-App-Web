@@ -18,8 +18,8 @@ const CustomCard = ({ card, handleDetailsClick, handleClickRefuse }) => {
         <Typography variant="body2" color="var(--text-color)">
           {card.company_name}
         </Typography>
-        {card.rating && (
-          <Rating name="read-only" value={card.rating} readOnly precision={0.5} />
+        {card.rating !== undefined && ( // Check if rating is defined
+          <Rating name="read-only" value={card.rating} readOnly precision={0.5}  />
         )}
       </CardContent>
       <CardActions>

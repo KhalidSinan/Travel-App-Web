@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjEyODk3NjZ9.Q35aHtM5xwtvC4vUBxPxcC62jzjL0OHhmmcwsgaFvBs";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTM4YzMxNzIyOWM3ZTA5NGFlODU4NyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjEzOTgwOTN9.EOnqzxXh0ik2Y2YHzET6ktamBnN7iLX2bfoR1iHCCgI";
 const OrganizersContext = createContext();
 
 export const OrganizersProvider = ({ children }) => {
@@ -273,6 +273,30 @@ export const OrganizersProvider = ({ children }) => {
   const handleChangePage = (value) => {
     setPage(value);
   };
+  const fetchSearchedOrganizers = async (page, name) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/dashboard/organizers/search?page=${page}&name=${name}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      setCards(data.data);
+      setCount(data.count);
+      setTotalItems(data.data.length);
+      return data;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <OrganizersContext.Provider
@@ -288,6 +312,7 @@ export const OrganizersProvider = ({ children }) => {
         fetchTripDetails,
         fetchorganizerAllRequest,
         fetchOrganizerRequestDetails,
+        fetchSearchedOrganizers,
         cardsRequest,
         deactiveOrganizer,
         alertOrganizer,

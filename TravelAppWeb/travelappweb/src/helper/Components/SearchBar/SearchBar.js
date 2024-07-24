@@ -26,3 +26,10 @@ const SearchBar = ({
 };
 
 export default SearchBar;
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 2a1b63a8ef50a1d2e027648640667b1440734741

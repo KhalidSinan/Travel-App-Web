@@ -20,7 +20,7 @@ const Admins = (_) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTM4YzMxNzIyOWM3ZTA5NGFlODU4NyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjEzOTgwOTN9.EOnqzxXh0ik2Y2YHzET6ktamBnN7iLX2bfoR1iHCCgI`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjE3OTg4ODV9.NHuxGVrgzpZoru0kmqogHUNjz2gMn89lQwyZmq5beFQ`,
           },
         });
         if(!response.ok){
@@ -34,14 +34,8 @@ const Admins = (_) => {
       setIsLoading(false);
   },[]);
 
-<<<<<<< HEAD
   const searchAdmins = async (event) => {
     event.preventDefault();
-=======
-  const searchAdmins = async () => {
-
-
->>>>>>> 2a1b63a8ef50a1d2e027648640667b1440734741
     setIsLoading(true);
     try {
       const response = await fetch(`http://localhost:5000/dashboard/admins/search?limit=10&page=1&username=${adminSearch}`,
@@ -49,7 +43,7 @@ const Admins = (_) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTM4YzMxNzIyOWM3ZTA5NGFlODU4NyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjEzOTgwOTN9.EOnqzxXh0ik2Y2YHzET6ktamBnN7iLX2bfoR1iHCCgI`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjE3OTg4ODV9.NHuxGVrgzpZoru0kmqogHUNjz2gMn89lQwyZmq5beFQ`,
           },
         });
         if(!response.ok){

@@ -12,10 +12,12 @@ const CustomTextField = ({
   isSelect = false,
   error = false,
   errText,
+  focused = false,
 }) => {
   return (
     <TextField
       required
+      focused={focused}
       select={isSelect}
       autoFocus
       fullWidth

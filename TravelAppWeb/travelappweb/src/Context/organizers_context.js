@@ -1,7 +1,7 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTM4YzMxNzIyOWM3ZTA5NGFlODU4NyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjEzOTgwOTN9.EOnqzxXh0ik2Y2YHzET6ktamBnN7iLX2bfoR1iHCCgI";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OTM4YzMxNzIyOWM3ZTA5NGFlODU4NyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjE3Njc3NTB9.ezZS6AGnJMJlTzYyAMz1EXHnMAd4Yzmjdnq7iugBmKc";
 const OrganizersContext = createContext();
 
 export const OrganizersProvider = ({ children }) => {
@@ -13,39 +13,36 @@ export const OrganizersProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [count, setCount] = useState(0);
 
- 
-
-
-  useEffect(() => {
-    const fetchCards = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:5000/dashboard/organizers?page=${page}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
+  const fetchCards = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/dashboard/organizers?page=${page}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           }
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
         }
-        const data = await response.json();
-        setCards(data.data);
-        setCount(data.count);
-        setTotalItems(data.data.length);
-        return data;
-      } catch (error) {
-        console.error("Error fetching data:", error);
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    };
-
-    fetchCards();
+      const data = await response.json();
+      setCards(data.data);
+      setCount(data.count);
+      setTotalItems(data.data.length);
+      return data;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   }, [page]);
 
-  const fetchorganizerAllRequest = async (page) => {
+  useEffect(() => {
+    fetchCards();
+  }, [fetchCards]);
+
+  const fetchorganizerAllRequest = useCallback(async (page) => {
     try {
       const response = await fetch(
         `http://localhost:5000/dashboard/organizers-requests?page=${page}`,
@@ -54,7 +51,7 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-          },
+          }
         }
       );
       if (!response.ok) {
@@ -67,9 +64,9 @@ export const OrganizersProvider = ({ children }) => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  }, []);
 
-  const fetchOrganizerDetails = async (organizerId, page) => {
+  const fetchOrganizerDetails = useCallback(async (organizerId, page) => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -79,7 +76,7 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-          },
+          }
         }
       );
       if (!response.ok) {
@@ -92,10 +89,9 @@ export const OrganizersProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  /////////////////////////////////////////
-  const fetchOrganizerRequestDetails = async (organizerId) => {
+  const fetchOrganizerRequestDetails = useCallback(async (organizerId) => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -105,7 +101,7 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-          },
+          }
         }
       );
       if (!response.ok) {
@@ -118,9 +114,9 @@ export const OrganizersProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const deleteOrganizer = async (organizerId) => {
+  const deleteOrganizer = useCallback(async (organizerId) => {
     try {
       const response = await fetch(
         `http://localhost:5000/dashboard/organizers/${organizerId}`,
@@ -129,7 +125,7 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-          },
+          }
         }
       );
 
@@ -143,9 +139,9 @@ export const OrganizersProvider = ({ children }) => {
       console.error("Error deleting organizer:", error);
       throw error;
     }
-  };
+  }, []);
 
-  const deactiveOrganizer = async (organizerId) => {
+  const deactiveOrganizer = useCallback(async (organizerId) => {
     try {
       const response = await fetch(
         `http://localhost:5000/dashboard/organizers/${organizerId}/deactivate`,
@@ -154,7 +150,7 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-          },
+          }
         }
       );
 
@@ -168,8 +164,9 @@ export const OrganizersProvider = ({ children }) => {
       console.error("Error deactive organizer:", error);
       throw error;
     }
-  };
-  const alertOrganizer = async (organizerId, title, body) => {
+  }, []);
+
+  const alertOrganizer = useCallback(async (organizerId, title, body) => {
     try {
       const response = await fetch(
         `http://localhost:5000/dashboard/organizers/${organizerId}/alert`,
@@ -179,23 +176,23 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-          },
+          }
         }
       );
-  
+
       if (!response.ok) {
         throw new Error("Failed to alert organizer");
       }
-  
+
       const data = await response.json();
       return data;
     } catch (error) {
       console.error("Error alerting organizer:", error);
       throw error;
     }
-  };
+  }, []);
 
-  const acceptOrganizer = async (organizerId) => {
+  const acceptOrganizer = useCallback(async (organizerId) => {
     try {
       const response = await fetch(
         `http://localhost:5000/dashboard/organizers-requests/${organizerId}/accept`,
@@ -204,7 +201,7 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-          },
+          }
         }
       );
 
@@ -218,9 +215,9 @@ export const OrganizersProvider = ({ children }) => {
       console.error("Error Accept organizer:", error);
       throw error;
     }
-  };
+  }, []);
 
-  const RefuseOrganizer = async (organizerId) => {
+  const RefuseOrganizer = useCallback(async (organizerId) => {
     try {
       const response = await fetch(
         `http://localhost:5000/dashboard/organizers-requests/${organizerId}/deny`,
@@ -229,7 +226,7 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-          },
+          }
         }
       );
 
@@ -243,9 +240,9 @@ export const OrganizersProvider = ({ children }) => {
       console.error("Error Refuse organizer:", error);
       throw error;
     }
-  };
+  }, []);
 
-  const fetchTripDetails = async (organizerId, tripId) => {
+  const fetchTripDetails = useCallback(async (organizerId, tripId) => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -255,7 +252,7 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-          },
+          }
         }
       );
       if (!response.ok) {
@@ -268,12 +265,13 @@ export const OrganizersProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const handleChangePage = (value) => {
+  const handleChangePage = useCallback((value) => {
     setPage(value);
-  };
-  const fetchSearchedOrganizers = async (page, name) => {
+  }, []);
+
+  const fetchSearchedOrganizers = useCallback(async (page, name) => {
     try {
       const response = await fetch(
         `http://localhost:5000/dashboard/organizers/search?page=${page}&name=${name}`,
@@ -296,7 +294,7 @@ export const OrganizersProvider = ({ children }) => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  };
+  }, []);
 
   return (
     <OrganizersContext.Provider

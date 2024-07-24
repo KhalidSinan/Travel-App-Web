@@ -15,10 +15,10 @@ const CustomDialog = ({ open, handleClose, content,handelAgree }) => {
         <DialogContentText>{content}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={handleClose} sx={{ color: "var(--primary-color)" }}>
           Disagree
         </Button>
-        <Button onClick={handelAgree} color="primary" autoFocus>
+        <Button onClick={handelAgree} sx={{ color: "var(--primary-color)" }}autoFocus>
           Agree
         </Button>
       </DialogActions>

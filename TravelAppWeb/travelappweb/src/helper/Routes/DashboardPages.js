@@ -6,7 +6,7 @@ import OrganizersDetails from "../../Pages/Organizers/OrganizersList/organizersD
 import AllRequest from "../../Pages/Organizers/RequestsOrganizers/all_request";
 import OrganizerDetailsRequest from "../../Pages/Organizers/RequestsOrganizers/organizer_details_request";
 import OrganizersFullDetails from "../../Pages/Organizers/OrganizersList/organizersFullDetails";
-
+import ReportList from "../../Pages/Reports/reports";
 
 
 
@@ -19,6 +19,7 @@ const dashboardPages = [
     {path: "OrganizersFullDetails",element: <OrganizersFullDetails />},
     {path: "AllRequest",element: <AllRequest />},
     {path: "OrganizerDetailsRequest",element: <OrganizerDetailsRequest />},
+    {path : "Reports",element: <ReportList/>}
 ];
 
 export default dashboardPages;

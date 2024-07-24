@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CustomButton from "../../../helper/Components/CustomButton/CustomButton";
 import CustomTextField from "../../../helper/Components/CustomTextField/CustomTextField";
 import styles from "./PushNotificationForm.module.css";
 import AutohideSnackbar from "../../../helper/snackbar";
 import { useNavigate } from "react-router-dom";
+import { AuthLogin } from "../../../Context/login_context";
 
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjE3OTg4ODV9.NHuxGVrgzpZoru0kmqogHUNjz2gMn89lQwyZmq5beFQ";
 
 const PushNotificationForm = () => {
+    const loginContext = useContext(AuthLogin);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [titleTouched, setTitleTouched] = useState(false);
@@ -36,7 +38,7 @@ const PushNotificationForm = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${loginContext.Token}`,
         },
         body: JSON.stringify({
           notification_title: title,

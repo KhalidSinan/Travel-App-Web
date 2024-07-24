@@ -1,14 +1,13 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import NotificationsList from "./NotificationsList/NotificationsList";
 import styles from "./NotificationsPage.module.css";
 import { CircularProgress } from "@mui/material";
 import CustomButton from "../../helper/Components/CustomButton/CustomButton";
 import { Link } from "react-router-dom";
-
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjE3OTg4ODV9.NHuxGVrgzpZoru0kmqogHUNjz2gMn89lQwyZmq5beFQ";
+import { AuthLogin } from "../../Context/login_context";
 
 const NotificationsPage = () => {
+  const loginContext = useContext(AuthLogin);
   const [notifications, setNotifications] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -22,7 +21,7 @@ const NotificationsPage = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         }
       );

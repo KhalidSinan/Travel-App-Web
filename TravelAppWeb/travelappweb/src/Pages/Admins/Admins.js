@@ -3,10 +3,12 @@ import CustomButton from "../../helper/Components/CustomButton/CustomButton.js";
 import AdminsList from "./AdminsList";
 import { Link } from "react-router-dom";
 import SearchBar from "../../helper/Components/SearchBar/SearchBar.js";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
+import { AuthLogin } from "../../Context/login_context.js";
 
 const Admins = (_) => {
+  const loginContext = useContext(AuthLogin);
   const [adminsList, setAdminsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,7 +22,7 @@ const Admins = (_) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjE3OTg4ODV9.NHuxGVrgzpZoru0kmqogHUNjz2gMn89lQwyZmq5beFQ`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         });
         if(!response.ok){
@@ -43,7 +45,7 @@ const Admins = (_) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjE3OTg4ODV9.NHuxGVrgzpZoru0kmqogHUNjz2gMn89lQwyZmq5beFQ`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
         });
         if(!response.ok){

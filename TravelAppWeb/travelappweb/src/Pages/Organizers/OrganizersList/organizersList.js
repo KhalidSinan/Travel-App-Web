@@ -8,6 +8,7 @@ import CustomCard from "../../../helper/custom_card";
 import CustomPagination from "../../../helper/custom_pagination";
 import OrganizersContext from "../../../Context/organizers_context";
 import SearchBar from "../../../helper/Components/SearchBar/SearchBar";
+import { AuthLogin } from "../../../Context/login_context";
 
 const ITEMS_PER_PAGE = 6;
 

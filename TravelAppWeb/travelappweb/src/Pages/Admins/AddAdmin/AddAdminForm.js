@@ -10,7 +10,7 @@ import {
   TextField,
 } from "@mui/material";
 import styles from "./AddAdminForm.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 import CustomTextField from "../../../helper/Components/CustomTextField/CustomTextField";
 import CustomButton from "../../../helper/Components/CustomButton/CustomButton";
@@ -18,6 +18,7 @@ import TextFieldStyle from "../../../helper/Styles/TextFieldStyle";
 import TextFieldInvalidStyle from "../../../helper/Styles/TextFieldInvalidStyle";
 import { useNavigate } from "react-router-dom";
 import AutohideSnackbar from "../../../helper/snackbar";
+import { AuthLogin } from "../../../Context/login_context";
 
 const roles = [
   {
@@ -57,6 +58,7 @@ const buttonStyle = {
 
 const AddAdminForm = (props) => {
   const navigator = useNavigate();
+  const loginContext = useContext(AuthLogin);
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [adminName, setAdminName] = useState('');
@@ -111,7 +113,7 @@ const AddAdminForm = (props) => {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${loginContext.Token}`,
           },
           body: JSON.stringify({
             "username" : adminName,

@@ -1,7 +1,15 @@
-
+import React from 'react';
+import videoError from './videoerror403.mp4'; // Correct relative path
 
 const NotAuthorized = () => {
-    return (<h1>403 Not Authorized</h1>);
+  return (
+    <div className="video-container">
+      <video width="600" controls>
+        <source src={videoError} type="video/mp4" />
+       
+      </video>
+    </div>
+  );
 }
 
 export default NotAuthorized;

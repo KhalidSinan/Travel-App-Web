@@ -1,0 +1,31 @@
+.make-announcement-section {
+    display: grid;
+    grid-template-rows: 60px 10px 1fr;
+    grid-template-areas: 
+    "make-announcement-header"
+    "line"
+    "make-announcement-fields";
+    padding: 0.5rem 1rem;
+    color: var(--text-color);
+}
+
+.make-announcement-section hr {
+    grid-area: line;
+    width: 100%;
+    border-bottom: 1px solid var(--primary-color);
+}
+.make-announcement-header{
+    display: flex;
+    align-items: center;
+    grid-area: make-announcement-header;
+    /* background-color: lightgrey; */
+}
+.make-announcement-header h1{
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.make-announcement-body{ 
+    grid-area: make-announcement-fields;
+    margin-top: 16px;
+}

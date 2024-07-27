@@ -32,9 +32,9 @@ const pages = [
     },
     {
       "index": 3,
-      "name" : "Announcments",
+      "name" : "Announcements",
       "icon" : <BsFillSendFill />,
-      "page" : "announcments"
+      "page" : "announcements"
     },
     {
       "index": 4,

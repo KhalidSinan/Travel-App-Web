@@ -9,6 +9,8 @@ import ReportList from "../../Pages/Reports/reports";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import NotificationsPage from "../../Pages/Notifications/NotificationsPage";
 import PushNotification from "../../Pages/Notifications/PushNotification/PushNotification";
+import Announcements from "../../Pages/Announcments/Announcements";
+import MakeAnnouncement from "../../Pages/Announcments/MakeAnnouncement/MakeAnnouncement";
 
 
 
@@ -25,6 +27,8 @@ const dashboardPages = [
     {path : "Reports",element: <ReportList/>},
     {path: "Notifications",element: <NotificationsPage />},
     {path: "pushNotification",element: <PushNotification />},
+    {path: "Announcements",element: <Announcements />},
+    {path: "makeAnnouncement",element: <MakeAnnouncement />},
 ];
 
 export default dashboardPages;

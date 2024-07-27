@@ -1,0 +1,13 @@
+
+.announcements-list { 
+    list-style: none;
+    padding: 0;
+    margin-top: 16px;
+    max-width: 900px;
+}
+
+
+.loading {
+    margin-top: 100px;
+}
+

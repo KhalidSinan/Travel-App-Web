@@ -1,0 +1,27 @@
+.dialog-content {
+    color: var(--text-color);
+}
+
+.dialog-content span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.dialog-back-btn {
+    border: none;
+    color: gray;
+}
+
+.dialog-back-btn:hover {
+    scale: 1;
+    color: gray;
+}
+
+.dialog-deny-btn {
+    background-color: var(--danger);
+}
+
+.dialog-deny-btn:hover {
+    background-color: #FF204E;
+    scale: 1;
+}

@@ -141,7 +141,7 @@ const FlightDetailBox = ({ flight }) => {
         <Typography variant="h6">{flight.airline_name}</Typography>
       </Header>
    
-      <Accordion>
+      <Accordion  sx={{backgroundColor: "var(--card-color)",}}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography>Flight Details</Typography>
         </AccordionSummary>
@@ -154,7 +154,7 @@ const FlightDetailBox = ({ flight }) => {
                   <TableCellBold>Information</TableCellBold>
                 </TableRow>
               </TableHeader>
-              <TableBody>
+              <TableBody sx={{ backgroundColor: "var(--card-color)",}}>
                 <TableRow>
                   <TableCell>Source Country</TableCell>
                   <TableCell>{flight.source_country}</TableCell>
@@ -200,9 +200,9 @@ const FlightDetailBox = ({ flight }) => {
           </TableContainer>
         </AccordionDetails>
       </Accordion>
-      <Accordion>
+      <Accordion sx={{ backgroundColor: "var(--card-color)",}}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Class Details</Typography>
+          <Typography >Class Details</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <TableContainer component={Paper}>
@@ -216,7 +216,7 @@ const FlightDetailBox = ({ flight }) => {
                   <TableCellBold>Features</TableCellBold>
                 </TableRow>
               </TableHeader>
-              <TableBody>
+              <TableBody sx={{ backgroundColor: "var(--card-color)",}}>
                 {paginatedFlights.map((classInfo, index) => (
                   <TableRow key={index}>
                     <TableCell>{classInfo.name}</TableCell>

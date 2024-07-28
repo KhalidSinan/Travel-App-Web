@@ -76,11 +76,11 @@ const Flights = () => {
           <DateFilter
             setStartDate={setStartDate}
             setEndDate={setEndDate}
-            fetchFlights={fetchFlights} // Pass the fetch function to DateFilter
+            fetchFlights={fetchFlights} 
           />
         </Grid>
       </Grid>
-      <Box>
+      <Box >
         {filteredFlights.map((flight, index) => (
           <FlightDetailBox key={index} flight={flight} />
         ))}

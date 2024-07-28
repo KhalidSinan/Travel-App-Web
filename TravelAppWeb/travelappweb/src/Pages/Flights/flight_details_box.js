@@ -65,7 +65,7 @@ const FeatureIcon = styled("span")({
   marginRight: "8px",
   display: "inline-flex",
   alignItems: "center",
-  color: "#205E61", // default icon color
+  color: "white", // default icon color
 });
 
 const getFeatureIcon = (feature) => {
@@ -138,12 +138,12 @@ const FlightDetailBox = ({ flight }) => {
     <Container>
       <Header>
         <AirlineImage src={flight.airline_pic} alt={flight.airline_name} />
-        <Typography variant="h6">{flight.airline_name}</Typography>
+        <Typography variant="h6" >{flight.airline_name}</Typography>
       </Header>
    
       <Accordion  sx={{backgroundColor: "var(--card-color)",}}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Flight Details</Typography>
+          <Typography variant="h6" sx={{color :"white"}}>Flight Details</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <TableContainer component={Paper}>
@@ -202,7 +202,7 @@ const FlightDetailBox = ({ flight }) => {
       </Accordion>
       <Accordion sx={{ backgroundColor: "var(--card-color)",}}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography >Class Details</Typography>
+          <Typography variant="h6" sx={{color :"white"}}>Class Details</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <TableContainer component={Paper}>

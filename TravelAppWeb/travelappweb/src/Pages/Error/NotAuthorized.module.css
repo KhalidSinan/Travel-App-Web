@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background-color: #f8f9fa; */
+    text-align: center;
+  }
+  
+  .videoContainer { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .errorText { 
+    margin-top: 10px;
+    font-size: 1.5rem;
+    color: #111111;
+  }
+  

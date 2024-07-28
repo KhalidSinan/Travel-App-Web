@@ -11,12 +11,12 @@ import NotificationsPage from "../../Pages/Notifications/NotificationsPage";
 import PushNotification from "../../Pages/Notifications/PushNotification/PushNotification";
 import Announcements from "../../Pages/Announcments/Announcements";
 import MakeAnnouncement from "../../Pages/Announcments/MakeAnnouncement/MakeAnnouncement";
-<<<<<<< HEAD
 import NotAuthorized from "../../Pages/Error/NotAuthorized";
 import PageNotFound from "../../Pages/Error/PageNotFound";
 import Hotels from "../../Pages/Hotels/Hotels";
 import HotelsContextProvider from "../../Context/hotels_context";
 import HotelsDetails from "../../Pages/Hotels/HotelDetails/HotelsDetails";
+import Flights from "../../Pages/Flights/flights";
 
 
 const dashboardPages = [
@@ -35,25 +35,7 @@ const dashboardPages = [
     {path: "makeAnnouncement",element: <MakeAnnouncement />},
     {path: "hotels",element: <HotelsContextProvider><Hotels /></HotelsContextProvider>},
     {path: "hotelDetails",element: <HotelsDetails />},
-=======
-import Flights from "../../Pages/Flights/flights";
-
-const dashboardPages = [
-  { path: "/", element: <Dashboard /> },
-  { path: "admins", element: <Admins /> },
-  { path: "addAdmin", element: <AddAdmin /> },
-  { path: "Organizers", element: <Organizers /> },
-  { path: "OrganizersDetails", element: <OrganizersDetails /> },
-  { path: "OrganizersFullDetails", element: <OrganizersFullDetails /> },
-  { path: "AllRequest", element: <AllRequest /> },
-  { path: "OrganizerDetailsRequest", element: <OrganizerDetailsRequest /> },
-  { path: "Reports", element: <ReportList /> },
-  { path: "Notifications", element: <NotificationsPage /> },
-  { path: "pushNotification", element: <PushNotification /> },
-  { path: "Announcements", element: <Announcements /> },
-  { path: "Flights", element: <Flights /> },
-  { path: "makeAnnouncement", element: <MakeAnnouncement /> },
->>>>>>> 56e1459149954a1e2e0af23ff4ab034fe062a97d
+    { path: "Flights", element: <Flights /> },
 ];
 
 export default dashboardPages;

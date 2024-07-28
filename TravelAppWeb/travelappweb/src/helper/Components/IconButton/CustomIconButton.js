@@ -6,6 +6,7 @@ const CustomIconButton = ({
   colored = false,
   isAccept = false,
   isDeny = false,
+  text="",
   onClick,
   classes,
 }) => {
@@ -20,7 +21,7 @@ const CustomIconButton = ({
         ${classes}`}
         onClick={onClick}
     >
-      {icon}
+      {icon} <span>{text}</span>
     </button>
   );
 };

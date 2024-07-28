@@ -11,8 +11,8 @@ import NotificationsPage from "../../Pages/Notifications/NotificationsPage";
 import PushNotification from "../../Pages/Notifications/PushNotification/PushNotification";
 import Announcements from "../../Pages/Announcments/Announcements";
 import MakeAnnouncement from "../../Pages/Announcments/MakeAnnouncement/MakeAnnouncement";
-
-
+import NotAuthorized from "../../Pages/Error/NotAuthorized";
+import PageNotFound from "../../Pages/Error/PageNotFound";
 
 
 const dashboardPages = [

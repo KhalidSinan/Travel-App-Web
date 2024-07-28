@@ -13,6 +13,9 @@ import Announcements from "../../Pages/Announcments/Announcements";
 import MakeAnnouncement from "../../Pages/Announcments/MakeAnnouncement/MakeAnnouncement";
 import NotAuthorized from "../../Pages/Error/NotAuthorized";
 import PageNotFound from "../../Pages/Error/PageNotFound";
+import Hotels from "../../Pages/Hotels/Hotels";
+import HotelsContextProvider from "../../Context/hotels_context";
+import HotelsDetails from "../../Pages/Hotels/HotelDetails/HotelsDetails";
 
 
 const dashboardPages = [
@@ -29,6 +32,8 @@ const dashboardPages = [
     {path: "pushNotification",element: <PushNotification />},
     {path: "Announcements",element: <Announcements />},
     {path: "makeAnnouncement",element: <MakeAnnouncement />},
+    {path: "hotels",element: <HotelsContextProvider><Hotels /></HotelsContextProvider>},
+    {path: "hotelDetails",element: <HotelsDetails />},
 ];
 
 export default dashboardPages;

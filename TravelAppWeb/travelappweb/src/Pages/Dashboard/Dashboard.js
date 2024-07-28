@@ -3,13 +3,14 @@ import { BarChart, LineChart, PieChart } from "@mui/x-charts";
 import DashboardContext from "../../Context/dashboard_context";
 import styles from "./Dashboard.module.css";
 import TopCountries from "./top_10_countries";
-import HotelsList from "./HotelsStats/HotelsStats";
 import { CircularProgress } from "@mui/material";
 import CustomIconButton from "../../helper/Components/IconButton/CustomIconButton";
 import { BsArrowRightShort } from "react-icons/bs";
+import HotelsList from "../Hotels/HotelsStats/HotelsStats";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-  const { topCountries, organizedTripsPer, topHotels } =
+  const { topCountries, organizedTripsPer, topHotels, hotels } =
     useContext(DashboardContext);
   return (
     <main className={styles["statistics-section"]}>
@@ -70,17 +71,18 @@ const Dashboard = () => {
           >
             <div className={styles["hotels-list-header"]}>
               <h2>JourneyJoy's Hotels:</h2>
-              <CustomIconButton
-                icon={
-                  <BsArrowRightShort color="var(--primary-color)" size={32} />
-                }
-              />
+              <Link to={"/hotels"}>
+                <CustomIconButton
+                  icon={
+                    <BsArrowRightShort
+                      color="var(--secondary-color)"
+                      size={32}
+                    />
+                  }
+                />
+              </Link>
             </div>
-            {topHotels ? (
-              <HotelsList hotels={topHotels} />
-            ) : (
-              <CircularProgress />
-            )}
+            {hotels ? <HotelsList hotels={hotels} /> : <CircularProgress />}
           </div>
           <div
             className={`${styles["statistics-card"]} ${styles["hotels-stats"]}`}

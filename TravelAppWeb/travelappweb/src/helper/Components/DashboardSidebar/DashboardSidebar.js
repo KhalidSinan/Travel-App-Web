@@ -6,6 +6,7 @@ import {
   BsFillSendFill,
   BsPersonFill,
 } from "react-icons/bs";
+import { MdOutlineFlightTakeoff } from "react-icons/md";
 import SidebarItem from "./SidebarItem.js";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -38,6 +39,12 @@ const pages = [
     },
     {
       "index": 4,
+      "name" : "Flights",
+      "icon" : <MdOutlineFlightTakeoff/>,
+      "page" : "flights"
+    },
+    {
+      "index": 5,
       "name" : "Reports",
       "icon" : <BsExclamationOctagonFill />,
       "page" :  "reports"

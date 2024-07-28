@@ -11,24 +11,23 @@ import NotificationsPage from "../../Pages/Notifications/NotificationsPage";
 import PushNotification from "../../Pages/Notifications/PushNotification/PushNotification";
 import Announcements from "../../Pages/Announcments/Announcements";
 import MakeAnnouncement from "../../Pages/Announcments/MakeAnnouncement/MakeAnnouncement";
-import NotAuthorized from "../../Pages/Error/NotAuthorized";
-import PageNotFound from "../../Pages/Error/PageNotFound";
-
+import Flights from "../../Pages/Flights/flights";
 
 const dashboardPages = [
-    {path: "/",element: <Dashboard />},
-    {path: "admins",element: <Admins />},
-    {path: "addAdmin",element: <AddAdmin />},
-    {path: "Organizers",element: <Organizers />},
-    {path: "OrganizersDetails",element: <OrganizersDetails />},
-    {path: "OrganizersFullDetails",element: <OrganizersFullDetails />},
-    {path: "AllRequest",element: <AllRequest />},
-    {path: "OrganizerDetailsRequest",element: <OrganizerDetailsRequest />},
-    {path : "Reports",element: <ReportList/>},
-    {path: "Notifications",element: <NotificationsPage />},
-    {path: "pushNotification",element: <PushNotification />},
-    {path: "Announcements",element: <Announcements />},
-    {path: "makeAnnouncement",element: <MakeAnnouncement />},
+  { path: "/", element: <Dashboard /> },
+  { path: "admins", element: <Admins /> },
+  { path: "addAdmin", element: <AddAdmin /> },
+  { path: "Organizers", element: <Organizers /> },
+  { path: "OrganizersDetails", element: <OrganizersDetails /> },
+  { path: "OrganizersFullDetails", element: <OrganizersFullDetails /> },
+  { path: "AllRequest", element: <AllRequest /> },
+  { path: "OrganizerDetailsRequest", element: <OrganizerDetailsRequest /> },
+  { path: "Reports", element: <ReportList /> },
+  { path: "Notifications", element: <NotificationsPage /> },
+  { path: "pushNotification", element: <PushNotification /> },
+  { path: "Announcements", element: <Announcements /> },
+  { path: "Flights", element: <Flights /> },
+  { path: "makeAnnouncement", element: <MakeAnnouncement /> },
 ];
 
 export default dashboardPages;

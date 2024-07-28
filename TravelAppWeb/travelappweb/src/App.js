@@ -6,6 +6,7 @@ import { useContext } from "react";
 import DashboardRoutes from "./helper/Routes/DashboardRoutes.js";
 import { ReportProvider } from "./Context/report_context.js";
 import { DashboardProvider } from "./Context/dashboard_context.js";
+import NotAuthorized from "./Pages/Error/NotAuthorized.js";
 function App() {
   const { isLoggedIn } = useContext(AuthLogin);
   return (
@@ -17,6 +18,7 @@ function App() {
           <DashboardRoutes />
         </BrowserRouter>
       </div>
+    
       </ReportProvider>
     </OrganizersProvider>
     </DashboardProvider>

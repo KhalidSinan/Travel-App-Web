@@ -155,18 +155,21 @@ const AnnouncementsRequests = () => {
                     <CustomIconButton
                       key={"accept-announce-btn"}
                       icon={<BsCheck2 />}
+                      text="Accept"
                       classes={`${styles["accept-announcement-btn"]} ${styles["announcement-btn"]}`}
                       onClick={() => onAcceptDialogOpen(announce)}
                     />,
                     <CustomIconButton
                       key={"deny-announce-btn"}
                       icon={<BsXLg />}
+                      text="Deny"
                       classes={`${styles["deny-announcement-btn"]} ${styles["announcement-btn"]}`}
                       onClick={() => onDenyDialogOpen(announce)}
                     />,
                     <CustomIconButton
                       key={"details-announce-btn"}
                       icon={<BsPersonLinesFill />}
+                      text="Details"
                       classes={`${styles["details-announcement-btn"]} ${styles["announcement-btn"]}`}
                       onClick={() => organizerDetails(announce.organizer_id)}
                     />,

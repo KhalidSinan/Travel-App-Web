@@ -1,6 +1,6 @@
 .announcement-card {
     display: grid;
-    grid-template-columns: 1fr 2fr 60px;
+    grid-template-columns: 1fr 2fr 100px;
     grid-template-areas: "card-header card-content card-options";
     align-items: center;
     margin-bottom: 24px;
@@ -72,4 +72,10 @@
 .announcement-card:hover .announcement-content{
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
+}
+
+@media (max-width: 1200px) {
+    .announcement-card {
+        grid-template-columns: 1fr 2fr 60px;
+    }
 }

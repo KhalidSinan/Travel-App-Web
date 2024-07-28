@@ -1,0 +1,71 @@
+.hotels-section {
+    display: grid;
+    grid-template-rows: 60px 10px 1fr;
+    grid-template-areas: 
+    "hotels-header"
+    "line"
+    "hotels-content";
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+}
+
+.hotels-section hr {
+    grid-area: line;
+    width: 100%;
+}
+.hotels-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: hotels-header;
+}
+
+.hotels-header h1{
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.hotels-header-options {
+    display: flex;
+    align-items: center;
+}
+
+.hotels-content {
+    grid-area: hotels-content;
+    margin-block: 1rem;
+    font-size: 24px;
+}
+
+.option-btn {
+    color: var(--text-color);
+}
+
+.filter-active {
+    background-color: var(--date-color);
+    color: white;
+}
+
+.stars {
+    grid-area: options;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 16px;
+    gap: 8px;
+    margin-bottom: 1rem;
+}
+.stars h3{
+    margin: 0;
+}
+
+.stars.hide {
+    display: none;
+}
+
+.loading {
+    margin-top: 100px;
+}
+
+
+
+

@@ -74,7 +74,7 @@ const headCells = [
   },
   {
     id: "reservations",
-    numeric: false,
+    numeric: true,
     label: "Reservations",
   },
 ];
@@ -178,7 +178,7 @@ const HotelsList = ({ hotels }) => {
                     {hotel.id.substring(0,9)}
                   </StyledTableCell>
                   <StyledTableCell align="left">{hotel.name}</StyledTableCell>
-                  <StyledTableCell align="left">
+                  <StyledTableCell align="right">
                     {hotel.reservationCount}
                   </StyledTableCell>
                   <StyledTableCell align="left">
@@ -199,15 +199,6 @@ const HotelsList = ({ hotels }) => {
           </TableBody>
         </Table>
       </TableContainer>
-      <StyledTablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={hotels.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
     </React.Fragment>
   );
 };

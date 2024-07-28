@@ -1,0 +1,67 @@
+.hotel-card {
+    display: grid;
+    grid-template-columns: 200px 1fr 150px;
+    grid-template-rows: 200px;
+    grid-template-areas: "image hotel-content details";
+    background-color: var(--card-color);
+    border-radius: 10px;
+    align-items: center;
+    transition-duration: 300ms;
+    margin-bottom: 24px;
+}
+
+.hotel-card header{
+    grid-area: image;
+    height: 100%;
+}
+
+.hotel-card header img {
+    width: 200px;
+    height: 200px;
+    border-radius: 6px;
+}
+
+.hotel-card section {
+    padding: 1rem;
+    align-self: flex-start;
+    grid-area: hotel-content;
+}
+
+.hotel-details-btn {
+    background-color: var(--secondary-color);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    height: 100%;
+    grid-area: details;
+}
+
+.hotel-name,
+.hotel-location,
+.hotel-stars{
+    margin: 0;
+    text-align: start;
+}
+
+.hotel-name{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.hotel-location {
+    font-size: 16px;
+    color: var(--date-color);
+    margin-top: 6px;
+}
+
+.hotel-stars{
+    margin-top: 24px;
+}
+
+.hotel-details-btn:hover {
+    background-color: var(--primary-color);
+}

@@ -3,7 +3,7 @@
     list-style: none;
     padding: 0;
     margin-top: 16px;
-    max-width: 900px;
+    max-width: 1200px;
 }
 
 .announcement-btn {
@@ -14,7 +14,7 @@
 }
 
 .accept-announcement-btn {
-    background-color: green;
+    background-color: var(--primary-color);
 }
 .deny-announcement-btn {
     background-color: var(--danger);
@@ -28,7 +28,7 @@
 }
 
 .accept-announcement-btn:hover {
-    background-color: rgb(0, 110, 0);
+    background-color: var(--sidebar-active-color);
 }
 
 .details-announcement-btn:hover {
@@ -37,4 +37,17 @@
 
 .loading {
     margin-top: 100px;
+}
+
+
+@media (max-width: 1200px) {
+    .accept-announcement-btn span {
+        display: none;
+    }
+    .deny-announcement-btn span {
+        display: none;
+    }
+    .details-announcement-btn span {
+        display: none;
+    }
 }

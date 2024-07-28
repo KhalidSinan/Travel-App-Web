@@ -8,6 +8,13 @@
     font-weight: bold;
     border-radius: 10px;
     cursor: pointer; 
+    display: flex;
+    gap: 6px;
+
+}
+
+.icon-btn span {
+    font-size: 12px;
 }
 
 .icon-btn.bordered{

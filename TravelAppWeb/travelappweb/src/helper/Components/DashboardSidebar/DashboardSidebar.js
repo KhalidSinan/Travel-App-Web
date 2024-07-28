@@ -7,6 +7,7 @@ import {
   BsHousesFill,
   BsPersonFill,
 } from "react-icons/bs";
+import { MdOutlineFlightTakeoff } from "react-icons/md";
 import SidebarItem from "./SidebarItem.js";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -14,10 +15,47 @@ import { useLocation } from "react-router-dom";
 
 const pages = [
   {
+<<<<<<< HEAD
     index: 0,
     name: "Dashboard",
     icon: <BiSolidDashboard />,
     page: "/",
+=======
+      "index": 0,
+      "name" : "Dashboard",
+      "icon" : <BiSolidDashboard />,
+      "page" : "/"
+    },
+    {
+      "index": 1,
+      "name" : "Admins",
+      "icon" : <BsPersonFill />,
+      "page" : "admins"
+    },
+    {
+      "index": 2,
+      "name" : "Organizers",
+      "icon" : <BsFillPeopleFill />,
+      "page" : "organizers"
+    },
+    {
+      "index": 3,
+      "name" : "Announcements",
+      "icon" : <BsFillSendFill />,
+      "page" : "announcements"
+    },
+    {
+      "index": 4,
+      "name" : "Flights",
+      "icon" : <MdOutlineFlightTakeoff/>,
+      "page" : "flights"
+    },
+    {
+      "index": 5,
+      "name" : "Reports",
+      "icon" : <BsExclamationOctagonFill />,
+      "page" :  "reports"
+>>>>>>> 56e1459149954a1e2e0af23ff4ab034fe062a97d
   },
   {
     index: 1,

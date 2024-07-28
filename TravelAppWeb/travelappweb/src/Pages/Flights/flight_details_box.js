@@ -29,6 +29,7 @@ import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import DiningIcon from "@mui/icons-material/Restaurant";
 import RecliningIcon from "@mui/icons-material/AirlineSeatReclineNormal";
 import EntertainmentIcon from "@mui/icons-material/Movie";
+import { tableCellClasses } from "@mui/material/TableCell";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -57,9 +58,17 @@ const TableHeader = styled(TableHead)({
   backgroundColor: "#ffb156",
 });
 
-const TableCellBold = styled(TableCell)({
-  fontWeight: "bold",
-});
+const StyledTableCell = styled(TableCell)(() => ({
+    [`&.${tableCellClasses.head}`]: {
+      color: "var(--text-color)",
+      fontSize: "1.25rem", // Adjust the font size for the header cells
+    },
+    [`&.${tableCellClasses.body}`]: {
+      color: "var(--text-color)",
+      fontSize: "1rem", // Adjust the font size for the body cells
+    },
+  }));
+  
 
 const FeatureIcon = styled("span")({
   marginRight: "8px",
@@ -138,99 +147,103 @@ const FlightDetailBox = ({ flight }) => {
     <Container>
       <Header>
         <AirlineImage src={flight.airline_pic} alt={flight.airline_name} />
-        <Typography variant="h6" >{flight.airline_name}</Typography>
+        <Typography variant="h6">{flight.airline_name}</Typography>
       </Header>
-   
-      <Accordion  sx={{backgroundColor: "var(--card-color)",}}>
+
+      <Accordion sx={{ backgroundColor: "var(--card-color)" }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant="h6" sx={{color :"white"}}>Flight Details</Typography>
+          <Typography variant="h6" sx={{ color: "white" }}>
+            Flight Details
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <TableContainer component={Paper}>
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableCellBold>Detail</TableCellBold>
-                  <TableCellBold>Information</TableCellBold>
+                  <StyledTableCell>Detail</StyledTableCell>
+                  <StyledTableCell>Information</StyledTableCell>
                 </TableRow>
               </TableHeader>
-              <TableBody sx={{ backgroundColor: "var(--card-color)",}}>
+              <TableBody sx={{ backgroundColor: "var(--card-color)" }}>
                 <TableRow>
-                  <TableCell>Source Country</TableCell>
-                  <TableCell>{flight.source_country}</TableCell>
+                  <StyledTableCell>Source Country</StyledTableCell>
+                  <StyledTableCell>{flight.source_country}</StyledTableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Source City</TableCell>
-                  <TableCell>{flight.source_city}</TableCell>
+                  <StyledTableCell>Source City</StyledTableCell>
+                  <StyledTableCell>{flight.source_city}</StyledTableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Source Airport</TableCell>
-                  <TableCell>{flight.source_airport}</TableCell>
+                  <StyledTableCell>Source Airport</StyledTableCell>
+                  <StyledTableCell>{flight.source_airport}</StyledTableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Destination Country</TableCell>
-                  <TableCell>{flight.destination_country}</TableCell>
+                  <StyledTableCell>Destination Country</StyledTableCell>
+                  <StyledTableCell>{flight.destination_country}</StyledTableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Destination City</TableCell>
-                  <TableCell>{flight.destination_city}</TableCell>
+                  <StyledTableCell>Destination City</StyledTableCell>
+                  <StyledTableCell>{flight.destination_city}</StyledTableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Destination Airport</TableCell>
-                  <TableCell>{flight.destination_airport}</TableCell>
+                  <StyledTableCell>Destination Airport</StyledTableCell>
+                  <StyledTableCell>{flight.destination_airport}</StyledTableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Arrival Date</TableCell>
-                  <TableCell>{flight.arrival_date}</TableCell>
+                  <StyledTableCell>Arrival Date</StyledTableCell>
+                  <StyledTableCell>{flight.arrival_date}</StyledTableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Departure Date</TableCell>
-                  <TableCell>{flight.departure_date}</TableCell>
+                  <StyledTableCell>Departure Date</StyledTableCell>
+                  <StyledTableCell>{flight.departure_date}</StyledTableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Overall Seats</TableCell>
-                  <TableCell>{flight.overall_seats}</TableCell>
+                  <StyledTableCell>Overall Seats</StyledTableCell>
+                  <StyledTableCell>{flight.overall_seats}</StyledTableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Available Seats</TableCell>
-                  <TableCell>{flight.available_seats}</TableCell>
+                  <StyledTableCell>Available Seats</StyledTableCell>
+                  <StyledTableCell>{flight.available_seats}</StyledTableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </TableContainer>
         </AccordionDetails>
       </Accordion>
-      <Accordion sx={{ backgroundColor: "var(--card-color)",}}>
+      <Accordion sx={{ backgroundColor: "var(--card-color)" }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant="h6" sx={{color :"white"}}>Class Details</Typography>
+          <Typography variant="h6" sx={{ color: "white" }}>
+            Class Details
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <TableContainer component={Paper}>
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableCellBold>Class</TableCellBold>
-                  <TableCellBold>Price</TableCellBold>
-                  <TableCellBold>Weight</TableCellBold>
-                  <TableCellBold>Available Seats</TableCellBold>
-                  <TableCellBold>Features</TableCellBold>
+                  <StyledTableCell>Class</StyledTableCell>
+                  <StyledTableCell>Price</StyledTableCell>
+                  <StyledTableCell>Weight</StyledTableCell>
+                  <StyledTableCell>Available Seats</StyledTableCell>
+                  <StyledTableCell>Features</StyledTableCell>
                 </TableRow>
               </TableHeader>
-              <TableBody sx={{ backgroundColor: "var(--card-color)",}}>
+              <TableBody sx={{ backgroundColor: "var(--card-color)" }}>
                 {paginatedFlights.map((classInfo, index) => (
                   <TableRow key={index}>
-                    <TableCell>{classInfo.name}</TableCell>
-                    <TableCell>{classInfo.price}</TableCell>
-                    <TableCell>{classInfo.weight}</TableCell>
-                    <TableCell>{classInfo.available_seats}</TableCell>
-                    <TableCell>
+                    <StyledTableCell>{classInfo.name}</StyledTableCell>
+                    <StyledTableCell>{classInfo.price}</StyledTableCell>
+                    <StyledTableCell>{classInfo.weight}</StyledTableCell>
+                    <StyledTableCell>{classInfo.available_seats}</StyledTableCell>
+                    <StyledTableCell>
                       {classInfo.features.map((feature, i) => (
                         <FeatureIcon key={i}>
                           {getFeatureIcon(feature)}
                           {feature}
                         </FeatureIcon>
                       ))}
-                    </TableCell>
+                    </StyledTableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -238,7 +251,6 @@ const FlightDetailBox = ({ flight }) => {
           </TableContainer>
         </AccordionDetails>
       </Accordion>
-   
     </Container>
   );
 };

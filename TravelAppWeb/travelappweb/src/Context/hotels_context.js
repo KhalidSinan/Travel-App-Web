@@ -6,7 +6,7 @@ export const HotelsContext = React.createContext({
   hotels: [],
   getAllHotels: () => {},
   changePage: () => {},
-  toggleSort: () => {},
+  changeSort: (sort) => {},
   changeStars: (stars) => {},
   searchHotel: (hotelName) => {},
   isLoading: true,
@@ -15,18 +15,20 @@ export const HotelsContext = React.createContext({
   count: 0,
   stars: "",
   sort: "",
+  sortBy: "",
   searchQuery: "",
 });
 
 const HotelsContextProvider = ({ children }) => {
   const { Token } = useContext(AuthLogin);
   const [hotels, setHotels] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(0);
   const [stars, setStars] = useState("");
   const [sort, setSort] = useState("");
+  const [sortBy, setSortBy] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
   const getAllHotels = useCallback(async () => {
@@ -34,7 +36,7 @@ const HotelsContextProvider = ({ children }) => {
     setError(null);
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/hotels?search=${searchQuery}&page=${page}&stars=${stars}&sort=${sort}`,
+        `http://localhost:5000/dashboard/hotels?search=${searchQuery}&page=${page}&stars=${stars}&sort=${sort}&sortBy=${sortBy}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -52,11 +54,15 @@ const HotelsContextProvider = ({ children }) => {
       setError(error.message);
     }
     setIsLoading(false);
-  }, [page,sort, stars, searchQuery, Token]);
+  }, [page, sort, sortBy, stars, searchQuery, Token]);
 
 
-  const toggleSort = () => {
-    setSort(prev => prev === 'asc' ? 'desc' : 'asc');
+  const changeSort = (event) => {
+    event.preventDefault();
+    const newSortBy = event.target.value.split('-')[0];
+    const newSort = event.target.value.split('-')[1];
+    setSort(newSort);
+    setSortBy(newSortBy);
   }
 
   const changeStars = (stars) => {
@@ -76,7 +82,7 @@ const HotelsContextProvider = ({ children }) => {
     hotels,
     getAllHotels,
     changePage,
-    toggleSort,
+    changeSort,
     changeStars,
     searchHotel,
     isLoading,

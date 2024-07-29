@@ -1,59 +1,39 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import NotificationsList from "./NotificationsList/NotificationsList";
 import styles from "./NotificationsPage.module.css";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Grid, TextField } from "@mui/material";
 import CustomButton from "../../helper/Components/CustomButton/CustomButton";
 import { Link } from "react-router-dom";
 import { AuthLogin } from "../../Context/login_context";
-
+import { NotificationsContext } from "../../Context/notifications_context";
+import CustomPagination from "../../helper/custom_pagination";
+import DateFilter from "../../helper/Components/DateFilter/date_filter";
+import CustomIconButton from "../../helper/Components/IconButton/CustomIconButton";
+import { BsFilter, BsSortDown, BsSortUp } from "react-icons/bs";
+import CustomTextField from "../../helper/Components/CustomTextField/CustomTextField";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import TextFieldStyle from "../../helper/Styles/TextFieldStyle";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import NotificationsFilter from "./NotificationsFilter/NotificationsFilter";
 const NotificationsPage = () => {
-  const loginContext = useContext(AuthLogin);
-  const [notifications, setNotifications] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const {
+    notifications,
+    getAllNotifications,
+    changePage,
+    toggleSort,
+    isLoading,
+    error,
+    page,
+    count,
+    sort,
+  } = useContext(NotificationsContext);
 
-  const getAllNotifications = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(
-        "http://localhost:5000/dashboard/notifications/",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${loginContext.Token}`,
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("An error occured while fetching notifications");
-      }
-      const data = await response.json();
-      const notifications = [];
-      for (let index in data.data) {
-        const {
-          id,
-          notification_title: title,
-          notification_body: content,
-          created_at:createdAt,
-        } = data.data[index];
-        notifications.push({
-          id,
-          title,
-          content,
-          createdAt,
-        });
-      }
-      notifications.reverse();
-      setNotifications(notifications);
-    } catch (error) {
-      setError(error.message);
-    }
-    setIsLoading(false);
-  }, []);
+  const [showFilter, setShowFilter] = useState(false);
+
+  const toggleShowFilter = () => setShowFilter((prev) => !prev);
 
   useEffect(() => {
-    setTimeout(getAllNotifications, 2000);
+     getAllNotifications();
   }, [getAllNotifications]);
 
   let content = <h2>No Notifications Found</h2>;
@@ -74,7 +54,13 @@ const NotificationsPage = () => {
     content = (
       <>
         <NotificationsList notifications={notifications} />
-        {/* <CustomPagination count={2} page={1} onChange={() => {}} /> */}
+        {Math.ceil(count/10) > 1 ? (
+          <CustomPagination
+            count={Math.ceil(count / 10)}
+            page={page}
+            onChange={(event, page) => changePage(event, page)}
+          />
+        ) : null}
       </>
     );
   }
@@ -83,12 +69,31 @@ const NotificationsPage = () => {
     <section className={styles["notifications-section"]}>
       <header className={styles["notifications-header"]}>
         <h1>Notifications</h1>
-        <Link to="/pushNotification">
-        <CustomButton name="Push Notification" />
-        </Link>
+        <div className={styles["notifications-options"]}>
+          <CustomIconButton
+            icon={<BsFilter />}
+            text="Filter"
+            classes={`${showFilter ? styles["filter-active"] : ""} ${
+              styles["option-btn"]
+            }`}
+            onClick={toggleShowFilter}
+          />
+          <CustomIconButton
+            icon={sort === "desc" ? <BsSortUp /> : <BsSortDown />}
+            text="Sort"
+            onClick={toggleSort}
+            classes={`${styles["option-btn"]}`}
+          />
+          <Link to="/pushNotification">
+            <CustomButton name="Push Notification" />
+          </Link>
+        </div>
       </header>
       <hr></hr>
-      <section className={styles["notifications-content"]}>{content}</section>
+      <section className={styles["notifications-content"]}>
+        <NotificationsFilter showFilter={showFilter} />
+        {content}
+      </section>
     </section>
   );
 };

@@ -21,6 +21,11 @@
     font-weight: bold;
 }
 
+.notifications-options {
+    display: flex;
+    align-items: center;
+}
+
 .notifications-section hr {
     grid-area: line;
     width: 100%;
@@ -33,4 +38,13 @@
 
 .loading {
     margin-top: 100px;
+}
+
+.option-btn {
+    color: var(--text-color);
+}
+
+.filter-active {
+    background-color: var(--date-color);
+    color: white;
 }

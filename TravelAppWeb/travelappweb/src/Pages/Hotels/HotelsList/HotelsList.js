@@ -11,12 +11,7 @@ const HotelsList = () => {
         return (
           <li key={hotel.id}>
             <HotelCard
-              id={hotel.id}
-              reservations={hotel.reservationsCount}
-              image={hotel.images}
-              name={hotel.name}
-              location={hotel.location}
-              stars={hotel.stars}
+              hotel={hotel}
             />
           </li>
         );

@@ -1,7 +1,6 @@
 .hotel-card {
     display: grid;
     grid-template-columns: 200px 1fr 150px;
-    grid-template-rows: 200px;
     grid-template-areas: "image hotel-content details";
     background-color: var(--card-color);
     border-radius: 10px;
@@ -17,7 +16,7 @@
 
 .hotel-card header img {
     width: 200px;
-    height: 200px;
+    height: 100%;
     border-radius: 6px;
 }
 
@@ -42,7 +41,8 @@
 
 .hotel-name,
 .hotel-location,
-.hotel-stars{
+.hotel-stars,
+.hotel-reservations{
     margin: 0;
     text-align: start;
 }
@@ -62,6 +62,22 @@
     margin-top: 24px;
 }
 
+.hotel-reservations {
+    margin-top: 16px;
+    font-size: 20px;
+}
+
 .hotel-details-btn:hover {
     background-color: var(--primary-color);
+}
+
+
+@media (max-width:850px) {
+    .hotel-card header {
+        display: none;
+    }
+    .hotel-card {
+        grid-template-columns: 1fr 150px;
+        grid-template-areas: "hotel-content details";
+    }
 }

@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { Box, Button } from "@mui/material";
+import React, { useState, useEffect, useContext } from "react";
+import { Box, Button, CircularProgress, Typography, Alert } from "@mui/material";
 import Header from "../../../helper/typography";
 import CustomCardCV from "../../../helper/card_cv";
 import CustomTableCV from "../../../helper/table_cv";
@@ -11,23 +11,40 @@ import AutohideSnackbar from "../../../helper/snackbar";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const OrganizerDetailsRequest = () => {
-  const { acceptOrganizer,RefuseOrganizer } = useContext(OrganizersContext) || {};
-
+  const { acceptOrganizer, RefuseOrganizer, fetchOrganizerRequestDetails } = useContext(OrganizersContext) || {};
   const navigate = useNavigate();
   const location = useLocation();
-  const { OrganizerRequestDetails, organizerId,  } = location.state;
+  const { organizerId } = location.state || {};
 
+  const [OrganizerRequestDetails, setOrganizerRequestDetails] = useState(location.state?.OrganizerRequestDetails || null);
   const [openDelete, setOpenDelete] = useState(false);
   const [openAccept, setOpenAccept] = useState(false);
-  const [message,setMessage] = useState("");
+  const [loading, setLoading] = useState(!OrganizerRequestDetails);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState(null);
 
-  const tableData = [
-    { label: "Gender", value: OrganizerRequestDetails.gender },
-    { label: "Phone Number", value: OrganizerRequestDetails.phone_number },
-    { label: "Age", value: OrganizerRequestDetails.age },
-    { label: "Years of Experience", value: OrganizerRequestDetails.years_of_experience },
-    { label: "Previous Companies", value: OrganizerRequestDetails.previous_companies },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (!OrganizerRequestDetails && organizerId) {
+          setLoading(true);
+          const result = await fetchOrganizerRequestDetails(organizerId);
+          if (result.data) {
+            setOrganizerRequestDetails(result.data);
+          } else {
+            setError("No details found for the organizer request.");
+          }
+        }
+      } catch (err) {
+        setError("An error occurred while fetching the details.");
+        console.error("Error fetching organizer details:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [OrganizerRequestDetails, organizerId, fetchOrganizerRequestDetails]);
 
   const handleClickOpenDelete = () => {
     setOpenDelete(true);
@@ -48,29 +65,62 @@ const OrganizerDetailsRequest = () => {
   const handleAcceptOrganizer = async () => {
     try {
       const data = await acceptOrganizer(organizerId);
-      console.log(data);
+      setMessage(data.message);
       navigate("/organizers");
-
-     setMessage(data.message);
     } catch (error) {
-      console.error("Error Accept organizer:", error);
+      console.error("Error accepting organizer:", error);
     } finally {
       setOpenAccept(false);
     }
   };
+
   const handleRefuseOrganizer = async () => {
     try {
       const data = await RefuseOrganizer(organizerId);
-      console.log(data);
-      navigate("/organizers");
-
       setMessage(data.message);
+      navigate("/organizers");
     } catch (error) {
-      console.error("Error Accept organizer:", error);
+      console.error("Error refusing organizer:", error);
     } finally {
-      setOpenAccept(false);
+      setOpenDelete(false);
     }
   };
+
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box sx={{ padding: 3 }}>
+        <Typography variant="h6" color="textSecondary">
+          {error}
+        </Typography>
+      </Box>
+    );
+  }
+
+  if (!OrganizerRequestDetails) {
+    return (
+      <Box sx={{ padding: 3 }}>
+        <Typography variant="h6" color="textSecondary">
+          No details found for the organizer request.
+        </Typography>
+      </Box>
+    );
+  }
+
+  const tableData = [
+    { label: "Gender", value: OrganizerRequestDetails.gender || "-" },
+    { label: "Phone Number", value: OrganizerRequestDetails.phone_number || "-" },
+    { label: "Age", value: OrganizerRequestDetails.age || "-" },
+    { label: "Years of Experience", value: OrganizerRequestDetails.years_of_experience || "-" },
+    { label: "Previous Companies", value: OrganizerRequestDetails.previous_companies || "-" },
+  ];
 
   return (
     <Box sx={{ padding: 3 }}>
@@ -95,10 +145,10 @@ const OrganizerDetailsRequest = () => {
           <CustomDialog
             open={openDelete}
             handleClose={handleCloseDelete}
-            handelAgree={ handleRefuseOrganizer} 
-            content="Are you sure you want to Refuse this Request?"
+            handelAgree={handleRefuseOrganizer}
+            content="Are you sure you want to refuse this request?"
           />
-             {message&& <AutohideSnackbar message={message}/>}
+          {message && <AutohideSnackbar message={message} />}
           <Button
             startIcon={<HowToReg />}
             variant="contained"
@@ -110,10 +160,10 @@ const OrganizerDetailsRequest = () => {
           <CustomDialog
             open={openAccept}
             handleClose={handleCloseAccept}
-            handelAgree={handleAcceptOrganizer} 
-            content="Are you sure you want to accept the organizer Request?"
+            handelAgree={handleAcceptOrganizer}
+            content="Are you sure you want to accept this request?"
           />
-             {message&& <AutohideSnackbar message={message}/>}
+          {message && <AutohideSnackbar message={message} />}
         </Box>
       </Box>
       <Box
@@ -131,7 +181,7 @@ const OrganizerDetailsRequest = () => {
         <CustomTableCV tableData={tableData} />
       </Box>
       <Header text="Organizer's Evidence" />
-      <ImageList proofs={OrganizerRequestDetails.proofs} />
+      <ImageList proofs={OrganizerRequestDetails.proofs || []} />
     </Box>
   );
 };

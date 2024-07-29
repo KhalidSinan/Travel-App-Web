@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import DashboardContext from "../../Context/dashboard_context";
 import styles from "./Dashboard.module.css";
+<<<<<<< HEAD
 import TopCountries from "./all_countries";
 import HotelsList from "./HotelsStats/HotelsStats";
 import { CircularProgress } from "@mui/material";
@@ -12,6 +13,18 @@ import ViewTopCountries from "./FlightStates/view_top_countries";
 const Dashboard = () => {
   const { topCountries, organizedTripsPer, topHotels, airlines, AllCountries } = useContext(DashboardContext);
 
+=======
+import TopCountries from "./top_10_countries";
+import { CircularProgress } from "@mui/material";
+import CustomIconButton from "../../helper/Components/IconButton/CustomIconButton";
+import { BsArrowRightShort } from "react-icons/bs";
+import HotelsList from "../Hotels/HotelsStats/HotelsStats";
+import { Link } from "react-router-dom";
+
+const Dashboard = () => {
+  const { topCountries, organizedTripsPer, topHotels, hotels } =
+    useContext(DashboardContext);
+>>>>>>> c9fcd6dc148cd404ae84995b0b13acedf0416e18
   return (
     <main className={styles["statistics-section"]}>
       <section className={styles["general-statistics"]}>
@@ -65,17 +78,18 @@ const Dashboard = () => {
           <div className={`${styles["statistics-card"]} ${styles["hotels-list"]}`}>
             <div className={styles["hotels-list-header"]}>
               <h2>JourneyJoy's Hotels:</h2>
-              <CustomIconButton
-                icon={
-                  <BsArrowRightShort color="var(--primary-color)" size={32} />
-                }
-              />
+              <Link to={"/hotels"}>
+                <CustomIconButton
+                  icon={
+                    <BsArrowRightShort
+                      color="var(--secondary-color)"
+                      size={32}
+                    />
+                  }
+                />
+              </Link>
             </div>
-            {topHotels ? (
-              <HotelsList hotels={topHotels} />
-            ) : (
-              <CircularProgress />
-            )}
+            {hotels ? <HotelsList hotels={hotels} /> : <CircularProgress />}
           </div>
           <div className={`${styles["statistics-card"]} ${styles["hotels-stats"]}`}>
             <h2>JourneyJoy's Top 10 Hotels:</h2>

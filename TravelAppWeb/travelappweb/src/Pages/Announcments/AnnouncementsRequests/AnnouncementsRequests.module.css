@@ -13,6 +13,21 @@
     border-left: 10px solid var(--card-color);
 }
 
+.announcements-options {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: end;
+}
+
+.option-btn {
+    color: var(--text-color);
+}
+
+.filter-active {
+    background-color: var(--date-color);
+    color: white;
+}
+
 .accept-announcement-btn {
     background-color: var(--primary-color);
 }

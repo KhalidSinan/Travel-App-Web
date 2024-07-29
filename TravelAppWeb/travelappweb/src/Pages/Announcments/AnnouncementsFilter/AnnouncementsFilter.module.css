@@ -1,0 +1,30 @@
+
+.date-filter {
+    text-align: start;
+    background-color: var(--card-color);
+    padding: 1rem;
+    color: var(--text-color);
+    border-radius: 10px;
+    width: 30rem;
+    margin: auto;
+    font-size: 16px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    transition-duration: 400ms ;
+}
+.date-filter h3{
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+
+
+.date-picker{
+    /* display: flex;
+    gap: 10px; */
+    margin-block: 12px;
+}
+
+.date-filter.hide {
+    display: none;
+}

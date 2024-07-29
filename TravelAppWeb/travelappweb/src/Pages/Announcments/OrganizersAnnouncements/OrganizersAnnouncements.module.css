@@ -3,7 +3,7 @@
     list-style: none;
     padding: 0;
     margin-top: 16px;
-    max-width: 900px;
+    max-width: 1200px;
 }
 
 .details-announcement-btn {
@@ -13,6 +13,22 @@
     border-bottom-right-radius: 10px;
     border-left: 10px solid var(--card-color);
 }
+
+.announcements-options {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: end;
+}
+
+.option-btn {
+    color: var(--text-color);
+}
+
+.filter-active {
+    background-color: var(--date-color);
+    color: white;
+}
+
 
 .details-announcement-btn:hover {
     background-color: grey;

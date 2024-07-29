@@ -43,6 +43,7 @@ const MakeAnnouncementForm = () => {
       }
     );
     const data = await response.json();
+    console.log(data);
     navigate("/Announcements");
   };
 

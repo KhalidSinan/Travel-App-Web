@@ -1,3 +1,7 @@
+html {
+  font-size: 16px;
+}
+
 :root {
   --primary-color: #205E61;
   --secondary-color: #ffb156;
@@ -13,7 +17,7 @@
   --primary-color: rgb(12, 67, 70);
   --text-color: white;
   /* --background: rgb(23, 23, 23); */
-  --background: #1a1d22 ;
+  --background: #1a1d22;
   --danger: #DC143C;
   --card-color: #4a4c52;
   --date-color: rgba(230, 229, 229, 0.361);

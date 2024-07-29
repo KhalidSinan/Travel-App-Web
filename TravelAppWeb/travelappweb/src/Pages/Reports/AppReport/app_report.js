@@ -106,7 +106,7 @@ const AppReport = () => {
   };
 
   return (
-    <Box sx={{ padding: 4, backgroundColor: "var(--card-color)" }}>
+    <>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Box sx={{ maxWidth: 800, margin: "auto", marginBottom: 4 }}>
           <Button
@@ -188,7 +188,27 @@ const AppReport = () => {
       </LocalizationProvider>
       <Box sx={{ maxWidth: 800, margin: "auto" }}>
         {loading ? (
-          <CircularProgress />
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100vh",
+            }}
+          >
+            <CircularProgress />
+          </Box>
+        ) : data.length === 0 ? (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100vh",
+            }}
+          >
+            <Alert severity="info">No reports found</Alert>
+          </Box>
         ) : (
           data.map((report, index) => (
             <Box key={index} sx={{ marginBottom: 2 }}>
@@ -211,7 +231,7 @@ const AppReport = () => {
         page={page}
         onChange={(event, value) => handleChangePage(value)}
       />
-    </Box>
+    </>
   );
 };
 

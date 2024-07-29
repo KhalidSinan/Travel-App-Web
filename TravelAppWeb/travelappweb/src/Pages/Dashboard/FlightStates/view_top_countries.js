@@ -112,9 +112,9 @@ const ViewTopCountries = ({ data }) => {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <BarChart
             width={800}
-            height={400}
+            height={600}
             data={data}
-            margin={{ top: 20, right: 30, left: 20, bottom: 50 }}
+            margin={{ top: 45, right: 30, left: 20, bottom: 50 }}
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis 

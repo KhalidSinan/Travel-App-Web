@@ -11,11 +11,12 @@ import {
   Paper,
   styled,
   tableCellClasses,
+  CircularProgress,
+  Alert,
 } from "@mui/material";
 import Header from "../../../helper/typography";
 import { useLocation } from "react-router-dom";
 import OrganizersContext from "../../../Context/organizers_context";
-
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
@@ -28,21 +29,49 @@ const StyledTableCell = styled(TableCell)(() => ({
 
 const OrganizersFullDetails = () => {
   const { fetchTripDetails } = useContext(OrganizersContext);
-
   const location = useLocation();
   const { tripId, organizerId } = location.state || {};
-
   const [tripDetails, setTripDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (tripId && organizerId) {
       fetchTripDetails(organizerId, tripId).then((data) => {
         setTripDetails(data);
+        setLoading(false);
       });
     }
   }, [tripId, organizerId, fetchTripDetails]);
 
-  if (!tripDetails) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "80vh",
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (!tripDetails) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "80vh",
+        }}
+      >
+        <Alert severity="info">No trip details found</Alert>
+      </Box>
+    );
+  }
 
   const { data } = tripDetails || {};
 
@@ -63,7 +92,7 @@ const OrganizersFullDetails = () => {
       >
         General Info
       </Typography>
-      <TableContainer component={Paper} sx={{ marginBottom: "20px",backgroundColor: "var(--card-color)"}}>
+      <TableContainer component={Paper} sx={{ marginBottom: "20px", backgroundColor: "var(--card-color)" }}>
         <Table>
           <TableHead sx={{ backgroundColor: "var(--secondary-color)" }}>
             <TableRow>
@@ -116,7 +145,7 @@ const OrganizersFullDetails = () => {
           </TableHead>
           <TableBody>
             {data.hotels.map((hotel, index) => (
-              <TableRow key={index} >
+              <TableRow key={index}>
                 <StyledTableCell>{hotel.hotel_name}</StyledTableCell>
                 <StyledTableCell>{hotel.hotel_location}</StyledTableCell>
                 <StyledTableCell>{hotel.hotel_stars}</StyledTableCell>
@@ -143,7 +172,7 @@ const OrganizersFullDetails = () => {
       >
         Places Info
       </Typography>
-      <TableContainer component={Paper} sx={{ marginBottom: "20px",backgroundColor: "var(--card-color)" }}>
+      <TableContainer component={Paper} sx={{ marginBottom: "20px", backgroundColor: "var(--card-color)" }}>
         <Table>
           <TableHead sx={{ backgroundColor: "var(--secondary-color)" }}>
             <TableRow>
@@ -155,7 +184,7 @@ const OrganizersFullDetails = () => {
           </TableHead>
           <TableBody>
             {data.places.map((place, index) => (
-              <TableRow key={index} >
+              <TableRow key={index}>
                 <StyledTableCell>{place.name}</StyledTableCell>
                 <StyledTableCell>{place.location}</StyledTableCell>
                 <StyledTableCell>{place.category}</StyledTableCell>
@@ -179,7 +208,7 @@ const OrganizersFullDetails = () => {
       >
         Flight Info
       </Typography>
-      <TableContainer component={Paper} sx={{backgroundColor: "var(--card-color)"}}>
+      <TableContainer component={Paper} sx={{ backgroundColor: "var(--card-color)" }}>
         <Table>
           <TableHead sx={{ backgroundColor: "var(--secondary-color)" }}>
             <TableRow>
@@ -196,7 +225,7 @@ const OrganizersFullDetails = () => {
           </TableHead>
           <TableBody>
             {data.flights.map((flight, index) => (
-              <TableRow key={index} >
+              <TableRow key={index}>
                 <StyledTableCell>{flight.airline}</StyledTableCell>
                 <StyledTableCell>{flight.date}</StyledTableCell>
                 <StyledTableCell>{flight.duration}</StyledTableCell>

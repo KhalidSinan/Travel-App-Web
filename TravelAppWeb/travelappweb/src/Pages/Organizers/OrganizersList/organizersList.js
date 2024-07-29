@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from "react";
 import {
   Grid,
   Box,
+  CircularProgress,
+  Alert,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import CustomCard from "../../../helper/custom_card";
@@ -14,7 +16,7 @@ const ITEMS_PER_PAGE = 6;
 
 const OrganizersList = () => {
   const navigate = useNavigate();
-  const { cards, page, handleChangePage, count, fetchOrganizerDetails, fetchSearchedOrganizers } =
+  const { cards, page, handleChangePage, count, fetchOrganizerDetails, fetchSearchedOrganizers, loading } =
     useContext(OrganizersContext);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,7 +28,6 @@ const OrganizersList = () => {
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
- 
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
@@ -55,25 +56,48 @@ const OrganizersList = () => {
         />
       </form>
 
-      <Grid container spacing={4} marginTop="20px">
-        {cards.map((card) => (
-          <Grid item key={card.id} xs={12} sm={6} md={4} lg={4}>
-            <CustomCard
-              card={card}
-              handleDetailsClick={() => handleDetailsClick(card)}
-            />
+      {loading ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "80vh",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      ) : cards.length === 0 ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "80vh",
+          }}
+        >
+          <Alert severity="info">No organizers found</Alert>
+        </Box>
+      ) : (
+        <>
+          <Grid container spacing={4} marginTop="20px">
+            {cards.map((card) => (
+              <Grid item key={card.id} xs={12} sm={6} md={4} lg={4}>
+                <CustomCard
+                  card={card}
+                  handleDetailsClick={() => handleDetailsClick(card)}
+                />
+              </Grid>
+            ))}
           </Grid>
-          
-        ))
-        
-        }
-      </Grid>
 
-      <CustomPagination
-        count={Math.ceil(count / ITEMS_PER_PAGE)}
-        page={page}
-        onChange={(event, value) => handleChangePage(value)}
-      />
+          <CustomPagination
+            count={Math.ceil(count / ITEMS_PER_PAGE)}
+            page={page}
+            onChange={(event, value) => handleChangePage(value)}
+          />
+        </>
+      )}
     </Box>
   );
 };

@@ -3,7 +3,7 @@ html {
 }
 
 :root {
-  --primary-color: #205E61;
+  --primary-color: #205e61;
   --secondary-color: #ffb156;
   --text-color: black;
   --background: white;
@@ -18,7 +18,11 @@ html {
   --text-color: white;
   /* --background: rgb(23, 23, 23); */
   --background: #1a1d22;
+<<<<<<< HEAD
   --danger: #DC143C;
+=======
+  --danger: #dc143c;
+>>>>>>> 45ccb8449629c92c5682b9e2da958cdcefe51cf3
   --card-color: #4a4c52;
   --date-color: rgba(230, 229, 229, 0.361);
   --sidebar-active-color: rgb(28, 104, 108);
@@ -29,8 +33,7 @@ html {
   color: white;
 }
 
-
-*{
+* {
   transition: all 0.3s ease-in-out;
 }
 
@@ -38,18 +41,20 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
+html {
+  font-size: 16px;
+}
 ::-webkit-scrollbar {
   width: 15px;
 }
@@ -57,7 +62,6 @@ code {
 ::-webkit-scrollbar-track {
   background-color: var(--background);
 }
-
 
 ::-webkit-scrollbar-thumb {
   background-color: #ffb156;

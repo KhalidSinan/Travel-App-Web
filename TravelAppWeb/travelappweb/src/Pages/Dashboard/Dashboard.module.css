@@ -2,98 +2,114 @@
     display: flex;
     flex-direction: column;
     padding: 0.5rem 1rem;
-}
-
-.general-statistics {
+  }
+  
+  .general-statistics {
     display: flex;
     height: 250px;
     padding-block: 1rem;
     gap: 10px;
-}
-
-.specific-statistics {
+  }
+  
+  .specific-statistics {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-
-.hotels-statistics {
+  }
+  
+  .hotels-statistics {
     display: flex;
     gap: 10px;
-}
-
-.hotels-list{
+  }
+  
+  .hotels-list {
     flex: 2;
-}
-
-.hotels-list-header{
+  }
+  
+  .hotels-list-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.see-all-btn{
+  }
+  
+  .see-all-btn {
     border: none;
-}
-
-.see-all-btn:hover{
+  }
+  
+  .see-all-btn:hover {
     scale: 1;
-}
-
-.hotels-stats{
+  }
+  
+  .hotels-stats {
     flex: 1;
     height: 500px;
-}
-
-
-.countries-statistics {
+  }
+  
+  .countries-airlines-statistics {
     display: flex;
     gap: 10px;
-    height: 200px;
-}
-
-.statistics-card{
+  }
+  
+  .statistics-card {
     text-align: start;
     background-color: var(--card-color);
     border-radius: 10px;
     color: var(--text-color);
     font-size: 16px;
     padding: 1rem;
-}
-
-.statistics-card h2 {
-    margin: 0;
-}
-
-
-.profit-stats{
-    flex: 2;
-}
-
-.organized-percentage-stats{
     flex: 1;
-}
-
-.organized-percentage-stats h2 {
+  }
+  
+  .tall-statistics-card {
+    height: 663px;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll; 
+  }
+  
+  .tall-statistics-cardTopCountries {
+    height: 730px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+  }
+  .tall-statistics-cardAirlines {
+    height: 920px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+  }
+  
+  .statistics-card h2 {
+    margin: 0;
+  }
+  
+  .profit-stats {
+    flex: 2;
+  }
+  
+  .organized-percentage-stats {
+    flex: 1;
+  }
+  
+  .organized-percentage-stats h2 {
     margin-bottom: 10px;
-}
-
-@media (max-width: 1320px) {
+  }
+  
+  @media (max-width: 1320px) {
     .general-statistics {
-        flex: 1;
-        flex-direction: column;
+      flex: 1;
+      flex-direction: column;
     }
-    /* .profit-stats{
-        height: 200px;
-    }
-    .organized-percentage-stats{
-        height: 250px;
-    } */
     .hotels-statistics {
-        flex-direction: column-reverse;
+      flex-direction: column-reverse;
     }
-    .hotels-stats{
-        flex: none;
+    .hotels-stats {
+      flex: none;
     }
-}
+    .countries-airlines-statistics {
+      flex-direction: column;
+    }
+  }
+  

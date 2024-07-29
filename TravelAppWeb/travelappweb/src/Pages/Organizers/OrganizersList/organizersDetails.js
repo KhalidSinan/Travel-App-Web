@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Typography,
   Box,
@@ -11,6 +11,7 @@ import {
   Paper,
   Rating,
   Button,
+  CircularProgress,
   styled,
   tableCellClasses,
 } from "@mui/material";
@@ -29,7 +30,7 @@ import AutohideSnackbar from "../../../helper/snackbar";
 import { OrganizersProvider } from "../../../Context/organizers_context";
 import CustomDialogAlert from "../../../helper/custom_dialog_alert";
 
-const ITEMS_PER_PAGE=2;
+const ITEMS_PER_PAGE = 2;
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
@@ -41,15 +42,12 @@ const StyledTableCell = styled(TableCell)(() => ({
 }));
 
 const OrganizersDetails = () => {
-  const { deleteOrganizer, deactiveOrganizer ,alertOrganizer,fetchOrganizerDetails} =
+  const { deleteOrganizer, deactiveOrganizer, alertOrganizer, fetchOrganizerDetails } =
     useContext(OrganizersContext) || {};
 
-
-   
   const navigate = useNavigate();
   const location = useLocation();
-  const { organizerId, initialOrganizerDetails, totalCount } =
-    location.state || {};
+  const { organizerId, initialOrganizerDetails, totalCount } = location.state || {};
 
   const [openDelete, setOpenDelete] = useState(false);
   const [openWarning, setOpenWarning] = useState(false);
@@ -57,36 +55,52 @@ const OrganizersDetails = () => {
   const [warningTitle, setWarningTitle] = useState("");
   const [warningBody, setWarningBody] = useState("");
   const [page, setPage] = useState(1);
-  const [message,setMessage] = useState("");
-  const [organizerDetails, setOrganizerDetails] = useState(
-    initialOrganizerDetails
-  );
+  const [message, setMessage] = useState("");
+  const [organizerDetails, setOrganizerDetails] = useState(initialOrganizerDetails);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchDetails = async () => {
+      setLoading(true);
+      try {
+        const data = await fetchOrganizerDetails(organizerId, page);
+        setOrganizerDetails(data.data);
+      } catch (error) {
+        console.error("Error fetching organizer details:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (!initialOrganizerDetails) {
+      fetchDetails();
+    }
+  }, [organizerId, page, initialOrganizerDetails, fetchOrganizerDetails]);
 
   const handleChangePage = async (value) => {
     setPage(value);
-    console.log(value);
-    console.log(organizerId);
+    setLoading(true);
     try {
-      const data = await fetchOrganizerDetails(organizerId,page);
+      const data = await fetchOrganizerDetails(organizerId, value);
       setOrganizerDetails(data.data);
-      console.log("Fetched organizer details:", data.data);
     } catch (error) {
       console.error("Error fetching organizer details:", error);
+    } finally {
+      setLoading(false);
     }
   };
+
   const handleDeleteOrganizer = async () => {
     try {
       const data = await deleteOrganizer(organizerId);
       navigate("/organizers");
       setMessage(data.message);
-    
     } catch (error) {
       console.error("Error deleting organizer:", error);
     } finally {
       setOpenDelete(false);
     }
   };
-
 
   const handleDetailsClick = async (tripId) => {
     navigate("/OrganizersFullDetails", {
@@ -123,40 +137,45 @@ const OrganizersDetails = () => {
       const data = await deactiveOrganizer(organizerId);
       navigate("/organizers");
       setMessage(data.message);
-     
     } catch (error) {
       console.error("Error deactivating organizer:", error);
     } finally {
       setOpenDeactivate(false);
     }
   };
+
   const handleAlertOrganizer = async () => {
     try {
       const data = await alertOrganizer(organizerId, warningTitle, warningBody);
-      console.log(data.message)
       setMessage(data.message);
-      const dataAfterWarning = await fetchOrganizerDetails(organizerId,page);
+      const dataAfterWarning = await fetchOrganizerDetails(organizerId, page);
       setOrganizerDetails(dataAfterWarning.data);
       setOpenWarning(false);
-    
     } catch (error) {
-      console.error("Error Alert organizer:", error);
+      console.error("Error alerting organizer:", error);
     } finally {
       setOpenDeactivate(false);
     }
   };
 
-  if (!organizerDetails) return <div>Loading...........</div>;
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (!organizerDetails) {
+    return <div>No details found.</div>;
+  }
 
   const tableData = [
     { label: "Gender", value: organizerDetails.gender || "-" },
     { label: "Phone Number", value: organizerDetails.phone || "-" },
     { label: "Age", value: organizerDetails.age || "-" },
     { label: "Number Of Trips", value: organizerDetails.num_of_trips || "-" },
-    {
-      label: "Years of Experience",
-      value: organizerDetails.years_of_experience || "-",
-    },
+    { label: "Years of Experience", value: organizerDetails.years_of_experience || "-" },
     {
       label: "Rating",
       value: (
@@ -169,14 +188,8 @@ const OrganizersDetails = () => {
       ),
     },
     { label: "Reports Number", value: organizerDetails.num_of_reports || "-" },
-    {
-      label: "Warnings Number",
-      value: organizerDetails.num_of_warnings || "-",
-    },
-    {
-      label: "Previous Companies",
-      value: organizerDetails.previous_companies || "-",
-    },
+    { label: "Warnings Number", value: organizerDetails.num_of_warnings || "-" },
+    { label: "Previous Companies", value: organizerDetails.previous_companies || "-" },
   ];
 
   const tableTrip = organizerDetails.trips || [];
@@ -209,7 +222,7 @@ const OrganizersDetails = () => {
                 handelAgree={handleDeleteOrganizer}
                 content="Are you sure you want to delete the organizer?"
               />
-                 {message&& <AutohideSnackbar message={message}/>}
+              {message && <AutohideSnackbar message={message} />}
               <Button
                 variant="contained"
                 startIcon={<DisabledByDefault />}
@@ -224,7 +237,7 @@ const OrganizersDetails = () => {
                 handelAgree={handleDeactivateOrganizer}
                 content="Are you sure you want to deactivate the organizer?"
               />
-                 {message&& <AutohideSnackbar message={message}/>}
+              {message && <AutohideSnackbar message={message} />}
               <Button startIcon={<Report />} onClick={handleClickOpenWarning}>
                 Send Warning
               </Button>
@@ -232,13 +245,13 @@ const OrganizersDetails = () => {
                 open={openWarning}
                 handleClose={handleCloseWarning}
                 handleAgree={handleAlertOrganizer}
-                content="File the folowing field to alert the organizer"
+                content="Fill the following field to alert the organizer"
                 title={warningTitle}
                 setTitle={setWarningTitle}
                 body={warningBody}
                 setBody={setWarningBody}
               />
-              {message&& <AutohideSnackbar message={message}/>}
+              {message && <AutohideSnackbar message={message} />}
             </Box>
           </Box>
         </Box>
@@ -282,53 +295,59 @@ const OrganizersDetails = () => {
           Organized Trips
         </Typography>
         <Box sx={{ marginTop: "20px" }}>
-          {tableTrip.map((trip, tripIndex) => (
-            <Paper
-              key={tripIndex}
-              sx={{ marginBottom: "20px", padding: "20px",backgroundColor: "var(--card-color)", color:"var(--text-color)" }}
-            >
-              <Typography variant="h6" sx={{ marginBottom: "10px" }}>
-                Trip {tripIndex + 1}
-              </Typography>
-              <TableContainer>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      {Object.keys(trip)
-                        .filter((key) => key !== "id")
-                        .map((key) => (
-                          <StyledTableCell key={key}>{key}</StyledTableCell>
-                        ))}
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    <TableRow>
-                      {Object.keys(trip)
-                        .filter((key) => key !== "id")
-                        .map((key, cellIndex) => (
-                          <StyledTableCell key={cellIndex}>{trip[key]}</StyledTableCell>
-                        ))}
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </TableContainer>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  padding: "10px",
-                }}
+          {tableTrip.length === 0 ? (
+            <Typography variant="h6" sx={{ textAlign: "center" }}>
+              No trips found.
+            </Typography>
+          ) : (
+            tableTrip.map((trip, tripIndex) => (
+              <Paper
+                key={tripIndex}
+                sx={{ marginBottom: "20px", padding: "20px", backgroundColor: "var(--card-color)", color: "var(--text-color)" }}
               >
-                <Button
-                  size="small"
-                  style={{color: "var(--secondary-color)"}}
-                  onClick={() => handleDetailsClick(trip.id)}
+                <Typography variant="h6" sx={{ marginBottom: "10px" }}>
+                  Trip {tripIndex + 1}
+                </Typography>
+                <TableContainer>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        {Object.keys(trip)
+                          .filter((key) => key !== "id")
+                          .map((key) => (
+                            <StyledTableCell key={key}>{key}</StyledTableCell>
+                          ))}
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow>
+                        {Object.keys(trip)
+                          .filter((key) => key !== "id")
+                          .map((key, cellIndex) => (
+                            <StyledTableCell key={cellIndex}>{trip[key]}</StyledTableCell>
+                          ))}
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    padding: "10px",
+                  }}
                 >
-                  Details
-                </Button>
-              </Box>
-            </Paper>
-          ))}
+                  <Button
+                    size="small"
+                    style={{ color: "var(--secondary-color)" }}
+                    onClick={() => handleDetailsClick(trip.id)}
+                  >
+                    Details
+                  </Button>
+                </Box>
+              </Paper>
+            ))
+          )}
           <CustomPagination
             count={Math.ceil(totalCount / ITEMS_PER_PAGE)}
             page={page}

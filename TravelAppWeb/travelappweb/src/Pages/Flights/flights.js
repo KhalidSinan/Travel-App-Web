@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import FlightDetailBox from "./flight_details_box";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, CircularProgress, Typography, Alert } from "@mui/material";
 import CustomPagination from "../../helper/custom_pagination";
 import DateFilter from "../../helper/Components/DateFilter/date_filter";
 import SearchBar from "../../helper/Components/SearchBar/SearchBar";
@@ -16,6 +16,8 @@ const Flights = () => {
   const [endDate, setEndDate] = useState(null);
   const [searchValue, setSearchValue] = useState("");
   const [totalFlights, setTotalFlights] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChangePage = (event, value) => {
     setPage(value);
@@ -33,24 +35,37 @@ const Flights = () => {
   };
 
   const fetchFlights = async () => {
+    setLoading(true);
+    setError(null); 
+
     try {
       const startDateParam = startDate ? formatDate(startDate) : "";
       const endDateParam = endDate ? formatDate(endDate) : "";
       const searchParam = searchValue ? `&search=${searchValue}` : "";
 
       const response = await fetch(
-        `http://localhost:5000/dashboard/flights?start_date=${startDateParam}&end_date=${endDateParam}&page=${page}&search=${searchParam}`, {
+        `http://localhost:5000/dashboard/flights?start_date=${startDateParam}&end_date=${endDateParam}&page=${page}${searchParam}`, {
           headers: {
             Authorization: `Bearer ${Token}`,
           },
         }
       );
 
+      if (!response.ok) {
+        throw new Error("Failed to fetch flights");
+      }
+
       const data = await response.json();
-      setFilteredFlights(data.data);
-      setTotalFlights(data.count);
+      if (data.data.length === 0) {
+        setError("No flights found for the current criteria.");
+      } else {
+        setFilteredFlights(data.data);
+        setTotalFlights(data.count);
+      }
     } catch (error) {
-      console.error("Error fetching flights:", error);
+      setError(error.message || "An error occurred while fetching flights.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -78,22 +93,36 @@ const Flights = () => {
           <DateFilter
             setStartDate={setStartDate}
             setEndDate={setEndDate}
-            fetchFlights={fetchFlights} 
+            fetchFlights={fetchFlights}
           />
         </Grid>
       </Grid>
-      <Box >
-        {filteredFlights.map((flight, index) => (
-          <FlightDetailBox key={index} flight={flight} />
-        ))}
-      </Box>
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
-        <CustomPagination
-          count={Math.ceil(totalFlights / ITEMS_PER_PAGE)}
-          page={page}
-          onChange={handleChangePage}
-        />
-      </Box>
+      {loading && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
+          <CircularProgress />
+        </Box>
+      )}
+      {error && (
+        <Box sx={{ mb: 4 }}>
+          <Alert severity="error">{error}</Alert>
+        </Box>
+      )}
+      {!loading && !error && (
+        <Box>
+          {filteredFlights.map((flight, index) => (
+            <FlightDetailBox key={index} flight={flight} />
+          ))}
+        </Box>
+      )}
+      {!loading && !error && (
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+          <CustomPagination
+            count={Math.ceil(totalFlights / ITEMS_PER_PAGE)}
+            page={page}
+            onChange={handleChangePage}
+          />
+        </Box>
+      )}
     </Box>
   );
 };

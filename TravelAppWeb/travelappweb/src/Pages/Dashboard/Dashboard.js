@@ -1,23 +1,21 @@
 import React, { useContext } from "react";
-import { BarChart, LineChart, PieChart } from "@mui/x-charts";
 import DashboardContext from "../../Context/dashboard_context";
 import styles from "./Dashboard.module.css";
-import TopCountries from "./top_10_countries";
+import TopCountries from "./all_countries";
+import HotelsList from "../Hotels/HotelsList/HotelsList";
 import { CircularProgress } from "@mui/material";
 import CustomIconButton from "../../helper/Components/IconButton/CustomIconButton";
 import { BsArrowRightShort } from "react-icons/bs";
-import HotelsList from "../Hotels/HotelsStats/HotelsStats";
+import { LineChart, PieChart, BarChart } from "@mui/x-charts";
+import ViewTopCountries from "./FlightStates/view_top_countries"; 
 import { Link } from "react-router-dom";
-
 const Dashboard = () => {
-  const { topCountries, organizedTripsPer, topHotels, hotels } =
-    useContext(DashboardContext);
+  const { topCountries, organizedTripsPer, topHotels, airlines, AllCountries,hotels } = useContext(DashboardContext);
+
   return (
     <main className={styles["statistics-section"]}>
       <section className={styles["general-statistics"]}>
-        <div
-          className={`${styles["statistics-card"]} ${styles["profit-stats"]}`}
-        >
+        <div className={`${styles["statistics-card"]} ${styles["profit-stats"]}`}>
           <h2>JourneyJoy's Profits:</h2>
           <LineChart
             colors={["var(--primary-color)"]}
@@ -29,9 +27,7 @@ const Dashboard = () => {
             ]}
           />
         </div>
-        <div
-          className={`${styles["statistics-card"]} ${styles["organized-percentage-stats"]}`}
-        >
+        <div className={`${styles["statistics-card"]} ${styles["organized-percentage-stats"]}`}>
           <h2>Organized Trips Percentage:</h2>
           {organizedTripsPer ? (
             <PieChart
@@ -66,9 +62,7 @@ const Dashboard = () => {
       </section>
       <section className={styles["specific-statistics"]}>
         <section className={styles["hotels-statistics"]}>
-          <div
-            className={`${styles["statistics-card"]} ${styles["hotels-list"]}`}
-          >
+          <div className={`${styles["statistics-card"]} ${styles["hotels-list"]}`}>
             <div className={styles["hotels-list-header"]}>
               <h2>JourneyJoy's Hotels:</h2>
               <Link to={"/hotels"}>
@@ -84,9 +78,7 @@ const Dashboard = () => {
             </div>
             {hotels ? <HotelsList hotels={hotels} /> : <CircularProgress />}
           </div>
-          <div
-            className={`${styles["statistics-card"]} ${styles["hotels-stats"]}`}
-          >
+          <div className={`${styles["statistics-card"]} ${styles["hotels-stats"]}`}>
             <h2>JourneyJoy's Top 10 Hotels:</h2>
             {topHotels ? (
               <BarChart
@@ -109,106 +101,37 @@ const Dashboard = () => {
             )}
           </div>
         </section>
-        <section className={styles["countries-statistics"]}></section>
+        <section className={styles["tall-statistics-cardTopCountries"]}>
+          <div className={`${styles["statistics-card"]} ${styles["tall-statistics-card"]}`}>
+            <h2>JourneyJoy's Top Countries:</h2>
+            {topCountries ? (
+              <ViewTopCountries data={topCountries.data} /> 
+            ) : (
+              <CircularProgress />
+            )}
+          </div>
+        </section>
+        <section className={styles["countries-airlines-statistics"]}>
+          <div className={`${styles["statistics-card"]} ${styles["tall-statistics-card"]}`}>
+            <h2>JourneyJoy's All Countries:</h2>
+            {AllCountries ? (
+              <TopCountries data={AllCountries.data} />
+            ) : (
+              <CircularProgress />
+            )}
+          </div>
+          <div className={`${styles["statistics-card"]} ${styles["tall-statistics-cardAirlines"]}`}>
+            <h2>JourneyJoy's All Airlines:</h2>
+            {airlines ? (
+              <TopCountries data={airlines.data} />
+            ) : (
+              <CircularProgress />
+            )}
+          </div>
+        </section>
       </section>
     </main>
   );
 };
 
 export default Dashboard;
-
-{
-  /* <BarChart
-          yAxis={[
-            {
-              scaleType: "band",
-              data: [
-                "khalid1",
-                "khalid2",
-                "khalid3",
-                "khalid4",
-                "khalid5",
-                "khalid6",
-                "khalid7",
-                "khalid8",
-                "khalid9",
-                "khalid10",
-              ],
-            },
-          ]}
-          leftAxis={{
-            fill: "white"
-          }}
-          xAxis={[
-            {
-              label: "Top 10 Hotels",
-            },
-          ]}
-          layout="horizontal"
-          grid={{ vertical: true }}
-          series={[{ data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
-        /> */
-}
-
-{
-  /* <PieChart
-            series={[
-              {
-                data: pieData,
-                faded: {
-                  innerRadius: 30,
-                  additionalRadius: -30,
-                },
-              },
-            ]}
-            slotProps={{
-              legend: {hidden: true}
-            }}
-            height={200}
-          /> */
-}
-
-{
-  /* {topCountries ? (
-        <TopCountries data={topCountries.data} />
-      ) : (
-        <p>Loading...</p>
-      )} */
-}
-
-// <PieChart
-//           series={[
-//             {
-//               data: pieData,
-//               faded: {
-//                 innerRadius: 30,
-//                 additionalRadius: -30,
-//               },
-//             },
-//           ]}
-//           slotProps={{
-//             legend: { hidden: true },
-//           }}
-//         />
-//         <PieChart
-//           series={[
-//             {
-//               data: pieData,
-//               faded: {
-//                 innerRadius: 30,
-//                 additionalRadius: -30,
-//               },
-//             },
-//           ]}
-//           slotProps={{
-//             legend: { hidden: true },
-//           }}
-//         />
-//         <LineChart
-//           xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
-//           series={[
-//             {
-//               data: [2, 5.5, 2, 8.5, 1.5, 5],
-//             },
-//           ]}
-//         />

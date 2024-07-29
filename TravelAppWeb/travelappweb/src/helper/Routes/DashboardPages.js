@@ -17,6 +17,7 @@ import Hotels from "../../Pages/Hotels/Hotels";
 import HotelsContextProvider from "../../Context/hotels_context";
 import HotelsDetails from "../../Pages/Hotels/HotelDetails/HotelsDetails";
 import Flights from "../../Pages/Flights/flights";
+import NotificationsContextProvider from "../../Context/notifications_context";
 
 
 const dashboardPages = [
@@ -29,9 +30,9 @@ const dashboardPages = [
     {path: "AllRequest",element: <AllRequest />},
     {path: "OrganizerDetailsRequest",element: <OrganizerDetailsRequest />},
     {path : "Reports",element: <ReportList/>},
-    {path: "Notifications",element: <NotificationsPage />},
+    {path: "Notifications",element: <NotificationsContextProvider><NotificationsPage /></NotificationsContextProvider>},
     {path: "pushNotification",element: <PushNotification />},
-    {path: "Announcements",element: <Announcements />},
+    {path: "Announcements",element:<Announcements />},
     {path: "makeAnnouncement",element: <MakeAnnouncement />},
     {path: "hotels",element: <HotelsContextProvider><Hotels /></HotelsContextProvider>},
     {path: "hotelDetails",element: <HotelsDetails />},

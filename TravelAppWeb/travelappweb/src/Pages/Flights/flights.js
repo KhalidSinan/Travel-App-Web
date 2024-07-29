@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import FlightDetailBox from "./flight_details_box";
 import { Box, Grid } from "@mui/material";
 import CustomPagination from "../../helper/custom_pagination";
 import DateFilter from "../../helper/Components/DateFilter/date_filter";
 import SearchBar from "../../helper/Components/SearchBar/SearchBar";
+import { AuthLogin } from "../../Context/login_context";
 
 const ITEMS_PER_PAGE = 5;
 
 const Flights = () => {
+  const { Token } = useContext(AuthLogin);
   const [page, setPage] = useState(1);
   const [filteredFlights, setFilteredFlights] = useState([]);
   const [startDate, setStartDate] = useState(null);
@@ -39,7 +41,7 @@ const Flights = () => {
       const response = await fetch(
         `http://localhost:5000/dashboard/flights?start_date=${startDateParam}&end_date=${endDateParam}&page=${page}&search=${searchParam}`, {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTY0ODQ5MzliMTVjNmU5NTA4OGU0ZCIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjIxNzM2NzZ9.MXAfR5NZSdfb1ycC0ycoNIuUdsoozs-ubOSoHz-omi8`,
+            Authorization: `Bearer ${Token}`,
           },
         }
       );

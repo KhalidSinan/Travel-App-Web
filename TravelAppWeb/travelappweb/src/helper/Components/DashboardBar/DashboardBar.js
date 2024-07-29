@@ -9,7 +9,7 @@ const DashboardBar = (_) => {
     <div className={styles['main-header']}>
       <nav className={styles['dashboard-bar']}>
         <div>
-          <h2 className="logo">JourneyJoy</h2>
+          <h2 className={styles['logo']}>JourneyJoy</h2>
           {/* plane image move when hover the logo and disappear when leave */}
         </div>
         <ul className={styles['dashboard-bar-btns']}>

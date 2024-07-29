@@ -50,15 +50,15 @@ const pages = [
     },
     {
       "index": 5,
-      "name" : "Reports",
-      "icon" : <BsExclamationOctagonFill />,
-      "page" :  "reports"
-  },
-    {
-      "index": 6,
       "name" : "Hotels",
       "icon" : <BsHousesFill />,
       "page" :  "hotels"
+  },
+    {
+      "index": 6,
+      "name" : "Reports",
+      "icon" : <BsExclamationOctagonFill />,
+      "page" :  "reports"
   },
 ];
 

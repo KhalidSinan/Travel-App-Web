@@ -1,12 +1,13 @@
 .sidebar-item {
-    width: 74.5%;
+    box-sizing: border-box;
+    width: 100%;
     border: none;
     cursor: pointer;
     background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: start;
-    padding-inline: 2rem;
+    padding: 1.2rem 2rem;
     gap: 10px;
     transition-duration: 400ms;
     text-decoration: none;

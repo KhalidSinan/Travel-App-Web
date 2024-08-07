@@ -67,9 +67,15 @@
     flex-direction: column;
     overflow: scroll; 
   }
+  .tall-statistics-cardAllCountries {
+    height: 720px;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll; 
+  }
   
   .tall-statistics-cardTopCountries {
-    height: 730px;
+    height: 790px;
     display: flex;
     flex-direction: column;
     overflow: hidden; 

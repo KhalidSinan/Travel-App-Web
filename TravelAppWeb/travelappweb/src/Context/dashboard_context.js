@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTY0ODQ5MzliMTVjNmU5NTA4OGU0ZCIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjIyMDA2NzV9.nQ13xj0u4uOE3Ddp17dYRdObGGNBrytLC47MACSuKWQ";
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWY4YzAyMzQzZDcyZGI5ZjQyMTZlMCIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjMwNjE0ODJ9.frBLBsaYZrY9XAahuuQhiVzbmk64h-zrkwMLhYnfccw";
 
 const DashboardContext = createContext();
 
@@ -53,7 +54,7 @@ export const DashboardProvider = ({ children }) => {
         const data = await response.json();
         setOrganizedTripsPer(data);
       } catch (error) {
-        console.log('Fetch Error', error.message);
+        console.log("Fetch Error", error.message);
       }
     };
 
@@ -68,14 +69,12 @@ export const DashboardProvider = ({ children }) => {
           }
         );
         if (!response.ok) {
-          throw new Error(
-            "An error occurred while fetching top hotels"
-          );
+          throw new Error("An error occurred while fetching top hotels");
         }
         const data = await response.json();
         setTopHotels(data.data);
       } catch (error) {
-        console.log('Fetch Error', error.message);
+        console.log("Fetch Error", error.message);
       }
     };
 
@@ -95,7 +94,7 @@ export const DashboardProvider = ({ children }) => {
         const data = await response.json();
         setAirlines(data);
       } catch (error) {
-        console.log('Fetch Error', error.message);
+        console.log("Fetch Error", error.message);
       }
     };
 
@@ -111,12 +110,14 @@ export const DashboardProvider = ({ children }) => {
           }
         );
         if (!response.ok) {
-          throw new Error("An error occurred while fetching top countries data");
+          throw new Error(
+            "An error occurred while fetching top countries data"
+          );
         }
         const data = await response.json();
         setTopCountries(data);
       } catch (error) {
-        console.log('Fetch Error', error.message);
+        console.log("Fetch Error", error.message);
       }
     };
     const fetchHotels = async () => {
@@ -130,27 +131,31 @@ export const DashboardProvider = ({ children }) => {
           }
         );
         if (!response.ok) {
-          throw new Error(
-            "An erro Occur while fetching top hotels"
-          );
+          throw new Error("An erro Occur while fetching top hotels");
         }
         const data = await response.json();
         setHotels(data.data);
       } catch (error) {
-        console.log('Fetch Error',error.message);
+        console.log("Fetch Error", error.message);
       }
     };
 
     fetchOrganizedTripsPer();
     fetchHotels();
     fetchTopHotels();
-    fetchAllCountries(); 
+    fetchAllCountries();
     fetchAirlines();
-    fetchTopCountries(); 
-
+    fetchTopCountries();
   }, []);
 
-  const contextValue = { AllCountries, organizedTripsPer, topHotels, airlines, topCountries, hotels };
+  const contextValue = {
+    AllCountries,
+    organizedTripsPer,
+    topHotels,
+    airlines,
+    topCountries,
+    hotels,
+  };
 
   return (
     <DashboardContext.Provider value={contextValue}>

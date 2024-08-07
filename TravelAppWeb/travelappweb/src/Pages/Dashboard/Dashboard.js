@@ -112,7 +112,7 @@ const Dashboard = () => {
           </div>
         </section>
         <section className={styles["countries-airlines-statistics"]}>
-          <div className={`${styles["statistics-card"]} ${styles["tall-statistics-card"]}`}>
+          <div className={`${styles["statistics-card"]} ${styles["tall-statistics-cardAllCountries"]}`}>
             <h2>JourneyJoy's All Countries:</h2>
             {AllCountries ? (
               <TopCountries data={AllCountries.data} />

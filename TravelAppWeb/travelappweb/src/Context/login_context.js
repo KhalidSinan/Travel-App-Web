@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 export const AuthLogin = React.createContext({
   isLoggedIn: false,
-  Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTc4YTBjNmM2ZDM3ODIyNTE3NjU2NyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjIyNTYwNzJ9.JTq61OKxj4neAPs72heHpzNc0Rc64tJdywKbZtCASGo",
+  Token: "",
   login: (token) => {},
+  logout: (token) => {},
 });
 
 const AuthLoginProvider = (props) => {
@@ -35,6 +37,7 @@ const AuthLoginProvider = (props) => {
       const data = await response.json();
       console.log(data.token);
       localStorage.setItem("token", data.token);
+      localStorage.setItem("isLoggedIn", true);
       setIsLoggedIn(true);
       setmessage("Login successful");
       //setToken(data.token);
@@ -49,6 +52,30 @@ const AuthLoginProvider = (props) => {
     }
   };
 
+  const logoutHandler = async (event) => {
+    event.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch('http://localhost:5000/dashboard/logout',{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if(!response.ok){
+        throw new Error('Something went wrong');
+      }
+      const data = await response.json();
+      setIsLoggedIn(false);
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('token');
+      console.log(data);
+    } catch (error) {
+      setmessage(error.message);
+    }
+  }
+
   const usernameChangeHandler = (event) => {
     console.log(event.target.value);
     setUsername(event.target.value);
@@ -62,6 +89,7 @@ const AuthLoginProvider = (props) => {
   const contextLoginValue = {
     isLoggedIn: isLoggedIn,
     loginHandler: loginHandler,
+    logoutHandler: logoutHandler,
     message: message,
     passwordChangeHandler: passwordChangeHandler,
     usernameChangeHandler: usernameChangeHandler,

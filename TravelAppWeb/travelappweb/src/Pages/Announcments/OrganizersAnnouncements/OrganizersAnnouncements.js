@@ -81,6 +81,8 @@ const OrganizersAnnouncements = () => {
                   content={announce.announcement_body}
                   date={announce.created_at}
                   organizer={announce.organizer_name}
+                  location={announce.location}
+                  expDate={announce.expiry_date}
                   options={[
                     <CustomIconButton
                       key={"details-announce-btn"}

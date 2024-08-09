@@ -76,6 +76,8 @@ const AnnouncementsRequestsContextProvider = ({ children }) => {
           organizer_name,
           organizer_id,
           organized_trip_id,
+          locationOfAnnouncement,
+          num_of_days: numOfDays,
           created_at,
         } = data.data[index];
         announcementsRequests.push({
@@ -86,9 +88,11 @@ const AnnouncementsRequestsContextProvider = ({ children }) => {
           organizer_name,
           organizer_id,
           organized_trip_id,
+          locationOfAnnouncement,
+          numOfDays
         });
       }
-      setCount(count);
+      setCount(data.count);
       setRequests(announcementsRequests);
     } catch (error) {
       setError(error.message);

@@ -82,6 +82,10 @@ const DashboardSidebar = (props) => {
       setCurrentPage(null);
       localStorage.setItem("current-page", null);
     }
+    if(location.pathname === '/hotels'){
+      setCurrentPage(5);
+      localStorage.setItem('current-page', 5);
+    }
   }, [location]);
 
   return (

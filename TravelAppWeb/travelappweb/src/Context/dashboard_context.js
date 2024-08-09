@@ -1,11 +1,10 @@
-import React, { createContext, useState, useEffect } from "react";
-
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWY4YzAyMzQzZDcyZGI5ZjQyMTZlMCIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjMwNjE0ODJ9.frBLBsaYZrY9XAahuuQhiVzbmk64h-zrkwMLhYnfccw";
+import React, { createContext, useState, useEffect, useContext } from "react";
+import { AuthLogin } from "./login_context";
 
 const DashboardContext = createContext();
 
 export const DashboardProvider = ({ children }) => {
+  const { Token } = useContext(AuthLogin);
   const [AllCountries, setAllCountries] = useState(null);
   const [organizedTripsPer, setOrganizedTripsPer] = useState(null);
   const [topHotels, setTopHotels] = useState(null);
@@ -20,7 +19,7 @@ export const DashboardProvider = ({ children }) => {
           "http://localhost:5000/dashboard/statistics/countries",
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${Token}`,
             },
           }
         );
@@ -42,7 +41,7 @@ export const DashboardProvider = ({ children }) => {
           "http://localhost:5000/dashboard/statistics/organized-percentage",
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${Token}`,
             },
           }
         );
@@ -64,7 +63,7 @@ export const DashboardProvider = ({ children }) => {
           "http://localhost:5000/dashboard/statistics/top-hotels",
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${Token}`,
             },
           }
         );
@@ -84,7 +83,7 @@ export const DashboardProvider = ({ children }) => {
           "http://localhost:5000/dashboard/statistics/airline-flights",
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${Token}`,
             },
           }
         );
@@ -105,7 +104,7 @@ export const DashboardProvider = ({ children }) => {
           "http://localhost:5000/dashboard/statistics/top-countries",
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${Token}`,
             },
           }
         );
@@ -126,7 +125,7 @@ export const DashboardProvider = ({ children }) => {
           "http://localhost:5000/dashboard/hotels?page=1",
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${Token}`,
             },
           }
         );

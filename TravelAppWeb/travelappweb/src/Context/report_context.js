@@ -1,10 +1,11 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
+import { AuthLogin } from "./login_context";
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTY0ODQ5MzliMTVjNmU5NTA4OGU0ZCIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjIyNzg2Mzh9.BmZs_KOQxC02RE3Az71L-w7_V2mZbNU6pE3FeGHSKa4";
 
 const ReportContext = createContext();
 
 export const ReportProvider = ({ children }) => {
+  const {Token} = useContext(AuthLogin);
   const [page, setPage] = useState(1);
   const [start_date, setStartDate] = useState("");
   const [end_date, setEndDate] = useState("");
@@ -22,7 +23,7 @@ export const ReportProvider = ({ children }) => {
         `http://localhost:5000/dashboard/reports/app?page=${page}&start_date=${startDate}&end_date=${endDate}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${Token}`,
           },
         }
       );
@@ -49,7 +50,7 @@ export const ReportProvider = ({ children }) => {
         `http://localhost:5000/dashboard/reports/organizers?page=${page}&start_date=${startDate}&end_date=${endDate}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${Token}`,
           },
         }
       );
@@ -75,7 +76,7 @@ export const ReportProvider = ({ children }) => {
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${Token}`,
           },
         }
       );
@@ -107,7 +108,7 @@ export const ReportProvider = ({ children }) => {
         {
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${Token}`,
           },
         }
       );

@@ -9,6 +9,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { LineChart, PieChart, BarChart } from "@mui/x-charts";
 import ViewTopCountries from "./FlightStates/view_top_countries"; 
 import { Link } from "react-router-dom";
+import HotelsTable from "../Hotels/HotelsTable/HotelsTable";
 const Dashboard = () => {
   const { topCountries, organizedTripsPer, topHotels, airlines, AllCountries,hotels } = useContext(DashboardContext);
 
@@ -76,7 +77,7 @@ const Dashboard = () => {
                 />
               </Link>
             </div>
-            {hotels ? <HotelsList hotels={hotels} /> : <CircularProgress />}
+            {hotels ? <HotelsTable hotels={hotels} /> : <CircularProgress />}
           </div>
           <div className={`${styles["statistics-card"]} ${styles["hotels-stats"]}`}>
             <h2>JourneyJoy's Top 10 Hotels:</h2>

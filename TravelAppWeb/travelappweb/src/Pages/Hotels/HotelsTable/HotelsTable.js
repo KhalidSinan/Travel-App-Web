@@ -79,7 +79,7 @@ const headCells = [
   },
 ];
 
-const HotelsListHead = (props) => {
+const HotelsTableHead = (props) => {
   const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -115,14 +115,14 @@ const HotelsListHead = (props) => {
   );
 };
 
-HotelsListHead.propTypes = {
+HotelsTableHead.propTypes = {
   onRequestSort: PropTypes.func.isRequired,
   order: PropTypes.oneOf(["asc", "desc"]).isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
 };
 
-const HotelsList = ({ hotels }) => {
+const HotelsTable = ({ hotels }) => {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
   const [page, setPage] = React.useState(0);
@@ -164,7 +164,7 @@ const HotelsList = ({ hotels }) => {
           size="medium"
           aria-labelledby="tableTitle"
         >
-          <HotelsListHead
+          <HotelsTableHead
             order={order}
             orderBy={orderBy}
             onRequestSort={handleRequestSort}
@@ -203,8 +203,8 @@ const HotelsList = ({ hotels }) => {
   );
 };
 
-HotelsList.propTypes = {
+HotelsTable.propTypes = {
   hotels: PropTypes.array.isRequired,
 };
 
-export default HotelsList;
+export default HotelsTable;

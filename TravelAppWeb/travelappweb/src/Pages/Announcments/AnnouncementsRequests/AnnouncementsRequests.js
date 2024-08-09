@@ -37,7 +37,7 @@ const AnnouncementsRequests = () => {
     error,
     page,
     count,
-    sort,س
+    sort,
   } = useContext(AnnouncementsRequestsContext);
   const { fetchOrganizerDetails } = useContext(OrganizersContext);
   const navigate = useNavigate();
@@ -99,6 +99,8 @@ const AnnouncementsRequests = () => {
                   content={announce.content}
                   date={announce.created_at}
                   organizer={announce.organizer_name}
+                  location= {announce.locationOfAnnouncement}
+                  numOfDays = {announce.numOfDays}
                   options={[
                     <CustomIconButton
                       key={"accept-announce-btn"}

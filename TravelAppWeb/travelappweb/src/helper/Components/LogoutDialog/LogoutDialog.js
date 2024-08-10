@@ -1,14 +1,18 @@
+import {
+  CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
+import React, { useContext } from "react";
+import CustomButton from "../CustomButton/CustomButton";
+import styles from "./LogoutDialog.module.css";
+import { AuthLogin } from "../../../Context/login_context";
 
-
-
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-import React, { useContext } from 'react'
-import CustomButton from '../CustomButton/CustomButton';
-import styles from './LogoutDialog.module.css';
-import { AuthLogin } from '../../../Context/login_context';
-
-const LogoutDialog = ({open, onClose}) => {
-    const {logoutHandler} = useContext(AuthLogin);
+const LogoutDialog = ({ open, onClose }) => {
+  const { logoutHandler, logoutLoading } = useContext(AuthLogin);
   return (
     <Dialog
       open={open}
@@ -26,9 +30,7 @@ const LogoutDialog = ({open, onClose}) => {
         },
       }}
     >
-      <DialogTitle className={styles["dialog-title"]}>
-        Logout
-      </DialogTitle>
+      <DialogTitle className={styles["dialog-title"]}>Logout</DialogTitle>
       <DialogContent>
         <DialogContentText
           className={styles["dialog-content"]}
@@ -46,14 +48,18 @@ const LogoutDialog = ({open, onClose}) => {
           }}
           classes={`${styles["dialog-back-btn"]}`}
         />
-        <CustomButton
-          name="Logout"
-          classes={`${styles["dialog-accept-btn"]}`}
-          isSubmit
-        />
+        {logoutLoading ? (
+          <CircularProgress />
+        ) : (
+          <CustomButton
+            name="Logout"
+            classes={`${styles["dialog-accept-btn"]}`}
+            isSubmit
+          />
+        )}
       </DialogActions>
     </Dialog>
-    );
-}
+  );
+};
 
-export default LogoutDialog
+export default LogoutDialog;

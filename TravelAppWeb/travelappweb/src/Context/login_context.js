@@ -1,3 +1,4 @@
+import { useLocalStorage } from "@uidotdev/usehooks";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 export const AuthLogin = React.createContext({
@@ -8,11 +9,16 @@ export const AuthLogin = React.createContext({
 });
 
 const AuthLoginProvider = (props) => {
+  const [logoutLoading, setLogoutLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [Token, setToken] = useLocalStorage("token", null);
   const [message, setmessage] = useState(null);
-  // const [token, setToken] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    setIsLoggedIn(Token ? true : false);
+  },[Token]);
 
   const loginHandler = async (event) => {
     event.preventDefault();
@@ -36,9 +42,8 @@ const AuthLoginProvider = (props) => {
 
       const data = await response.json();
       console.log(data.token);
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("isLoggedIn", true);
       setIsLoggedIn(true);
+      setToken(data.token);
       setmessage("Login successful");
       //setToken(data.token);
       //<AutohideSnackbar message="Login successful"></AutohideSnackbar>;
@@ -54,27 +59,28 @@ const AuthLoginProvider = (props) => {
 
   const logoutHandler = async (event) => {
     event.preventDefault();
+    setLogoutLoading(true);
     try {
-      const token = localStorage.getItem("token");
-      const response = await fetch('http://localhost:5000/dashboard/logout',{
+      const response = await fetch("http://localhost:5000/dashboard/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${Token}`,
         },
       });
-      if(!response.ok){
-        throw new Error('Something went wrong');
+      if (!response.ok) {
+        throw new Error("Something went wrong");
       }
       const data = await response.json();
       setIsLoggedIn(false);
-      localStorage.removeItem('isLoggedIn');
-      localStorage.removeItem('token');
+      setToken(null);
+      setmessage(data.message);
       console.log(data);
     } catch (error) {
       setmessage(error.message);
     }
-  }
+    setLogoutLoading(true);
+  };
 
   const usernameChangeHandler = (event) => {
     console.log(event.target.value);
@@ -90,7 +96,9 @@ const AuthLoginProvider = (props) => {
     isLoggedIn: isLoggedIn,
     loginHandler: loginHandler,
     logoutHandler: logoutHandler,
+    logoutLoading: logoutLoading,
     message: message,
+    Token: Token,
     passwordChangeHandler: passwordChangeHandler,
     usernameChangeHandler: usernameChangeHandler,
     isFormValid:

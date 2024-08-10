@@ -28,7 +28,6 @@ import BatteryChargingFullIcon from "@mui/icons-material/BatteryChargingFull";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import DiningIcon from "@mui/icons-material/Restaurant";
 import RecliningIcon from "@mui/icons-material/AirlineSeatReclineNormal";
-import EntertainmentIcon from "@mui/icons-material/Movie";
 import { tableCellClasses } from "@mui/material/TableCell";
 
 const ITEMS_PER_PAGE = 5;
@@ -39,11 +38,12 @@ const Container = styled(Box)(({ theme }) => ({
   overflow: "hidden",
   marginBottom: "16px",
   fontFamily: "Roboto, sans-serif",
+  color: "var(--text-color)",
 }));
 
 const Header = styled(Box)(({ theme }) => ({
   backgroundColor: "#205E61",
-  color: "white",
+  color: "var(--text-color)",
   padding: "16px",
   display: "flex",
   alignItems: "center",
@@ -58,23 +58,21 @@ const TableHeader = styled(TableHead)({
   backgroundColor: "#ffb156",
 });
 
-const StyledTableCell = styled(TableCell)(() => ({
-    [`&.${tableCellClasses.head}`]: {
-      color: "var(--text-color)",
-      fontSize: "1.25rem", // Adjust the font size for the header cells
-    },
-    [`&.${tableCellClasses.body}`]: {
-      color: "var(--text-color)",
-      fontSize: "1rem", // Adjust the font size for the body cells
-    },
-  }));
-  
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  color: "var(--text-color)",
+  [`&.${tableCellClasses.head}`]: {
+    fontSize: "1.25rem",
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: "1rem",
+  },
+}));
 
 const FeatureIcon = styled("span")({
   marginRight: "8px",
   display: "inline-flex",
   alignItems: "center",
-  color: "white", // default icon color
+  color: "white",
 });
 
 const getFeatureIcon = (feature) => {
@@ -152,7 +150,7 @@ const FlightDetailBox = ({ flight }) => {
 
       <Accordion sx={{ backgroundColor: "var(--card-color)" }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant="h6" sx={{ color: "white" }}>
+          <Typography variant="h6" sx={{ color: "var(--text-color)" }}>
             Flight Details
           </Typography>
         </AccordionSummary>
@@ -213,7 +211,7 @@ const FlightDetailBox = ({ flight }) => {
       </Accordion>
       <Accordion sx={{ backgroundColor: "var(--card-color)" }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant="h6" sx={{ color: "white" }}>
+          <Typography variant="h6" sx={{ color: "var(--text-color)" }}>
             Class Details
           </Typography>
         </AccordionSummary>

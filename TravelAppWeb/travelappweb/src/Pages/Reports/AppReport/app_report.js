@@ -19,35 +19,35 @@ import ReportContext from "../../../Context/report_context";
 
 const ITEMS_PER_PAGE = 6;
 
-const TextFieldStyle = {
-  "& .MuiInputLabel-root": {
-    color: "var(--secondary-color)", // Label color
-    fontWeight: "bold",
-    "&.Mui-focused": {
-      color: "var(--secondary-color)", // Focused label color
-    },
-  },
-  "& .MuiOutlinedInput-root": {
-    marginBottom: "12px",
-    transitionDuration: "400ms",
-    color: "var(--text-color)",
-    "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "var(--primary-color)", // Border color
-      borderWidth: "3px",
-      borderRadius: "10px",
-    },
-    "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "gray", // Border color on hover
-    },
-    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "var(--primary-color)", // Border color when focused
-      borderRadius: "10px",
-    },
-    "& .MuiSelect-icon": {
-      color: "var(--secondary-color)", // Icon color
-    },
-  },
-};
+// const TextFieldStyle = {
+//   "& .MuiInputLabel-root": {
+//     color: "var(--secondary-color)", // Label color
+//     fontWeight: "bold",
+//     "&.Mui-focused": {
+//       color: "var(--secondary-color)", // Focused label color
+//     },
+//   },
+//   "& .MuiOutlinedInput-root": {
+//     marginBottom: "12px",
+//     transitionDuration: "400ms",
+//     color: "var(--text-color)",
+//     "& .MuiOutlinedInput-notchedOutline": {
+//       borderColor: "var(--primary-color)", // Border color
+//       borderWidth: "3px",
+//       borderRadius: "10px",
+//     },
+//     "&:hover .MuiOutlinedInput-notchedOutline": {
+//       borderColor: "gray", // Border color on hover
+//     },
+//     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+//       borderColor: "var(--primary-color)", // Border color when focused
+//       borderRadius: "10px",
+//     },
+//     "& .MuiSelect-icon": {
+//       color: "var(--secondary-color)", // Icon color
+//     },
+//   },
+// };
 
 const AppReport = () => {
   const [startDate, setStartDate] = useState("");
@@ -55,6 +55,7 @@ const AppReport = () => {
   const [error, setError] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
   const [message, setMessage] = useState("");
+  const [isExpanded, setIsExpanded] = useState(false);
   const {
     page,
     handleChangePage,
@@ -74,7 +75,7 @@ const AppReport = () => {
     if (startDate && endDate) {
       const formattedStartDate = format(startDate, "MM/dd/yyyy");
       const formattedEndDate = format(endDate, "MM/dd/yyyy");
-      setError("");
+      // setError("");
       fetchData(page, formattedStartDate, formattedEndDate);
       setOpenDialog(false);
     } else {
@@ -103,6 +104,14 @@ const AppReport = () => {
       console.error("Error sending email:", error);
       setMessage("Failed to send email");
     }
+
+  };
+  const TextFieldStyle = {
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "var(--primary-color)",
+      },
+    },
   };
 
   return (
@@ -111,7 +120,10 @@ const AppReport = () => {
         <Box sx={{ maxWidth: 800, margin: "auto", marginBottom: 4 }}>
           <Button
             variant="contained"
-            onClick={() => setOpenDialog(true)}
+            onClick={() => {
+              setOpenDialog(true);
+              setIsExpanded(true);
+            }}
             sx={{
               marginBottom: 2,
               position: "absolute",
@@ -126,7 +138,10 @@ const AppReport = () => {
 
           <Dialog
             open={openDialog}
-            onClose={() => setOpenDialog(false)}
+            onClose={() => {
+              setOpenDialog(false);
+              setIsExpanded(false);
+            }}
             sx={{ position: "absolute", top: 16, right: 16 }}
           >
             <DialogTitle>Filter Reports</DialogTitle>
@@ -162,7 +177,10 @@ const AppReport = () => {
             </DialogContent>
             <DialogActions>
               <Button
-                onClick={() => setOpenDialog(false)}
+                onClick={() => {
+                  setOpenDialog(false);
+                  setIsExpanded(false);
+                }}
                 sx={{ color: "var(--primary-color)" }}
               >
                 Cancel
@@ -178,7 +196,7 @@ const AppReport = () => {
             </DialogActions>
           </Dialog>
 
-          {/* Display error message if any */}
+
           {error && (
             <Box sx={{ marginTop: 2 }}>
               <Alert severity="error">{error}</Alert>
@@ -186,7 +204,14 @@ const AppReport = () => {
           )}
         </Box>
       </LocalizationProvider>
-      <Box sx={{ maxWidth: 800, margin: "auto" }}>
+      <Box
+        sx={{
+          maxWidth: 800,
+          margin: "auto",
+          transition: "all 0.3s ease",
+          transform: isExpanded ? "scale(1.05)" : "scale(1)",
+        }}
+      >
         {loading ? (
           <Box
             sx={{

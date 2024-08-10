@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import NotAuthorized from "../../Pages/Error/NotAuthorized";
 import DashboardLayout from "../Components/DashboardLayout/DashboardLayout";
 import PageNotFound from "../../Pages/Error/PageNotFound";
@@ -9,10 +9,18 @@ import { useContext, useEffect } from "react";
 
 const DashboardRoutes = () => {
   const {isLoggedIn} = useContext(AuthLogin);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if(isLoggedIn){
+      navigate('/dashboard');
+    }else{
+      navigate('/login');
+    }
+  },[isLoggedIn]);
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      {isLoggedIn ? (
+      {true ? (
         <Route path="/" element={<DashboardLayout />}>
           {dashboardPages.map((page) => (
             <Route key={page.path} path={page.path} element={page.element} />

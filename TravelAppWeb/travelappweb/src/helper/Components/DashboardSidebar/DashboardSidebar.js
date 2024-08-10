@@ -15,14 +15,10 @@ import { useLocation } from "react-router-dom";
 
 const pages = [
   {
-    index: 0,
-    name: "Dashboard",
-    icon: <BiSolidDashboard />,
-    page: "/",
-      "index": 0,
-      "name" : "Dashboard",
-      "icon" : <BiSolidDashboard />,
-      "page" : "/"
+    "index": 0,
+    "name": "Dashboard",
+    "icon": <BiSolidDashboard />,
+    "page": "/dashboard",
     },
     {
       "index": 1,

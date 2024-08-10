@@ -21,7 +21,7 @@ import NotificationsContextProvider from "../../Context/notifications_context";
 
 
 const dashboardPages = [
-    {path: "/",element: <Dashboard />},
+    {path: "/dashboard",element: <Dashboard />},
     {path: "admins",element: <Admins />},
     {path: "addAdmin",element: <AddAdmin />},
     {path: "Organizers",element: <Organizers />},

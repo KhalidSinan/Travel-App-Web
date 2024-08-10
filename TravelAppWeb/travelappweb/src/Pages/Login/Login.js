@@ -14,9 +14,7 @@ const Login = () => {
       }}
     >
       <Paper sx={{ boxShadow: 3, p: 5, backgroundColor: "white" }} md={3}>
-       <AuthLoginProvider>
       <LoginForm/>
-      </AuthLoginProvider>
       </Paper>
       
       {/* <Paper> component is used to create a paper-like container with shadows and padding */}

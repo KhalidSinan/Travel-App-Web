@@ -26,21 +26,21 @@ const COLORS = [
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    color: 'white',
+    color: 'var(--text-color)',
     fontSize: '1rem',
   },
   [`&.${tableCellClasses.body}`]: {
-    color: 'white',
+    color: 'var(--text-color)',
     fontSize: '0.875rem',
   },
 }));
 
 const StyledTableSortLabel = styled(TableSortLabel)(({ theme }) => ({
   '&.Mui-active': {
-    color: 'white',
+    color: 'var(--text-color)',
   },
   '& .MuiTableSortLabel-icon': {
-    color: 'white !important',
+    color: 'var(--text-color) !important',
   },
 }));
 

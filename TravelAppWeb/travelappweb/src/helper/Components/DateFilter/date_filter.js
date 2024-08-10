@@ -26,7 +26,7 @@ const DateFilter = ({ setStartDate, setEndDate, fetchFlights }) => {
       setStartDate(tempStartDate);
       setEndDate(tempEndDate);
       setOpenDialog(false);
-      fetchFlights(); // Trigger fetching flights with new date range
+      fetchFlights(); 
     }
   };
 

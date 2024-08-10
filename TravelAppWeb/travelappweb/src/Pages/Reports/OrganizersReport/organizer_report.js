@@ -21,10 +21,10 @@ const ITEMS_PER_PAGE = 6;
 
 const TextFieldStyle = {
   "& .MuiInputLabel-root": {
-    color: "var(--secondary-color)", // Label color
+    color: "var(--secondary-color)",
     fontWeight: "bold",
     "&.Mui-focused": {
-      color: "var(--secondary-color)", // Focused label color
+      color: "var(--secondary-color)", 
     },
   },
   "& .MuiOutlinedInput-root": {
@@ -32,20 +32,32 @@ const TextFieldStyle = {
     transitionDuration: "400ms",
     color: "var(--text-color)",
     "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "var(--primary-color)", // Border color
+      borderColor: "var(--primary-color)",
       borderWidth: "3px",
       borderRadius: "10px",
+      "& fieldset": {
+        borderColor: "var(--primary-color)",
+      },
     },
     "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "gray", // Border color on hover
+      borderColor: "gray",
     },
     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "var(--primary-color)", // Border color when focused
+      borderColor: "var(--primary-color)",
       borderRadius: "10px",
     },
     "& .MuiSelect-icon": {
-      color: "var(--secondary-color)", // Icon color
+      color: "var(--secondary-color)",
     },
+  },
+};
+
+const datePickerStyles = {
+  "& .MuiInputBase-root": {
+    color: "rgb(30, 136, 229", // Initial text color red
+  },
+  "& .MuiInputLabel-root": {
+    color: "rgb(30, 136, 229", // Initial label color red
   },
 };
 
@@ -74,7 +86,7 @@ const AppReport = () => {
     if (startDate && endDate) {
       const formattedStartDate = format(startDate, "MM/dd/yyyy");
       const formattedEndDate = format(endDate, "MM/dd/yyyy");
-      setError("");
+      // setError("");
       fetchDataOrganizer(page, formattedStartDate, formattedEndDate);
       setOpenDialog(false);
     } else {
@@ -108,7 +120,7 @@ const AppReport = () => {
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Box sx={{ maxWidth: 800, margin: "auto", marginBottom: 4 }}>
+        <Box sx={{ maxWidth: 900, margin: "auto", marginBottom: 4 }}>
           <Button
             variant="contained"
             onClick={() => setOpenDialog(true)}
@@ -127,7 +139,7 @@ const AppReport = () => {
           <Dialog
             open={openDialog}
             onClose={() => setOpenDialog(false)}
-            sx={{ position: "absolute", top: 16, right: 16 }}
+            sx={{ position: "absolute", top: 15, right: 16 }}
           >
             <DialogTitle>Filter Reports</DialogTitle>
             <DialogContent>
@@ -141,7 +153,7 @@ const AppReport = () => {
                       {...params}
                       variant="outlined"
                       fullWidth
-                      sx={TextFieldStyle}
+                      sx={{ ...TextFieldStyle, ...datePickerStyles }}
                     />
                   )}
                 />
@@ -154,7 +166,7 @@ const AppReport = () => {
                       {...params}
                       variant="outlined"
                       fullWidth
-                      sx={TextFieldStyle}
+                      sx={{ ...TextFieldStyle, ...datePickerStyles }}
                     />
                   )}
                 />

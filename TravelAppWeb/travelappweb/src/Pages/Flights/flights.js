@@ -52,6 +52,7 @@ const Flights = () => {
       );
 
       if (!response.ok) {
+        console.log(response);
         throw new Error("Failed to fetch flights");
       }
 

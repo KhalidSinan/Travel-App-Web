@@ -1,3 +1,4 @@
+import { LocalSeeOutlined } from "@mui/icons-material";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -75,6 +76,8 @@ const AuthLoginProvider = (props) => {
       setIsLoggedIn(false);
       setToken(null);
       setmessage(data.message);
+      window.location.reload();
+      localStorage.clear();
       console.log(data);
     } catch (error) {
       setmessage(error.message);

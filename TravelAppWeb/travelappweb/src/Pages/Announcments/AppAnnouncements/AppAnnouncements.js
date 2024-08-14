@@ -54,6 +54,7 @@ const AppAnnouncements = () => {
                   key={announce.announcement_title}
                   title={announce.announcement_title}
                   content={announce.announcement_body}
+                  expDate={announce.expiry_date}
                   date={announce.created_at}
                 />
               </li>

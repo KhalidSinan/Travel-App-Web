@@ -15,3 +15,7 @@
 .make-announcement-btn:hover {
     scale: 1;
 }
+
+.date-field {
+    width: 100%;
+}

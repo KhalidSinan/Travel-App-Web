@@ -1,5 +1,7 @@
 .dialog-content {
     color: var(--text-color);
+    padding-bottom: 1rem;
+
 }
 
 .dialog-content span {

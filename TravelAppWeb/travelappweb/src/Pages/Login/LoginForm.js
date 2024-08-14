@@ -13,6 +13,7 @@ const LoginForm = () => {
     username,
     password,
     message,
+    isLoggedIn,
   } = useContext(AuthLogin);
 
   console.log(message);

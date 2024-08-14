@@ -10,7 +10,7 @@ import {
 import { MdOutlineFlightTakeoff } from "react-icons/md";
 import SidebarItem from "./SidebarItem.js";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import { LocationOnOutlined } from "@mui/icons-material";
 
 const pages = [
@@ -24,44 +24,43 @@ const pages = [
       "index": 1,
       "name" : "Admins",
       "icon" : <BsPersonFill />,
-      "page" : "admins"
+      "page" : "/admins"
     },
     {
       "index": 2,
       "name" : "Organizers",
       "icon" : <BsFillPeopleFill />,
-      "page" : "organizers"
+      "page" : "/organizers"
     },
     {
       "index": 3,
       "name" : "Announcements",
       "icon" : <BsFillSendFill />,
-      "page" : "announcements"
+      "page" : "/announcements"
     },
     {
       "index": 4,
       "name" : "Flights",
       "icon" : <MdOutlineFlightTakeoff/>,
-      "page" : "flights"
+      "page" : "/flights"
     },
     {
       "index": 5,
       "name" : "Hotels",
       "icon" : <BsHousesFill />,
-      "page" :  "hotels"
+      "page" :  "/hotels"
   },
     {
       "index": 6,
       "name" : "Reports",
       "icon" : <BsExclamationOctagonFill />,
-      "page" :  "reports"
+      "page" :  "/reports"
   },
 ];
 
 const DashboardSidebar = (props) => {
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState(0);
-
   const onPageChange = (index) => {
     setCurrentPage(index);
     localStorage.setItem("current-page", index);
@@ -75,8 +74,8 @@ const DashboardSidebar = (props) => {
 
   useEffect(() => {
     if (location.pathname === "/Notifications") {
-      setCurrentPage(null);
-      localStorage.setItem("current-page", null);
+      setCurrentPage(-1);
+      localStorage.setItem("current-page", -1);
     }
     if(location.pathname === '/hotels'){
       setCurrentPage(5);

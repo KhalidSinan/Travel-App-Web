@@ -7,28 +7,48 @@ import { CircularProgress } from "@mui/material";
 import CustomIconButton from "../../helper/Components/IconButton/CustomIconButton";
 import { BsArrowRightShort } from "react-icons/bs";
 import { LineChart, PieChart, BarChart } from "@mui/x-charts";
-import ViewTopCountries from "./FlightStates/view_top_countries"; 
+import ViewTopCountries from "./FlightStates/view_top_countries";
 import { Link } from "react-router-dom";
 import HotelsTable from "../Hotels/HotelsTable/HotelsTable";
 const Dashboard = () => {
-  const { topCountries, organizedTripsPer, topHotels, airlines, AllCountries,hotels } = useContext(DashboardContext);
+  const {
+    topCountries,
+    organizedTripsPer,
+    topHotels,
+    airlines,
+    AllCountries,
+    hotels,
+    revenues,
+  } = useContext(DashboardContext);
 
+  let months = [];
+  let revenue = [];
+  if (revenues) {
+    months = revenues.map((revenue,index) => index+1);
+    revenue = revenues.map((revenue) => revenue.revenue);
+    console.log(months)
+    console.log(revenue)
+  }
   return (
     <main className={styles["statistics-section"]}>
       <section className={styles["general-statistics"]}>
-        <div className={`${styles["statistics-card"]} ${styles["profit-stats"]}`}>
+        <div
+          className={`${styles["statistics-card"]} ${styles["profit-stats"]}`}
+        >
           <h2>JourneyJoy's Profits:</h2>
-          <LineChart
+          {months ? <LineChart
             colors={["var(--primary-color)"]}
-            xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+            xAxis={[{ data: months,label: "Month" }]}
             series={[
               {
-                data: [2, 5.5, 2, 8.5, 1.5, 5],
+                data: revenue,
               },
             ]}
-          />
+          /> : <CircularProgress />}
         </div>
-        <div className={`${styles["statistics-card"]} ${styles["organized-percentage-stats"]}`}>
+        <div
+          className={`${styles["statistics-card"]} ${styles["organized-percentage-stats"]}`}
+        >
           <h2>Organized Trips Percentage:</h2>
           {organizedTripsPer ? (
             <PieChart
@@ -63,7 +83,9 @@ const Dashboard = () => {
       </section>
       <section className={styles["specific-statistics"]}>
         <section className={styles["hotels-statistics"]}>
-          <div className={`${styles["statistics-card"]} ${styles["hotels-list"]}`}>
+          <div
+            className={`${styles["statistics-card"]} ${styles["hotels-list"]}`}
+          >
             <div className={styles["hotels-list-header"]}>
               <h2>JourneyJoy's Hotels:</h2>
               <Link to={"/hotels"}>
@@ -79,7 +101,9 @@ const Dashboard = () => {
             </div>
             {hotels ? <HotelsTable hotels={hotels} /> : <CircularProgress />}
           </div>
-          <div className={`${styles["statistics-card"]} ${styles["hotels-stats"]}`}>
+          <div
+            className={`${styles["statistics-card"]} ${styles["hotels-stats"]}`}
+          >
             <h2>JourneyJoy's Top 10 Hotels:</h2>
             {topHotels ? (
               <BarChart
@@ -103,17 +127,21 @@ const Dashboard = () => {
           </div>
         </section>
         <section className={styles["tall-statistics-cardTopCountries"]}>
-          <div className={`${styles["statistics-card"]} ${styles["tall-statistics-card"]}`}>
+          <div
+            className={`${styles["statistics-card"]} ${styles["tall-statistics-card"]}`}
+          >
             <h2>JourneyJoy's Top Countries:</h2>
-            {topCountries ? (
-              <ViewTopCountries data={topCountries.data} /> 
+            {/* {topCountries ? (
+              <ViewTopCountries data={topCountries.data} />
             ) : (
               <CircularProgress />
-            )}
+            )} */}
           </div>
         </section>
         <section className={styles["countries-airlines-statistics"]}>
-          <div className={`${styles["statistics-card"]} ${styles["tall-statistics-cardAllCountries"]}`}>
+          <div
+            className={`${styles["statistics-card"]} ${styles["tall-statistics-cardAllCountries"]}`}
+          >
             <h2>JourneyJoy's All Countries:</h2>
             {AllCountries ? (
               <TopCountries data={AllCountries.data} />
@@ -121,7 +149,9 @@ const Dashboard = () => {
               <CircularProgress />
             )}
           </div>
-          <div className={`${styles["statistics-card"]} ${styles["tall-statistics-cardAirlines"]}`}>
+          <div
+            className={`${styles["statistics-card"]} ${styles["tall-statistics-cardAirlines"]}`}
+          >
             <h2>JourneyJoy's All Airlines:</h2>
             {airlines ? (
               <TopCountries data={airlines.data} />

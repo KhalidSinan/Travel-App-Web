@@ -11,6 +11,7 @@ const AnnouncementCard = ({
   location,
   numOfDays,
   expDate,
+  price,
   options,
 }) => {
   return (
@@ -21,6 +22,7 @@ const AnnouncementCard = ({
           <span className={styles["organizer-name"]}>{organizer}</span>
         ) : null}
         {location ? <h3>Location: {location}</h3> : null}
+        {price ? <h3>${price}</h3> : null}
         {numOfDays ? <h3>Show Days: {numOfDays}</h3> : null}
         {expDate ? <h3>Until: {new Date(expDate).toLocaleString("en-US")}</h3> : null}
         <h3>{new Date(date).toLocaleString("en-US")}</h3>

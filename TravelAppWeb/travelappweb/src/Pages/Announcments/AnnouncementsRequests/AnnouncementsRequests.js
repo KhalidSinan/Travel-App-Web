@@ -100,6 +100,7 @@ const AnnouncementsRequests = () => {
                   date={announce.created_at}
                   organizer={announce.organizer_name}
                   location= {announce.locationOfAnnouncement}
+                  price={announce.price}
                   numOfDays = {announce.numOfDays}
                   options={[
                     <CustomIconButton

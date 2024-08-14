@@ -79,7 +79,11 @@ const DashboardRoutes = () => {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+<<<<<<< HEAD
+      {true? (
+=======
       {true ? (
+>>>>>>> b31855f9840dec9790b988ff2a5e09cea32f7053
         <Route path="/" element={<DashboardLayout />}>
           {dashboardPages.map((page) => (
             <Route key={page.path} path={page.path} element={page.element} />

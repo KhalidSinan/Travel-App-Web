@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 export const AuthLogin = React.createContext({
   isLoggedIn: false,
-  Token: "",
+  Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWY4YzAyMzQzZDcyZGI5ZjQyMTZlMCIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjMyOTI3NzV9.1ht58PYIYPx1_qxW6b-1bZ_WB5T91lO4ze4gyCUsE1Q",
   login: (token) => {},
   logout: (token) => {},
 });

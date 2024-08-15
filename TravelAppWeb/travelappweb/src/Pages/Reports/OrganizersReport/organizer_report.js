@@ -16,6 +16,7 @@ import { format } from "date-fns";
 import AccordionCard from "../Component/custom_card_report";
 import CustomPagination from "../../../helper/custom_pagination";
 import ReportContext from "../../../Context/report_context";
+import SearchBar from "../../../helper/Components/SearchBar/SearchBar";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -54,19 +55,20 @@ const TextFieldStyle = {
 
 const datePickerStyles = {
   "& .MuiInputBase-root": {
-    color: "rgb(30, 136, 229", // Initial text color red
+    color: "rgb(30, 136, 229)", // Initial text color red
   },
   "& .MuiInputLabel-root": {
-    color: "rgb(30, 136, 229", // Initial label color red
+    color: "rgb(30, 136, 229)", // Initial label color red
   },
 };
 
-const AppReport = () => {
+const OrganizerReport = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [error, setError] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
   const [message, setMessage] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const {
     page,
     handleChangePage,
@@ -79,27 +81,35 @@ const AppReport = () => {
   } = useContext(ReportContext);
 
   useEffect(() => {
-    console.log(message);
-  }, [message]);
+    fetchDataOrganizer(page, startDate, endDate, searchQuery);
+  }, [page, startDate, endDate, searchQuery]);
 
   const handleDateChange = () => {
     if (startDate && endDate) {
       const formattedStartDate = format(startDate, "MM/dd/yyyy");
       const formattedEndDate = format(endDate, "MM/dd/yyyy");
-      // setError("");
-      fetchDataOrganizer(page, formattedStartDate, formattedEndDate);
+      fetchDataOrganizer(page, formattedStartDate, formattedEndDate, searchQuery);
       setOpenDialog(false);
     } else {
       setError("Please select both start and end dates.");
     }
   };
 
+  const handleSearchChange = (event) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+  };
+
+  const handleSearchDone = (event) => {
+    event.preventDefault();
+    fetchDataOrganizer(page, startDate, endDate, searchQuery);
+  };
+
   const handleDelete = async (id) => {
     try {
       const result = await deleteReport(id);
-      console.log(result);
       setMessage(result.message);
-      fetchDataOrganizer(page, startDate, endDate);
+      fetchDataOrganizer(page, startDate, endDate, searchQuery);
     } catch (error) {
       console.error("Error deleting report:", error);
     }
@@ -108,9 +118,8 @@ const AppReport = () => {
   const handleEmail = async (id) => {
     try {
       const result = await fetchReply(id);
-      console.log(result);
       setMessage(result.message || "Email sent successfully");
-      fetchDataOrganizer(page, startDate, endDate);
+      fetchDataOrganizer(page, startDate, endDate, searchQuery);
     } catch (error) {
       console.error("Error sending email:", error);
       setMessage("Failed to send email");
@@ -198,6 +207,16 @@ const AppReport = () => {
           )}
         </Box>
       </LocalizationProvider>
+
+      {/* Search Bar */}
+      <Box sx={{ maxWidth: 800, margin: "auto", marginTop: 2 }}>
+        <SearchBar
+          value={searchQuery}
+          onUpdateValue={handleSearchChange}
+          onSearchDone={handleSearchDone}
+        />
+      </Box>
+
       <Box sx={{ maxWidth: 800, margin: "auto" }}>
         {loading ? (
           <Box
@@ -229,6 +248,7 @@ const AppReport = () => {
                 reportTitle={report.report_title}
                 reportBody={report.report_message}
                 reportDate={report.sent_at}
+                organizerName={report.organizer_name} // Use the organizer's name from report
                 onDelete={() => handleDelete(report.id)}
                 repliedTo={report.replied_to}
                 onEmail={() => handleEmail(report.id)}
@@ -247,4 +267,4 @@ const AppReport = () => {
   );
 };
 
-export default AppReport;
+export default OrganizerReport;

@@ -1,14 +1,14 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { AuthLogin } from "./login_context";
 
-
 const ReportContext = createContext();
 
 export const ReportProvider = ({ children }) => {
-  const {Token} = useContext(AuthLogin);
+  const { Token } = useContext(AuthLogin);
   const [page, setPage] = useState(1);
-  const [start_date, setStartDate] = useState("");
-  const [end_date, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -41,13 +41,14 @@ export const ReportProvider = ({ children }) => {
       setLoading(false);
     }
   };
-  const fetchDataOrganizer = async (page, startDate, endDate) => {
+
+  const fetchDataOrganizer = async (page, startDate, endDate, searchQuery) => {
     setLoading(true);
     setError(null);
 
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/reports/organizers?page=${page}&start_date=${startDate}&end_date=${endDate}`,
+        `http://localhost:5000/dashboard/reports/organizers?page=${page}&start_date=${startDate}&end_date=${endDate}&search=${searchQuery}`,
         {
           headers: {
             Authorization: `Bearer ${Token}`,
@@ -94,8 +95,8 @@ export const ReportProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchData(page, start_date, end_date);
-  }, [page, start_date, end_date]);
+    fetchData(page, startDate, endDate);
+  }, [page, startDate, endDate]);
 
   const handleChangePage = (value) => {
     setPage(value);
@@ -127,11 +128,13 @@ export const ReportProvider = ({ children }) => {
 
   const contextValue = {
     page,
-    start_date,
-    end_date,
+    startDate,
+    endDate,
+    searchQuery,
     handleChangePage,
     handleStartDateChange: setStartDate,
     handleEndDateChange: setEndDate,
+    handleSearchQueryChange: setSearchQuery,
     data,
     count,
     loading,

@@ -103,6 +103,19 @@ const CheckButton = styled(IconButton)(({ theme }) => ({
   },
 }));
 
+const OrganizerLabel = styled(Typography)(({ theme }) => ({
+  fontSize: '1rem', 
+  fontWeight: 'bold', 
+  color: 'rgb(12, 67, 70)',
+  marginLeft: theme.spacing(2),
+}));
+
+const OrganizerName = styled(Typography)(({ theme }) => ({
+  fontSize: '1rem', 
+  color: theme.palette.text.secondary,
+  marginLeft: theme.spacing(2),
+}));
+
 const AccordionCard = ({
   senderName,
   reportTitle,
@@ -112,6 +125,7 @@ const AccordionCard = ({
   repliedTo,
   onEmail,
   message,
+  organizerName, 
 }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [emailDialogOpen, setEmailDialogOpen] = useState(false);
@@ -182,8 +196,12 @@ const AccordionCard = ({
         </AccordionSummary>
         <AccordionDetails>
           <CardContent>
+            <div style={{ display: "flex", alignItems: "center", marginBottom: '12px' }}>
+              <OrganizerLabel>Reported Organizer</OrganizerLabel>
+              <OrganizerName>{organizerName}</OrganizerName>
+            </div>
             <ReportCount>{reportTitle}</ReportCount>
-            <ReportBody variant="body2" color= "var(--primary-color)" component="p">
+            <ReportBody variant="body2" color="textPrimary" component="p">
               {reportBody}
             </ReportBody>
           </CardContent>

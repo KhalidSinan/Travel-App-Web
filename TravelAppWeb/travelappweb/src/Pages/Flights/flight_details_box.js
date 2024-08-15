@@ -72,7 +72,7 @@ const FeatureIcon = styled("span")({
   marginRight: "8px",
   display: "inline-flex",
   alignItems: "center",
-  color: "white",
+  color:"var(--text-color)",
 });
 
 const getFeatureIcon = (feature) => {

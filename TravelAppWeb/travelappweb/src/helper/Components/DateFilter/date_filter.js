@@ -67,13 +67,14 @@ const DateFilter = ({ setStartDate, setEndDate, fetchFlights }) => {
               <DatePicker
                 label="Start Date"
                 value={tempStartDate}
+                sx={TextFieldStyle}
                 onChange={(date) => setTempStartDate(date)}
                 renderInput={(params) => (
                   <TextField
                     {...params}
                     variant="outlined"
                     fullWidth
-                    sx={TextFieldStyle}
+                    
                   />
                 )}
               />
@@ -81,12 +82,12 @@ const DateFilter = ({ setStartDate, setEndDate, fetchFlights }) => {
                 label="End Date"
                 value={tempEndDate}
                 onChange={(date) => setTempEndDate(date)}
+                sx={TextFieldStyle}
                 renderInput={(params) => (
                   <TextField
                     {...params}
                     variant="outlined"
                     fullWidth
-                    sx={TextFieldStyle}
                   />
                 )}
               />

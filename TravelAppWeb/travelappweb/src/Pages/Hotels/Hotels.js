@@ -13,6 +13,7 @@ import {
   RadioGroup,
   Rating,
 } from "@mui/material";
+import StarIcon from '@mui/icons-material/Star';
 import CustomPagination from "../../helper/custom_pagination";
 import CustomIconButton from "../../helper/Components/IconButton/CustomIconButton";
 import { BsFilter, BsSortDown, BsSortUp } from "react-icons/bs";
@@ -108,9 +109,11 @@ const Hotels = () => {
         >
           <h3>Filter Hotels By Stars:</h3>
           <Rating
+          color="var(--primary-color)"
             value={stars}
             precision={0.5}
             onChange={(event) => changeStars(event.target.value)}
+            emptyIcon={<StarIcon style={{ color: "var(--text-color)", opacity: "0.1" }} />}
           />
         </div>
         <div className={`${styles["sort"]} ${!showSort ? styles["hide"] : ""}`}>

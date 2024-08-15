@@ -39,7 +39,7 @@ const LogoutDialog = ({ open, onClose }) => {
           Are you sure you want to logout?
         </DialogContentText>
       </DialogContent>
-      <DialogActions>
+      <DialogActions sx={{padding: "1rem"}}>
         <CustomButton
           name="Back"
           primary={false}

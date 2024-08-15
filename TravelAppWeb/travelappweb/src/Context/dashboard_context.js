@@ -11,8 +11,28 @@ export const DashboardProvider = ({ children }) => {
   const [airlines, setAirlines] = useState(null);
   const [hotels, setHotels] = useState(null);
   const [topCountries, setTopCountries] = useState(null); // Add state for topCountries
+  const [revenues, setRevenue] = useState(null); // Add state for topCountries
 
   useEffect(() => {
+    const fetchRevenue = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/dashboard/statistics/revenue",
+          {
+            headers: {
+              Authorization: `Bearer ${Token}`,
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const result = await response.json();
+        setRevenue(result.data); // Set the correct state
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
+    };
     const fetchAllCountries = async () => {
       try {
         const response = await fetch(
@@ -138,7 +158,7 @@ export const DashboardProvider = ({ children }) => {
         console.log("Fetch Error", error.message);
       }
     };
-
+    fetchRevenue();
     fetchOrganizedTripsPer();
     fetchHotels();
     fetchTopHotels();
@@ -154,6 +174,7 @@ export const DashboardProvider = ({ children }) => {
     airlines,
     topCountries,
     hotels,
+    revenues,
   };
 
   return (

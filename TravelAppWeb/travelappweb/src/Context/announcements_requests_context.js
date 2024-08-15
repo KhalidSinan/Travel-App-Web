@@ -78,6 +78,7 @@ const AnnouncementsRequestsContextProvider = ({ children }) => {
           organized_trip_id,
           locationOfAnnouncement,
           num_of_days: numOfDays,
+          price,
           created_at,
         } = data.data[index];
         announcementsRequests.push({
@@ -88,6 +89,7 @@ const AnnouncementsRequestsContextProvider = ({ children }) => {
           organizer_name,
           organizer_id,
           organized_trip_id,
+          price,
           locationOfAnnouncement,
           numOfDays
         });

@@ -44,6 +44,7 @@ const OrganizersAnnouncements = () => {
   const { fetchOrganizerDetails } = useContext(OrganizersContext);
   const navigate = useNavigate();
   const organizerDetails = async (organizerId) => {
+    console.log(organizerId);
     const organizer = await fetchOrganizerDetails(organizerId, 1);
     console.log(organizer);
     navigate("/OrganizersDetails", {
@@ -82,6 +83,7 @@ const OrganizersAnnouncements = () => {
                   date={announce.created_at}
                   organizer={announce.organizer_name}
                   location={announce.location}
+                  price={announce.price}
                   expDate={announce.expiry_date}
                   options={[
                     <CustomIconButton

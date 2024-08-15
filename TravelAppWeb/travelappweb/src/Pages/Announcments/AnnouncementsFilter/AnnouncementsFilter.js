@@ -20,12 +20,12 @@ const AnnouncemenetsFilter = ({ showFilter, context }) => {
             label="Start Date"
             value={startDate === "" ? null : startDate}
             onChange={(date) => changeStartDate(date)}
+            sx={TextFieldStyle}
             renderInput={(params) => (
               <TextField
                 {...params}
                 variant="Standard"
                 fullWidth
-                sx={TextFieldStyle}
               />
             )}
           />
@@ -35,12 +35,12 @@ const AnnouncemenetsFilter = ({ showFilter, context }) => {
             label="End Date"
             value={endDate === "" ? null : endDate}
             onChange={(date) => changeEndDate(date)}
+            sx={TextFieldStyle}
             renderInput={(params) => (
               <TextField
                 {...params}
                 variant="Standard"
                 fullWidth
-                sx={TextFieldStyle}
               />
             )}
           />

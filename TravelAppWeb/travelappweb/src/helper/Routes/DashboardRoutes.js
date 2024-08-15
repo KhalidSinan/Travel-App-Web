@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route, useNavigate,  } from "react-router-dom";
 import NotAuthorized from "../../Pages/Error/NotAuthorized";
 import DashboardLayout from "../Components/DashboardLayout/DashboardLayout";
 import PageNotFound from "../../Pages/Error/PageNotFound";
@@ -70,20 +70,16 @@ const DashboardRoutes = () => {
       navigate("/login");
     } else if (currentPage == null) {
       navigate("/dashboard");
-    } else if (currentPage != -1) {
+    } else if (currentPage !== -1) {
       navigate(pages[currentPage]["page"]);
-    } else if (+currentPage == -1) {
+    } else if (+currentPage === -1) {
       navigate("/Notifications");
     }
   }, [isLoggedIn]);
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-<<<<<<< HEAD
-      {true ? (
-=======
       {isLoggedIn ? (
->>>>>>> 97526f45d32a04d09eb4b2e450beea278422c2b4
         <Route path="/" element={<DashboardLayout />}>
           {dashboardPages.map((page) => (
             <Route key={page.path} path={page.path} element={page.element} />

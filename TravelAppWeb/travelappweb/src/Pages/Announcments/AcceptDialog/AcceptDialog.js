@@ -23,6 +23,8 @@ const AcceptDialog = ({ open = true, onClose, onAccept, announce }) => {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${loginContext.Token}`,
+          "ngrok-skip-browser-warning": "69420",
+
         },
       }
     );

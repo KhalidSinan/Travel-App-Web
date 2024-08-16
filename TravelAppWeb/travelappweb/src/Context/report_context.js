@@ -25,6 +25,8 @@ export const ReportProvider = ({ children }) => {
         {
           headers: {
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );
@@ -53,6 +55,8 @@ export const ReportProvider = ({ children }) => {
         {
           headers: {
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );
@@ -79,6 +83,8 @@ export const ReportProvider = ({ children }) => {
           method: "GET",
           headers: {
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );
@@ -111,6 +117,8 @@ export const ReportProvider = ({ children }) => {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );

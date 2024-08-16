@@ -3,9 +3,12 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../App";
+import axios from "axios";
+import AutohideSnackbar from "../helper/snackbar";
 export const AuthLogin = React.createContext({
   isLoggedIn: false,
-  Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWY4YzAyMzQzZDcyZGI5ZjQyMTZlMCIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjMyOTI3NzV9.1ht58PYIYPx1_qxW6b-1bZ_WB5T91lO4ze4gyCUsE1Q",
+  Token:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWY4YzAyMzQzZDcyZGI5ZjQyMTZlMCIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjMyOTI3NzV9.1ht58PYIYPx1_qxW6b-1bZ_WB5T91lO4ze4gyCUsE1Q",
   login: (token) => {},
   logout: (token) => {},
 });
@@ -20,7 +23,7 @@ const AuthLoginProvider = (props) => {
 
   useEffect(() => {
     setIsLoggedIn(Token ? true : false);
-  },[Token]);
+  }, [Token]);
 
   const loginHandler = async (event) => {
     event.preventDefault();
@@ -35,20 +38,21 @@ const AuthLoginProvider = (props) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "69420",
         },
         body: JSON.stringify(loginData),
       });
-      if (!response.ok) {
+      if (response.status !== 200) {
         throw new Error(`Http error ! status : ${response.status}`);
       }
 
-      const data = await response.json();
-      console.log(data.token);
+      // const data = await response.json();
+      console.log(response.data.token);
       setIsLoggedIn(true);
-      setToken(data.token);
+      setToken(response.data.token);
       setmessage("Login successful");
-      //setToken(data.token);
-      //<AutohideSnackbar message="Login successful"></AutohideSnackbar>;
+      setToken(response.data.token);
+      // <AutohideSnackbar message="Login successful"></AutohideSnackbar>;
 
       console.log("Login successful");
     } catch (error) {

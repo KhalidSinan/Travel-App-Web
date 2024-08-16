@@ -17,12 +17,14 @@ export const OrganizersProvider = ({ children }) => {
   const fetchCards = useCallback(async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/organizers?page=${page}`,
+        `${baseUrl}/dashboard/organizers?page=${page}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           }
         }
       );
@@ -46,12 +48,14 @@ export const OrganizersProvider = ({ children }) => {
   const fetchorganizerAllRequest = useCallback(async (page) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/organizers-requests?page=${page}`,
+        `${baseUrl}/dashboard/organizers-requests?page=${page}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );
@@ -77,6 +81,8 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );
@@ -103,6 +109,8 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );
@@ -127,6 +135,8 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );
@@ -152,6 +162,8 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );
@@ -178,6 +190,8 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );
@@ -203,6 +217,8 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );
@@ -228,6 +244,8 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );
@@ -254,6 +272,8 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );
@@ -282,6 +302,8 @@ export const OrganizersProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           }
         }
       );

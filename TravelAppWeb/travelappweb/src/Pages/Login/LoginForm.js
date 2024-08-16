@@ -15,8 +15,6 @@ const LoginForm = () => {
     message,
     isLoggedIn,
   } = useContext(AuthLogin);
-
-  console.log(message);
   return (
     <StyledForm onSubmit={loginHandler}>
       <TextField

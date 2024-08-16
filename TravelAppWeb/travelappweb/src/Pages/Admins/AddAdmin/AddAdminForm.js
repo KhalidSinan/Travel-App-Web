@@ -46,9 +46,6 @@ const roles = [
     label: "Admins",
   },
 ];
-
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjE3OTg4ODV9.NHuxGVrgzpZoru0kmqogHUNjz2gMn89lQwyZmq5beFQ";
-
 const buttonStyle = {
   "&.MuiIconButton-root": {
     color: "var(--secondary-color)",
@@ -109,11 +106,13 @@ const AddAdminForm = (props) => {
     setError(null);
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/dashboard/admin', {
+      const response = await fetch(`${baseUrl}/dashboard/admin'`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${loginContext.Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
           body: JSON.stringify({
             "username" : adminName,

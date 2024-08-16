@@ -14,6 +14,7 @@ import {
 import { useLocation } from "react-router-dom";
 import { useScatterChartProps } from "@mui/x-charts/internals";
 import { AuthLogin } from "../../../Context/login_context";
+import { baseUrl } from "../../../App";
 
 const HotelsDetails = () => {
   const { Token } = useContext(AuthLogin);
@@ -56,7 +57,7 @@ const HotelsDetails = () => {
         <main className={styles["hotel-details-section"]}>
           <header className={styles["hotel-details"]}>
             <div className={styles["hotel-image"]}>
-              <img src={`http://localhost:5000/${hotel.images[0]}`} />
+              <img src={`${baseUrl}/${hotel.images[0]}`} />
             </div>
             <div className={styles["hotel-info"]}>
               <h2>

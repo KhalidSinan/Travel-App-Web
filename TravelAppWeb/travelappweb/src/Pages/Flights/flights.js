@@ -48,6 +48,8 @@ const Flights = () => {
         `${baseUrl}/dashboard/flights?start_date=${startDateParam}&end_date=${endDateParam}&page=${page}${searchParam}`, {
           headers: {
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );

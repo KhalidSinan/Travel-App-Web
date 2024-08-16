@@ -3,6 +3,7 @@ import React from "react";
 import { AuthLogin } from "./login_context";
 import { format } from "date-fns";
 import { baseUrl } from "../App";
+import axios from "axios";
 
 export const AppAnnouncementsContext = React.createContext({
   announcements: [],
@@ -30,7 +31,8 @@ const AppAnnouncementsContextProvider = ({ children }) => {
   const [sort, setSort] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-
+  console.log("============");
+  console.log(announcements, error);
   const getAllAppAnnouncements = useCallback(async () => {
     setIsLoading(true);
     setError(null);
@@ -43,18 +45,20 @@ const AppAnnouncementsContextProvider = ({ children }) => {
     try {
       const response = await fetch(
         `${baseUrl}/dashboard/announcements/app?page=${page}&start_date=${formattedStartDate}&end_date=${formattedEndDate}&sort=${sort}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${Token}`,
-          },
-        }
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Token}`,
+          "ngrok-skip-browser-warning": "69420",
+        },
+      }
       );
-      console.log(response);
-      if (!response.ok) {
+      console.log(response.data);
+      if (response.status !== 200) {
         throw new Error("An error occured while fetching announcements");
       }
-      const data = await response.json();
+      // const data = await response.json();
+      const data = response.data;
       setCount(data.count);
       setAnnouncements(data.data);
     } catch (error) {
@@ -62,7 +66,6 @@ const AppAnnouncementsContextProvider = ({ children }) => {
     }
     setIsLoading(false);
   }, [page, sort, startDate, endDate, Token]);
-  
 
   const toggleSort = () => {
     setSort((prev) => (prev === "asc" ? "desc" : "asc"));

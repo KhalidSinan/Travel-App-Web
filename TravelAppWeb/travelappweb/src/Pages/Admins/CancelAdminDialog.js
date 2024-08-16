@@ -19,6 +19,7 @@ import React, { useContext, useState } from "react";
 import TextFieldStyle from "../../helper/Styles/TextFieldStyle";
 import AutohideSnackbar from "../../helper/snackbar";
 import { AuthLogin } from "../../Context/login_context";
+import { baseUrl } from "../../App";
 
 const buttonStyle = {
   "&.MuiIconButton-root": {
@@ -55,12 +56,14 @@ const CancelAdminDialog = ({ open, admin, onClose, onCancelSuccess }) => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/admin/${admin.id}`,
+        `${baseUrl}/dashboard/admin/${admin.id}`,
         {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${loginContext.Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
           body: JSON.stringify({
             password: password,

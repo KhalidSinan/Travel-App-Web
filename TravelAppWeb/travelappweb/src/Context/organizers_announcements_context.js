@@ -47,6 +47,8 @@ const OrganizersAnnouncementsContextProvider = ({ children }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         }
       );

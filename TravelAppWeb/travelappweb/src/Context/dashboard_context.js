@@ -22,6 +22,8 @@ export const DashboardProvider = ({ children }) => {
           {
             headers: {
               Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
             },
           }
         );
@@ -41,6 +43,8 @@ export const DashboardProvider = ({ children }) => {
           {
             headers: {
               Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
             },
           }
         );
@@ -63,6 +67,8 @@ export const DashboardProvider = ({ children }) => {
           {
             headers: {
               Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
             },
           }
         );
@@ -85,6 +91,8 @@ export const DashboardProvider = ({ children }) => {
           {
             headers: {
               Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
             },
           }
         );
@@ -105,6 +113,8 @@ export const DashboardProvider = ({ children }) => {
           {
             headers: {
               Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
             },
           }
         );
@@ -126,6 +136,8 @@ export const DashboardProvider = ({ children }) => {
           {
             headers: {
               Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
             },
           }
         );
@@ -147,6 +159,8 @@ export const DashboardProvider = ({ children }) => {
           {
             headers: {
               Authorization: `Bearer ${Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
             },
           }
         );

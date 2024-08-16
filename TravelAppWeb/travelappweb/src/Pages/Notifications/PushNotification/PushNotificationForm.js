@@ -5,9 +5,7 @@ import styles from "./PushNotificationForm.module.css";
 // import AutohideSnackbar from "../../../helper/snackbar";
 import { useNavigate } from "react-router-dom";
 import { AuthLogin } from "../../../Context/login_context";
-
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OThjOTc2OGE5MzJkMjRiMDZmNTMzYyIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjE3OTg4ODV9.NHuxGVrgzpZoru0kmqogHUNjz2gMn89lQwyZmq5beFQ";
+import { baseUrl } from "../../../App";
 
 const PushNotificationForm = () => {
     const loginContext = useContext(AuthLogin);
@@ -33,12 +31,14 @@ const PushNotificationForm = () => {
   const pushNotification = async (event) => {
     event.preventDefault();
     const response = await fetch(
-      "http://localhost:5000/dashboard/notifications/",
+      `${baseUrl}/dashboard/notifications/`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${loginContext.Token}`,
+          "ngrok-skip-browser-warning": "69420",
+
         },
         body: JSON.stringify({
           notification_title: title,

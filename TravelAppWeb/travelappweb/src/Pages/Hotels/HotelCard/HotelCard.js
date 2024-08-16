@@ -3,6 +3,7 @@ import styles from "./HotelCard.module.css";
 import { BsArrowRightShort } from "react-icons/bs";
 import { Rating } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../../../App";
 const HotelCard = ({hotel}) => {
   const navigate = useNavigate();
   const goToDetails = () => {
@@ -15,7 +16,7 @@ const HotelCard = ({hotel}) => {
   return (
     <div className={styles["hotel-card"]}>
       <header>
-        <img src={`http://localhost:5000${hotel.images}`} />
+        <img src={`${baseUrl}/${hotel.images}`} />
       </header>
       <section>
         <h2 className={styles["hotel-name"]}>{hotel.name}</h2>

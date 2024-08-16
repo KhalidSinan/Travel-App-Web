@@ -6,6 +6,7 @@ import SearchBar from "../../helper/Components/SearchBar/SearchBar.js";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
 import { AuthLogin } from "../../Context/login_context.js";
+import { baseUrl } from "../../App.js";
 
 const Admins = (_) => {
   const loginContext = useContext(AuthLogin);
@@ -17,12 +18,14 @@ const Admins = (_) => {
   const getAllAdmins = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/dashboard/admins?limit=10&page=1',
+      const response = await fetch(`${baseUrl}/dashboard/admins?limit=10&page=1`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${loginContext.Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         });
         if(!response.ok){
@@ -40,12 +43,14 @@ const Admins = (_) => {
     event.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/dashboard/admins/search?limit=10&page=1&username=${adminSearch}`,
+      const response = await fetch(`${baseUrl}/dashboard/admins/search?limit=10&page=1&username=${adminSearch}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${loginContext.Token}`,
+            "ngrok-skip-browser-warning": "69420",
+
           },
         });
         if(!response.ok){

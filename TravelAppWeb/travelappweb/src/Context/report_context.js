@@ -11,6 +11,7 @@ export const ReportProvider = ({ children }) => {
   const [endDate, setEndDate] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [data, setData] = useState([]);
+  const [dataOrganizer, setOrganizerData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [count, setCount] = useState(0);
@@ -66,7 +67,7 @@ export const ReportProvider = ({ children }) => {
       }
 
       const result = await response.json();
-      setData(result.data);
+      setOrganizerData(result.data);
       setCount(result.count);
     } catch (error) {
       setError(error.message);
@@ -145,6 +146,7 @@ export const ReportProvider = ({ children }) => {
     handleEndDateChange: setEndDate,
     handleSearchQueryChange: setSearchQuery,
     data,
+    dataOrganizer,
     count,
     loading,
     error,

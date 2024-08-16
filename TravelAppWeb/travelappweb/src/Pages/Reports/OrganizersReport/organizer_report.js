@@ -72,7 +72,7 @@ const OrganizerReport = () => {
   const {
     page,
     handleChangePage,
-    data,
+    dataOrganizer,
     count,
     loading,
     fetchDataOrganizer,
@@ -229,7 +229,7 @@ const OrganizerReport = () => {
           >
             <CircularProgress />
           </Box>
-        ) : data.length === 0 ? (
+        ) : dataOrganizer.length === 0 ? (
           <Box
             sx={{
               display: "flex",
@@ -241,7 +241,7 @@ const OrganizerReport = () => {
             <Alert severity="info">No reports found</Alert>
           </Box>
         ) : (
-          data.map((report, index) => (
+          dataOrganizer.map((report, index) => (
             <Box key={index} sx={{ marginBottom: 2 }}>
               <AccordionCard
                 senderName={report.user}

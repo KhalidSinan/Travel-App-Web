@@ -131,11 +131,11 @@ const Dashboard = () => {
             className={`${styles["statistics-card"]} ${styles["tall-statistics-card"]}`}
           >
             <h2>JourneyJoy's Top Countries:</h2>
-            {/* {topCountries ? (
+            {topCountries ? (
               <ViewTopCountries data={topCountries.data} />
             ) : (
               <CircularProgress />
-            )} */}
+            )}
           </div>
         </section>
         <section className={styles["countries-airlines-statistics"]}>

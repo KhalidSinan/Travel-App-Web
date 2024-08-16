@@ -53,12 +53,10 @@ const AppAnnouncementsContextProvider = ({ children }) => {
         },
       }
       );
-      console.log(response.data);
-      if (response.status !== 200) {
+      if (!response.ok) {
         throw new Error("An error occured while fetching announcements");
       }
-      // const data = await response.json();
-      const data = response.data;
+      const data = await response.json();
       setCount(data.count);
       setAnnouncements(data.data);
     } catch (error) {

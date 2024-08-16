@@ -42,16 +42,16 @@ const AuthLoginProvider = (props) => {
         },
         body: JSON.stringify(loginData),
       });
-      if (response.status !== 200) {
+      if (!response.ok) {
         throw new Error(`Http error ! status : ${response.status}`);
       }
 
-      // const data = await response.json();
-      console.log(response.data.token);
+      const data = await response.json();
+      console.log(data.token);
       setIsLoggedIn(true);
-      setToken(response.data.token);
+      setToken(data.token);
       setmessage("Login successful");
-      setToken(response.data.token);
+      setToken(data.token);
       // <AutohideSnackbar message="Login successful"></AutohideSnackbar>;
 
       console.log("Login successful");

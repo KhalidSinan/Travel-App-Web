@@ -1,6 +1,7 @@
 import { useCallback, useContext, useState } from "react";
 import React from "react";
 import { AuthLogin } from "./login_context";
+import { baseUrl } from "../App";
 
 export const HotelsContext = React.createContext({
   hotels: [],
@@ -36,7 +37,7 @@ const HotelsContextProvider = ({ children }) => {
     setError(null);
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/hotels?search=${searchQuery}&page=${page}&stars=${stars}&sort=${sort}&sortBy=${sortBy}`,
+        `${baseUrl}/dashboard/hotels?search=${searchQuery}&page=${page}&stars=${stars}&sort=${sort}&sortBy=${sortBy}`,
         {
           headers: {
             "Content-Type": "application/json",

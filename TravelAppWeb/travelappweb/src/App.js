@@ -8,6 +8,9 @@ import { ReportProvider } from "./Context/report_context.js";
 import { DashboardProvider } from "./Context/dashboard_context.js";
 import NotAuthorized from "./Pages/Error/NotAuthorized.js";
 import { useLocalStorage } from "@uidotdev/usehooks";
+
+export const baseUrl = 'https://e351-5-0-79-134.ngrok-free.app';
+
 function App() {  
   function clearStorage() {
     let session = sessionStorage.getItem('register');

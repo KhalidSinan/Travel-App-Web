@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { AuthLogin } from "./login_context";
+import { baseUrl } from "../App";
 
 const DashboardContext = createContext();
 
@@ -17,7 +18,7 @@ export const DashboardProvider = ({ children }) => {
     const fetchRevenue = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/dashboard/statistics/revenue",
+          `${baseUrl}/dashboard/statistics/revenue`,
           {
             headers: {
               Authorization: `Bearer ${Token}`,
@@ -36,7 +37,7 @@ export const DashboardProvider = ({ children }) => {
     const fetchAllCountries = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/dashboard/statistics/countries",
+          `${baseUrl}/dashboard/statistics/countries`,
           {
             headers: {
               Authorization: `Bearer ${Token}`,
@@ -58,7 +59,7 @@ export const DashboardProvider = ({ children }) => {
     const fetchOrganizedTripsPer = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/dashboard/statistics/organized-percentage",
+          `${baseUrl}/dashboard/statistics/organized-percentage`,
           {
             headers: {
               Authorization: `Bearer ${Token}`,
@@ -80,7 +81,7 @@ export const DashboardProvider = ({ children }) => {
     const fetchTopHotels = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/dashboard/statistics/top-hotels",
+          `${baseUrl}/dashboard/statistics/top-hotels`,
           {
             headers: {
               Authorization: `Bearer ${Token}`,
@@ -100,7 +101,7 @@ export const DashboardProvider = ({ children }) => {
     const fetchAirlines = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/dashboard/statistics/airline-flights",
+          `${baseUrl}/dashboard/statistics/airline-flights`,
           {
             headers: {
               Authorization: `Bearer ${Token}`,
@@ -121,7 +122,7 @@ export const DashboardProvider = ({ children }) => {
     const fetchTopCountries = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/dashboard/statistics/top-countries",
+          `${baseUrl}/dashboard/statistics/top-countries`,
           {
             headers: {
               Authorization: `Bearer ${Token}`,
@@ -142,7 +143,7 @@ export const DashboardProvider = ({ children }) => {
     const fetchHotels = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/dashboard/hotels?page=1",
+          `${baseUrl}/dashboard/hotels?page=1`,
           {
             headers: {
               Authorization: `Bearer ${Token}`,

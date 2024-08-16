@@ -2,6 +2,7 @@ import { useCallback, useContext, useState } from "react";
 import React from "react";
 import { AuthLogin } from "./login_context";
 import { format } from "date-fns";
+import { baseUrl } from "../App";
 
 export const NotificationsContext = React.createContext({
   notifications: [],
@@ -42,7 +43,7 @@ const NotificationsContextProvider = ({ children }) => {
     console.log(formattedStartDate,formattedEndDate, startDate, endDate);
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/notifications/?page=${page}&start_date=${formattedStartDate}&end_date=${formattedEndDate}&sort=${sort}`,
+        `${baseUrl}/dashboard/notifications/?page=${page}&start_date=${formattedStartDate}&end_date=${formattedEndDate}&sort=${sort}`,
         {
           headers: {
             "Content-Type": "application/json",

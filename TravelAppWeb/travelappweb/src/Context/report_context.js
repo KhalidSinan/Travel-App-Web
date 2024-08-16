@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { AuthLogin } from "./login_context";
+import { baseUrl } from "../App";
 
 const ReportContext = createContext();
 
@@ -20,7 +21,7 @@ export const ReportProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/reports/app?page=${page}&start_date=${startDate}&end_date=${endDate}`,
+        `${baseUrl}/dashboard/reports/app?page=${page}&start_date=${startDate}&end_date=${endDate}`,
         {
           headers: {
             Authorization: `Bearer ${Token}`,
@@ -48,7 +49,7 @@ export const ReportProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/reports/organizers?page=${page}&start_date=${startDate}&end_date=${endDate}&search=${searchQuery}`,
+        `${baseUrl}/dashboard/reports/organizers?page=${page}&start_date=${startDate}&end_date=${endDate}&search=${searchQuery}`,
         {
           headers: {
             Authorization: `Bearer ${Token}`,
@@ -73,7 +74,7 @@ export const ReportProvider = ({ children }) => {
   const fetchReply = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/reports/${id}/reply`,
+        `${baseUrl}/dashboard/reports/${id}/reply`,
         {
           method: "GET",
           headers: {
@@ -105,7 +106,7 @@ export const ReportProvider = ({ children }) => {
   const deleteReport = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/reports/${id}`,
+        `${baseUrl}/dashboard/reports/${id}`,
         {
           method: "DELETE",
           headers: {

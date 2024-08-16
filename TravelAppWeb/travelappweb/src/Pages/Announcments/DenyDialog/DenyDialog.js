@@ -10,13 +10,14 @@ import CustomButton from "../../../helper/Components/CustomButton/CustomButton";
 import styles from "./DenyDialog.module.css";
 import { AuthLogin } from "../../../Context/login_context";
 import { AiOutlineCloseSquare } from "react-icons/ai";
+import { baseUrl } from "../../../App";
 
 const DenyDialog = ({ open = true, onClose, onDeny, announce }) => {
   const loginContext = useContext(AuthLogin);
 
   const denyAnnouncementRequest = async (announceId) => {
     const response = await fetch(
-      `http://localhost:5000/dashboard/announcement-requests/${announceId}/deny`,
+      `${baseUrl}/dashboard/announcement-requests/${announceId}/deny`,
       {
         method: "GET",
         headers: {

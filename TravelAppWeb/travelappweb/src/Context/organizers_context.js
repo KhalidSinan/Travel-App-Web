@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext ,useCallback} from "react";
 import { AuthLogin } from "./login_context";
+import { baseUrl } from "../App";
 
 const OrganizersContext = createContext();
 
@@ -70,7 +71,7 @@ export const OrganizersProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/organizers/${organizerId}?page=${page}`,
+        `${baseUrl}/dashboard/organizers/${organizerId}?page=${page}`,
         {
           method: "GET",
           headers: {
@@ -79,6 +80,7 @@ export const OrganizersProvider = ({ children }) => {
           },
         }
       );
+      console.log(response);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -95,7 +97,7 @@ export const OrganizersProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/organizers-requests/${organizerId}`,
+        `${baseUrl}/dashboard/organizers-requests/${organizerId}`,
         {
           method: "GET",
           headers: {
@@ -119,7 +121,7 @@ export const OrganizersProvider = ({ children }) => {
   const deleteOrganizer = useCallback(async (organizerId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/organizers/${organizerId}`,
+        `${baseUrl}/dashboard/organizers/${organizerId}`,
         {
           method: "DELETE",
           headers: {
@@ -144,7 +146,7 @@ export const OrganizersProvider = ({ children }) => {
   const deactiveOrganizer = useCallback(async (organizerId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/organizers/${organizerId}/deactivate`,
+        `${baseUrl}/dashboard/organizers/${organizerId}/deactivate`,
         {
           method: "GET",
           headers: {
@@ -169,7 +171,7 @@ export const OrganizersProvider = ({ children }) => {
   const alertOrganizer = useCallback(async (organizerId, title, body) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/organizers/${organizerId}/alert`,
+        `${baseUrl}/dashboard/organizers/${organizerId}/alert`,
         {
           method: "POST",
           body: JSON.stringify({ title, body }),
@@ -195,7 +197,7 @@ export const OrganizersProvider = ({ children }) => {
   const acceptOrganizer = useCallback(async (organizerId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/organizers-requests/${organizerId}/accept`,
+        `${baseUrl}/dashboard/organizers-requests/${organizerId}/accept`,
         {
           method: "GET",
           headers: {
@@ -220,7 +222,7 @@ export const OrganizersProvider = ({ children }) => {
   const RefuseOrganizer = useCallback(async (organizerId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/organizers-requests/${organizerId}/deny`,
+        `${baseUrl}/dashboard/organizers-requests/${organizerId}/deny`,
         {
           method: "GET",
           headers: {
@@ -246,7 +248,7 @@ export const OrganizersProvider = ({ children }) => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/organizers/${organizerId}/trips/${tripId}`,
+        `${baseUrl}/dashboard/organizers/${organizerId}/trips/${tripId}`,
         {
           method: "GET",
           headers: {
@@ -274,7 +276,7 @@ export const OrganizersProvider = ({ children }) => {
   const fetchSearchedOrganizers = useCallback(async (page, name) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/organizers/search?page=${page}&name=${name}`,
+        `${baseUrl}/dashboard/organizers/search?page=${page}&name=${name}`,
         {
           method: "GET",
           headers: {

@@ -13,6 +13,7 @@ import TextFieldStyle from "../../../helper/Styles/TextFieldStyle";
 import { TextField } from "@mui/material";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { format } from "date-fns";
+import { baseUrl } from "../../../App";
 const MakeAnnouncementForm = () => {
   const loginContext = useContext(AuthLogin);
   const [title, setTitle] = useState("");
@@ -49,7 +50,7 @@ const MakeAnnouncementForm = () => {
   const makeAnnouncement = async (event) => {
     event.preventDefault();
     const response = await fetch(
-      "http://localhost:5000/dashboard/announcements",
+      `${baseUrl}/dashboard/announcements`,
       {
         method: "POST",
         headers: {

@@ -10,13 +10,14 @@ import CustomButton from "../../../helper/Components/CustomButton/CustomButton";
 import styles from "./AcceptDialog.module.css";
 import { AuthLogin } from "../../../Context/login_context";
 import { AiOutlineCloseSquare } from "react-icons/ai";
+import { baseUrl } from "../../../App";
 
 const AcceptDialog = ({ open = true, onClose, onAccept, announce }) => {
     const loginContext = useContext(AuthLogin);
 
   const acceptAnnouncementRequest = async (announceId) => {
     const response = await fetch(
-      `http://localhost:5000/dashboard/announcement-requests/${announceId}/accept`,
+      `${baseUrl}/dashboard/announcement-requests/${announceId}/accept`,
       {
         method: "GET",
         headers: {

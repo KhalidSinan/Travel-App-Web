@@ -68,12 +68,14 @@ const DashboardRoutes = () => {
     const currentPage = localStorage.getItem("current-page");
     if (!isLoggedIn) {
       navigate("/login");
-    } else if (currentPage == null) {
+    } else if (isLoggedIn && currentPage == null) {
       navigate("/dashboard");
-    } else if (currentPage !== -1) {
+    } else if (isLoggedIn && currentPage !== -1) {
       navigate(pages[currentPage]["page"]);
-    } else if (+currentPage === -1) {
+    } else if (isLoggedIn && +currentPage === -1) {
       navigate("/Notifications");
+    } else{
+      navigate('/login');
     }
   }, [isLoggedIn]);
   return (

@@ -2,6 +2,7 @@ import { LocalSeeOutlined } from "@mui/icons-material";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../App";
 export const AuthLogin = React.createContext({
   isLoggedIn: false,
   Token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWY4YzAyMzQzZDcyZGI5ZjQyMTZlMCIsInVzZXJuYW1lIjoiZWxvbk11c2stMjIiLCJpYXQiOjE3MjMyOTI3NzV9.1ht58PYIYPx1_qxW6b-1bZ_WB5T91lO4ze4gyCUsE1Q",
@@ -30,7 +31,7 @@ const AuthLoginProvider = (props) => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/dashboard/login", {
+      const response = await fetch(`${baseUrl}/dashboard/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +63,7 @@ const AuthLoginProvider = (props) => {
     event.preventDefault();
     setLogoutLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/dashboard/logout", {
+      const response = await fetch(`${baseUrl}/dashboard/logout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

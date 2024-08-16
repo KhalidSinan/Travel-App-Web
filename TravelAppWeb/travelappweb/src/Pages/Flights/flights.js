@@ -5,6 +5,7 @@ import CustomPagination from "../../helper/custom_pagination";
 import DateFilter from "../../helper/Components/DateFilter/date_filter";
 import SearchBar from "../../helper/Components/SearchBar/SearchBar";
 import { AuthLogin } from "../../Context/login_context";
+import { baseUrl } from "../../App";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -44,7 +45,7 @@ const Flights = () => {
       const searchParam = searchValue ? `&search=${searchValue}` : "";
 
       const response = await fetch(
-        `http://localhost:5000/dashboard/flights?start_date=${startDateParam}&end_date=${endDateParam}&page=${page}${searchParam}`, {
+        `${baseUrl}/dashboard/flights?start_date=${startDateParam}&end_date=${endDateParam}&page=${page}${searchParam}`, {
           headers: {
             Authorization: `Bearer ${Token}`,
           },

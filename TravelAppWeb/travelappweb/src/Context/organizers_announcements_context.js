@@ -2,6 +2,7 @@ import { useCallback, useContext, useState } from "react";
 import React from "react";
 import { AuthLogin } from "./login_context";
 import { format } from "date-fns";
+import { baseUrl } from "../App";
 
 export const OrganizersAnnouncementsContext = React.createContext({
   announcements: [],
@@ -41,7 +42,7 @@ const OrganizersAnnouncementsContextProvider = ({ children }) => {
     }
     try {
       const response = await fetch(
-        `http://localhost:5000/dashboard/announcements/organizers?page=${page}&start_date=${formattedStartDate}&end_date=${formattedEndDate}&sort=${sort}`,
+        `${baseUrl}/dashboard/announcements/organizers?page=${page}&start_date=${formattedStartDate}&end_date=${formattedEndDate}&sort=${sort}`,
         {
           headers: {
             "Content-Type": "application/json",

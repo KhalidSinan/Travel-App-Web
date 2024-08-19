@@ -1,11 +1,11 @@
-import React, { createContext, useState, useEffect, useContext ,useCallback} from "react";
+import React, { createContext, useState, useEffect, useContext, useCallback } from "react";
 import { AuthLogin } from "./login_context";
 import { baseUrl } from "../App";
 
 const OrganizersContext = createContext();
 
 export const OrganizersProvider = ({ children }) => {
-  const {Token} = useContext(AuthLogin);
+  const { Token } = useContext(AuthLogin);
   const [page, setPage] = useState(1);
   const [cards, setCards] = useState([]);
   const [cardsRequest, setAllCardsRequests] = useState([]);
@@ -218,7 +218,6 @@ export const OrganizersProvider = ({ children }) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${Token}`,
             "ngrok-skip-browser-warning": "69420",
-
           },
         }
       );

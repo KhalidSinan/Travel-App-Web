@@ -4,7 +4,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { Rating } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../../../App";
-const HotelCard = ({hotel}) => {
+const HotelCard = ({ hotel }) => {
   const navigate = useNavigate();
   const goToDetails = () => {
     navigate("/hotelDetails", {

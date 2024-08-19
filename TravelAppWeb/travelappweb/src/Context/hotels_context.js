@@ -5,11 +5,11 @@ import { baseUrl } from "../App";
 
 export const HotelsContext = React.createContext({
   hotels: [],
-  getAllHotels: () => {},
-  changePage: () => {},
-  changeSort: (sort) => {},
-  changeStars: (stars) => {},
-  searchHotel: (hotelName) => {},
+  getAllHotels: () => { },
+  changePage: () => { },
+  changeSort: (sort) => { },
+  changeStars: (stars) => { },
+  searchHotel: (hotelName) => { },
   isLoading: true,
   error: null,
   page: 1,
@@ -51,6 +51,7 @@ const HotelsContextProvider = ({ children }) => {
         throw new Error("An error occured while fetching hotels");
       }
       const data = await response.json();
+      console.log(data)
       setCount(data.count);
       setHotels(data.data);
     } catch (error) {
@@ -74,7 +75,7 @@ const HotelsContextProvider = ({ children }) => {
 
   const searchHotel = (hotelName) => {
     setSearchQuery(hotelName);
-  } 
+  }
 
   const changePage = (event, newPage) => {
     event.preventDefault();

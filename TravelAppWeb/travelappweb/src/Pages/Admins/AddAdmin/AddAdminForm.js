@@ -23,29 +23,21 @@ import { baseUrl } from "../../../App";
 
 const roles = [
   {
-    value: "Admin",
-    label: "Admin",
-  },
-  {
-    value: "announcement",
+    value: "Announcements-Admin",
     label: "Announcements",
   },
   {
-    value: "reports",
+    value: "Reports-Admin",
     label: "Reports",
   },
   {
-    value: "organizers",
+    value: "Organizers-Admin",
     label: "Organizers",
   },
   {
-    value: "dashboard",
-    label: "Dashboard",
-  },
-  {
-    value: "admins",
-    label: "Admins",
-  },
+    value: "Notifications-Admin",
+    label: "Notifications",
+  }
 ];
 const buttonStyle = {
   "&.MuiIconButton-root": {
@@ -68,14 +60,14 @@ const AddAdminForm = (props) => {
   const [passwordConfirmTouched, setPasswordConfrimTouched] = useState(false);
   const [roleTouched, setRoleTouched] = useState(false);
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false); 
-  
+  const [isLoading, setIsLoading] = useState(false);
+
   const adminNameNotValid = adminNameTouched && adminName.length < 3;
   const passwordNotValid = password.length < 8 && passwordTouched;
   const passwordConfirmNotValid = passwordConfirmTouched && (passwordConfirm.length < 8 || passwordConfirm !== password);
   const roleNotValid = roleTouched && role === null;
   const formNotValid = adminNameNotValid || passwordConfirmNotValid || passwordNotValid || roleNotValid;
-  
+
   const adminNameChange = (event) => {
     touchAdminName()
     setAdminName(event.target.value);
@@ -107,23 +99,23 @@ const AddAdminForm = (props) => {
     setError(null);
     setIsLoading(true);
     try {
-      const response = await fetch(`${baseUrl}/dashboard/admin'`, {
+      const response = await fetch(`${baseUrl}/dashboard/admin`, {
         method: 'POST',
         headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${loginContext.Token}`,
-            "ngrok-skip-browser-warning": "69420",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${loginContext.Token}`,
+          "ngrok-skip-browser-warning": "69420",
 
-          },
-          body: JSON.stringify({
-            "username" : adminName,
-            "password" : password,
-            "password_confirmation": passwordConfirm,
-            "role" : role,
-          }),
+        },
+        body: JSON.stringify({
+          "username": adminName,
+          "password": password,
+          "password_confirmation": passwordConfirm,
+          "role": role,
+        }),
       });
-      if(!response.ok){
-        if(response.status === 400){
+      if (!response.ok) {
+        if (response.status === 400) {
           const data = await response.json();
           const field = Object.keys(data.message)[0];
           throw new Error(data.message[field][0]);
@@ -234,13 +226,13 @@ const AddAdminForm = (props) => {
           </MenuItem>
         ))}
       </CustomTextField>
-      {isLoading ? <CircularProgress /> 
-      :<CustomButton
-        name="Add Admin"
-        classes={`${styles["add-admin-btn"]}`}
-        onClick={addAdmin}
-        error={roleNotValid}
-      />}
+      {isLoading ? <CircularProgress />
+        : <CustomButton
+          name="Add Admin"
+          classes={`${styles["add-admin-btn"]}`}
+          onClick={addAdmin}
+          error={roleNotValid}
+        />}
       {error ? <AutohideSnackbar message={error} /> : null}
     </div>
   );

@@ -9,18 +9,18 @@ import { DashboardProvider } from "./Context/dashboard_context.js";
 import NotAuthorized from "./Pages/Error/NotAuthorized.js";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
-export const baseUrl = 'https://9686-185-180-222-95.ngrok-free.app';
-// export const baseUrl = 'http://localhost:5000';
+// export const baseUrl = 'https://16f9-149-34-244-136.ngrok-free.app';
+export const baseUrl = 'http://localhost:5000';
 
-function App() {  
+function App() {
   function clearStorage() {
     let session = sessionStorage.getItem('register');
     if (session == null) {
-        window.localStorage.clear();
+      window.localStorage.clear();
     }
     sessionStorage.setItem('register', 1);
-}
-window.addEventListener('load', clearStorage);
+  }
+  window.addEventListener('load', clearStorage);
   return (
     <AuthLoginProvider>
       <DashboardProvider>

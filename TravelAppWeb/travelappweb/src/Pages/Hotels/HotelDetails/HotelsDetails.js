@@ -57,7 +57,7 @@ const HotelsDetails = () => {
         <main className={styles["hotel-details-section"]}>
           <header className={styles["hotel-details"]}>
             <div className={styles["hotel-image"]}>
-              <img src={`${baseUrl}/${hotel.images[0]}`} />
+              <img src={`${baseUrl} / ${hotel.images[0]}`} />
             </div>
             <div className={styles["hotel-info"]}>
               <h2>

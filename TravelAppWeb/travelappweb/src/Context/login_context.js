@@ -3,7 +3,6 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../App";
-import axios from "axios";
 import AutohideSnackbar from "../helper/snackbar";
 export const AuthLogin = React.createContext({
   isLoggedIn: false,

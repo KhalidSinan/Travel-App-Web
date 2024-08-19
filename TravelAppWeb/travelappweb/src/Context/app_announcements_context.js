@@ -3,7 +3,6 @@ import React from "react";
 import { AuthLogin } from "./login_context";
 import { format } from "date-fns";
 import { baseUrl } from "../App";
-import axios from "axios";
 
 export const AppAnnouncementsContext = React.createContext({
   announcements: [],
